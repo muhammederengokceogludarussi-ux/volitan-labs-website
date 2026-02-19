@@ -1,0 +1,238 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "apps": "Uygulamalar",
+    "about": "Hakkımda",
+    "projects": "Projeler",
+    "blog": "Blog",
+    "contact": "İletişim"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Merhaba, ben",
+      "name": "Volitan Labs",
+      "roles": "Makine Mühendisliği Öğrencisi|Mobil Uygulama Geliştirici|İHA Tutkunu|Yapay Zeka Destekli Geliştirici",
+      "description": "ODTÜ Makine Mühendisliği öğrencisi, Flutter ile mobil uygulamalar geliştiriyor — mühendislik disiplinini yaratıcı yazılım geliştirme ile birleştirerek.",
+      "cta_projects": "Projeleri Gör",
+      "cta_contact": "İletişime Geç"
+    },
+    "featuredApp": {
+      "label": "Öne Çıkan Uygulama",
+      "tagline": "Odaklan. Kazan. İnşa Et.",
+      "description": "Odaklanarak XP kazandığın, kendi evrenini inşa ettiğin ve gelişimini takip ettiğin oyunlaştırılmış verimlilik uygulaması.",
+      "cta": "Daha Fazla",
+      "features": {
+        "focus": {
+          "title": "Derin Odak",
+          "description": "Ortam sesleri ile dikkat dağıtmayan odak oturumları."
+        },
+        "gamification": {
+          "title": "Oyunlaştırma",
+          "description": "XP kazan, seviye atla ve başarımların kilidini aç."
+        },
+        "pomodoro": {
+          "title": "Akıllı Zamanlayıcı",
+          "description": "Özelleştirilebilir aralıklarla Pomodoro tekniği."
+        },
+        "universe": {
+          "title": "Senin Evrenin",
+          "description": "Büyüdükçe kişisel alanını inşa et ve genişlet."
+        }
+      }
+    },
+    "skills": {
+      "label": "Teknoloji Yığını",
+      "title": "Beceriler & Uzmanlık",
+      "subtitle": "Makine mühendisliği ve yazılım geliştirme arasında köprü — havacılık, İHA tasarımı ve mobil uygulamalar.",
+      "items": {
+        "flutter": {
+          "title": "Flutter & Dart",
+          "description": "Güzel arayüzler ve akıcı animasyonlarla çoklu platform mobil uygulamalar."
+        },
+        "ai": {
+          "title": "Yapay Zeka Destekli Geliştirme",
+          "description": "Hızlı ve kaliteli geliştirme için yapay zeka araçlarını kullanma."
+        },
+        "engineering": {
+          "title": "Makine Mühendisliği",
+          "description": "CAD/CAM, üretim sistemleri ve havacılık temelleri."
+        },
+        "fullstack": {
+          "title": "İHA Tasarımı & Pilotluk",
+          "description": "Savaşan İHA tasarım deneyimi ve A1 sertifikalı drone pilotu."
+        },
+        "systems": {
+          "title": "Sistem Düşüncesi",
+          "description": "Karmaşık problem çözmeye bütünsel yaklaşım — F-35'ten Flutter'a."
+        }
+      }
+    },
+    "blog": {
+      "label": "Blog",
+      "title": "Son Yazılar",
+      "subtitle": "Mühendislik, mobil geliştirme ve verimlilik üzerine düşünceler.",
+      "posts": {
+        "post1": {
+          "title": "Mühendislik Düşüncesi Uygulama Geliştirmemi Nasıl Şekillendiriyor",
+          "description": "ODTÜ'de makine mühendisliği okumanın mobil uygulama geliştirme yaklaşımımı nasıl etkilediği."
+        },
+        "post2": {
+          "title": "Focus Space'i İnşa Etmek: Bir Flutter Yolculuğu",
+          "description": "Flutter ve yapay zeka desteği ile oyunlaştırılmış verimlilik uygulaması oluşturmanın perde arkası."
+        },
+        "post3": {
+          "title": "Yapay Zeka Destekli Geliştirme: İş Akışım",
+          "description": "Kod kalitesinden ödün vermeden geliştirmeyi hızlandırmak için yapay zeka araçlarını nasıl kullanıyorum."
+        }
+      }
+    },
+    "cta": {
+      "title": "Birlikte Bir Şeyler İnşa Edelim",
+      "subtitle": "Bir fikriniz mi var? İş birliği yapmak mı istiyorsunuz? Sizden haber almak isterim.",
+      "button": "İletişime Geçin"
+    }
+  },
+  "apps": {
+    "title": "Uygulamalarımız",
+    "subtitle": "Özenle ve hassasiyetle geliştirilmiş mobil deneyimler.",
+    "downloadOn": "İndir",
+    "comingSoon": "Çok Yakında",
+    "features": "Özellikler",
+    "featuresTitle": "Odaklanmak İçin İhtiyacınız Olan Her Şey",
+    "screenshots": "Ön İzleme",
+    "screenshotsTitle": "Nasıl Görünüyor",
+    "learnMore": "Daha Fazla",
+    "notifyMe": "Haber Ver",
+    "ctaTitle": "Odaklanmaya Hazır mısınız?",
+    "ctaSubtitle": "Focus Space çıktığında ilk siz haberdar olun. Erken erişim için kaydolun."
+  },
+  "about": {
+    "title": "Hakkımda",
+    "subtitle": "Havacılık ve mobil uygulama geliştirme tutkusu olan makine mühendisliği öğrencisi.",
+    "story": {
+      "title": "Hikayem",
+      "heading": "Şimdiye Kadarki Yolculuk",
+      "content": "Orta Doğu Teknik Üniversitesi'nde (ODTÜ) Makine Mühendisliği öğrencisiyim. Mühendislik yolculuğum erken başladı — lisede uçak bakım teknisyenliği eğitimi, TUSAŞ'ta F-35 ve GÖKBEY Helikopter gibi projelerde çalışma ve Gazi Üniversitesi'nden Uçak Teknolojisi ön lisans derecesi.",
+      "content2": "Mühendislik çalışmalarımın yanı sıra mobil uygulama geliştirme tutkusu keşfettim. Flutter ve yapay zeka destekli iş akışları kullanarak Volitan Labs markası altında Focus Space — oyunlaştırılmış bir verimlilik uygulaması — geliştiriyorum. Hedefim mühendislik hassasiyetini yaratıcı yazılım geliştirme ile birleştirmek."
+    },
+    "journey": {
+      "label": "Yolculuk",
+      "title": "Yolum",
+      "subtitle": "Havacılık üretiminden makine mühendisliği ve mobil geliştirmeye."
+    },
+    "timeline": {
+      "item1": {
+        "title": "TUSAŞ Havacılık Deneyimi",
+        "subtitle": "F-35, GÖKBEY & Üretim",
+        "period": "2017 - 2020",
+        "description": "Türk Havacılık ve Uzay Sanayii'nde pratik havacılık deneyimi — F-35 üretimi, GÖKBEY Helikopter prototipi geliştirme ve Belotti Su Jeti sistemleri."
+      },
+      "item2": {
+        "title": "ODTÜ Makine Mühendisliği",
+        "subtitle": "Orta Doğu Teknik Üniversitesi",
+        "period": "2020 - Devam Ediyor",
+        "description": "Türkiye'nin en iyi üniversitelerinden birinde Makine Mühendisliği lisans eğitimi. Havacılık, İHA tasarımı ve üretim sistemleri alanlarında uzmanlaşma."
+      },
+      "item3": {
+        "title": "TEKNOFEST & Volitan Labs",
+        "subtitle": "Yarışma & Uygulama Geliştirme",
+        "period": "2022 - Günümüz",
+        "description": "TEKNOFEST 2022 Savaşan İHA Yarışması finalisti — ANATEK Takımı Mekanik Koordinatörü. Focus Space ve diğer mobil uygulamaları geliştirmek için Volitan Labs'ı kurdu."
+      }
+    },
+    "skills": {
+      "label": "Uzmanlık",
+      "title": "Teknik Beceriler",
+      "subtitle": "Havacılık mühendisliği, üretim ve yazılım becerilerinin eşsiz bileşimi.",
+      "engineering": "Mühendislik",
+      "software": "Yazılım",
+      "tools": "Araçlar"
+    },
+    "values": {
+      "label": "Felsefe",
+      "title": "Değerlerim",
+      "precision": {
+        "title": "Hassasiyet",
+        "description": "Her satır koda uygulanan mühendislik zihniyeti."
+      },
+      "innovation": {
+        "title": "Yenilikçilik",
+        "description": "Her zaman yeni teknolojileri ve yaklaşımları keşfetmek."
+      },
+      "quality": {
+        "title": "Kalite",
+        "description": "Keyifli deneyimler yaratmak için detaylara takılmak."
+      },
+      "collaboration": {
+        "title": "İş Birliği",
+        "description": "Birlikte inşa etmek her zaman yalnız inşa etmekten iyidir."
+      }
+    },
+    "education": {
+      "label": "Eğitim",
+      "title": "Akademik Geçmiş"
+    },
+    "connect": {
+      "title": "Bağlantı Kuralım",
+      "subtitle": "Bu platformlardan herhangi birinden bana ulaşabilirsiniz."
+    },
+    "founder": {
+      "title": "Hakkımda",
+      "role": "Makine Mühendisliği Öğrencisi & Mobil Uygulama Geliştirici"
+    }
+  },
+  "projects": {
+    "title": "Projeler",
+    "subtitle": "Mobil uygulamalardan savaşan İHA'lara — geliştirdiğim ve katkıda bulunduğum projeler.",
+    "featured": "Öne Çıkan",
+    "view_all": "Tümünü Gör",
+    "view_project": "Projeyi Gör",
+    "liveDemo": "Canlı Demo",
+    "notFound": "Proje bulunamadı",
+    "features": "Temel Özellikler",
+    "filters": {
+      "all": "Tümü",
+      "mobile": "Mobil",
+      "web": "Web",
+      "engineering": "Mühendislik"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Mühendislik, mobil geliştirme ve verimlilik üzerine düşünceler.",
+    "readMore": "Devamını Oku",
+    "minRead": "dk okuma",
+    "noPosts": "Henüz yazı yok. Takipte kalın!",
+    "allPosts": "Tüm Yazılar"
+  },
+  "contact": {
+    "title": "İletişime Geçin",
+    "subtitle": "Bir sorunuz mu var veya birlikte çalışmak mı istiyorsunuz?",
+    "name": "Adınız",
+    "email": "E-posta Adresiniz",
+    "subject": "Konu",
+    "message": "Mesajınız",
+    "send": "Mesaj Gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Mesajınız başarıyla gönderildi! En kısa sürede döneceğim.",
+    "error": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
+    "otherWays": "Bana Ulaşmanın Diğer Yolları"
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "lastUpdated": "Son güncelleme"
+  },
+  "common": {
+    "readMore": "Devamını Oku",
+    "backTo": "{page} sayfasına dön",
+    "loading": "Yükleniyor...",
+    "viewAll": "Tümünü Gör",
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "footer": {
+    "description": "Mühendislik hassasiyetiyle mobil deneyimler oluşturuyorum.",
+    "navigation": "Navigasyon",
+    "connect": "Bağlantı",
+    "legal": "Yasal"
+  }
+}

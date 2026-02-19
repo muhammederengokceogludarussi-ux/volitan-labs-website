@@ -1,0 +1,43 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { m, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface WordRotateProps {
+  words: string[];
+  duration?: number;
+  className?: string;
+}
+
+export function WordRotate({
+  words,
+  duration = 2500,
+  className,
+}: WordRotateProps) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, duration);
+    return () => clearInterval(interval);
+  }, [words, duration]);
+
+  return (
+    <div className="overflow-hidden py-2">
+      <AnimatePresence mode="wait">
+        <m.span
+          key={words[index]}
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className={cn("inline-block", className)}
+        >
+          {words[index]}
+        </m.span>
+      </AnimatePresence>
+    </div>
+  );
+}

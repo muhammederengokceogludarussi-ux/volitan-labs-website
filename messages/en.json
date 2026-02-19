@@ -1,0 +1,238 @@
+{
+  "nav": {
+    "home": "Home",
+    "apps": "Apps",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi, I'm",
+      "name": "Volitan Labs",
+      "roles": "Mechanical Engineering Student|Mobile App Developer|UAV Enthusiast|AI-Augmented Developer",
+      "description": "METU Mechanical Engineering student building mobile apps with Flutter — combining engineering discipline with creative software development.",
+      "cta_projects": "View Projects",
+      "cta_contact": "Get in Touch"
+    },
+    "featuredApp": {
+      "label": "Featured App",
+      "tagline": "Focus. Earn. Build.",
+      "description": "A gamified productivity app where you earn XP by focusing, build your own universe, and track your growth.",
+      "cta": "Learn More",
+      "features": {
+        "focus": {
+          "title": "Deep Focus",
+          "description": "Distraction-free focus sessions with ambient sounds."
+        },
+        "gamification": {
+          "title": "Gamification",
+          "description": "Earn XP, level up, and unlock achievements."
+        },
+        "pomodoro": {
+          "title": "Smart Timer",
+          "description": "Pomodoro technique with customizable intervals."
+        },
+        "universe": {
+          "title": "Your Universe",
+          "description": "Build and expand your personal space as you grow."
+        }
+      }
+    },
+    "skills": {
+      "label": "Tech Stack",
+      "title": "Skills & Expertise",
+      "subtitle": "Bridging mechanical engineering and software development — aerospace, UAV design, and mobile apps.",
+      "items": {
+        "flutter": {
+          "title": "Flutter & Dart",
+          "description": "Cross-platform mobile apps with beautiful UIs and smooth animations."
+        },
+        "ai": {
+          "title": "AI-Augmented Development",
+          "description": "Leveraging AI tools for rapid, high-quality development."
+        },
+        "engineering": {
+          "title": "Mechanical Engineering",
+          "description": "CAD/CAM, manufacturing systems, and aerospace fundamentals."
+        },
+        "fullstack": {
+          "title": "UAV Design & Piloting",
+          "description": "Combat UAV design experience and A1 certified drone pilot."
+        },
+        "systems": {
+          "title": "Systems Thinking",
+          "description": "Holistic approach to complex problem solving — from F-35 to Flutter."
+        }
+      }
+    },
+    "blog": {
+      "label": "Blog",
+      "title": "Latest Posts",
+      "subtitle": "Thoughts on engineering, mobile development, and productivity.",
+      "posts": {
+        "post1": {
+          "title": "How Engineering Thinking Shapes My App Development",
+          "description": "How studying mechanical engineering at METU influences my approach to building mobile apps."
+        },
+        "post2": {
+          "title": "Building Focus Space: A Flutter Journey",
+          "description": "Behind the scenes of creating a gamified productivity app with Flutter and AI assistance."
+        },
+        "post3": {
+          "title": "AI-Augmented Development: My Workflow",
+          "description": "How I use AI tools to accelerate development without sacrificing code quality."
+        }
+      }
+    },
+    "cta": {
+      "title": "Let's Build Something Together",
+      "subtitle": "Have an idea? Want to collaborate? I'd love to hear from you.",
+      "button": "Get in Touch"
+    }
+  },
+  "apps": {
+    "title": "Our Apps",
+    "subtitle": "Mobile experiences built with care and precision.",
+    "downloadOn": "Get it on",
+    "comingSoon": "Coming Soon",
+    "features": "Features",
+    "featuresTitle": "Everything You Need to Focus",
+    "screenshots": "Preview",
+    "screenshotsTitle": "See It in Action",
+    "learnMore": "Learn More",
+    "notifyMe": "Notify Me",
+    "ctaTitle": "Ready to Focus?",
+    "ctaSubtitle": "Be the first to know when Focus Space launches. Sign up for early access."
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Mechanical engineering student with a passion for aviation and mobile app development.",
+    "story": {
+      "title": "My Story",
+      "heading": "The Journey So Far",
+      "content": "I'm a Mechanical Engineering student at Middle East Technical University (METU). My journey in engineering started early — studying aircraft maintenance in high school, working at TUSAŞ on projects like the F-35 and GÖKBEY Helicopter, and earning an associate degree in Aircraft Technology from Gazi University.",
+      "content2": "Alongside my engineering studies, I discovered a passion for building mobile apps. Using Flutter and AI-augmented workflows, I'm developing Focus Space — a gamified productivity app — under the Volitan Labs brand. My goal is to combine engineering precision with creative software development."
+    },
+    "journey": {
+      "label": "Journey",
+      "title": "My Path",
+      "subtitle": "From aerospace manufacturing to mechanical engineering and mobile development."
+    },
+    "timeline": {
+      "item1": {
+        "title": "TUSAŞ Aerospace Experience",
+        "subtitle": "F-35, GÖKBEY & Manufacturing",
+        "period": "2017 - 2020",
+        "description": "Hands-on aerospace experience at Turkish Aerospace Industries — working on F-35 production, GÖKBEY Helicopter prototype development, and Belotti Water Jet systems."
+      },
+      "item2": {
+        "title": "METU Mechanical Engineering",
+        "subtitle": "Orta Doğu Teknik Üniversitesi",
+        "period": "2020 - Present",
+        "description": "Pursuing B.Sc. in Mechanical Engineering at one of Turkey's top universities. Specializing in aerospace, UAV design, and manufacturing systems."
+      },
+      "item3": {
+        "title": "TEKNOFEST & Volitan Labs",
+        "subtitle": "Competition & App Development",
+        "period": "2022 - Present",
+        "description": "TEKNOFEST 2022 Combat UAV Competition finalist as ANATEK Team's Mechanical Coordinator. Founded Volitan Labs to develop Focus Space and other mobile applications."
+      }
+    },
+    "skills": {
+      "label": "Expertise",
+      "title": "Technical Skills",
+      "subtitle": "A unique combination of aerospace engineering, manufacturing, and software skills.",
+      "engineering": "Engineering",
+      "software": "Software",
+      "tools": "Tools"
+    },
+    "values": {
+      "label": "Philosophy",
+      "title": "My Values",
+      "precision": {
+        "title": "Precision",
+        "description": "Engineering mindset applied to every line of code."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Always exploring new technologies and approaches."
+      },
+      "quality": {
+        "title": "Quality",
+        "description": "Obsessing over details to create delightful experiences."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "Building together is always better than building alone."
+      }
+    },
+    "education": {
+      "label": "Education",
+      "title": "Academic Background"
+    },
+    "connect": {
+      "title": "Let's Connect",
+      "subtitle": "Feel free to reach out on any of these platforms."
+    },
+    "founder": {
+      "title": "About Me",
+      "role": "Mechanical Engineering Student & Mobile App Developer"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "From mobile apps to combat UAVs — a collection of things I've built and contributed to.",
+    "featured": "Featured",
+    "view_all": "View All",
+    "view_project": "View Project",
+    "liveDemo": "Live Demo",
+    "notFound": "Project not found",
+    "features": "Key Features",
+    "filters": {
+      "all": "All",
+      "mobile": "Mobile",
+      "web": "Web",
+      "engineering": "Engineering"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Thoughts on engineering, mobile development, and productivity.",
+    "readMore": "Read More",
+    "minRead": "min read",
+    "noPosts": "No posts yet. Stay tuned!",
+    "allPosts": "All Posts"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a question or want to work together?",
+    "name": "Your Name",
+    "email": "Email Address",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully! I'll get back to you soon.",
+    "error": "Something went wrong. Please try again.",
+    "otherWays": "Other Ways to Reach Me"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated"
+  },
+  "common": {
+    "readMore": "Read More",
+    "backTo": "Back to {page}",
+    "loading": "Loading...",
+    "viewAll": "View All",
+    "copyright": "All rights reserved."
+  },
+  "footer": {
+    "description": "Crafting mobile experiences with engineering precision.",
+    "navigation": "Navigation",
+    "connect": "Connect",
+    "legal": "Legal"
+  }
+}

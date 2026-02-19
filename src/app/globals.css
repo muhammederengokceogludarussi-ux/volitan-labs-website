@@ -1,0 +1,239 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ===== Tailwind v4 Dark Mode Variant ===== */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== Theme Tokens ===== */
+@theme {
+  /* Dark Mode Colors (default) */
+  --color-background: #0A0A0F;
+  --color-surface: #141419;
+  --color-surface-elevated: #1E1E26;
+  --color-border: #1F1F2A;
+  --color-text-primary: #F0F0F5;
+  --color-text-secondary: #8A8A9A;
+  --color-text-muted: #5A5A6A;
+
+  /* Accent Colors */
+  --color-accent-cyan: #00C8F0;
+  --color-accent-amber: #E8910A;
+  --color-accent-purple: #9B7BF0;
+  --color-accent-green: #0FAA74;
+  --color-accent-red: #EF4444;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #00C8F0, #9B7BF0);
+  --gradient-warm: linear-gradient(135deg, #E8910A, #00C8F0);
+
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+/* ===== Light Mode Overrides ===== */
+.light {
+  --color-background: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #F5F5F7;
+  --color-border: #E5E5EA;
+  --color-text-primary: #111118;
+  --color-text-secondary: #6B6B7B;
+  --color-text-muted: #9A9AAA;
+
+  /* Light mode accent overrides (darker for accessibility) */
+  --color-accent-cyan: #0090B0;
+  --color-accent-amber: #D97706;
+  --color-accent-purple: #7C5CD6;
+  --color-accent-green: #059669;
+}
+
+/* ===== Base Styles ===== */
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent-cyan);
+  color: var(--color-background);
+}
+
+.dark ::selection {
+  background-color: var(--color-accent-purple);
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ===== shadcn/ui Radius Tokens ===== */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  --radius: 0.625rem;
+}
+
+/* ===== Shimmer Button Animations ===== */
+@keyframes shimmer-slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+  }
+  15%,
+  35% {
+    transform: translateZ(0) rotate(90deg);
+  }
+  65%,
+  85% {
+    transform: translateZ(0) rotate(270deg);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+  }
+}
+
+.animate-shimmer-slide {
+  animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
+}
+
+.animate-spin-around {
+  animation: spin-around calc(var(--speed) * 2) infinite linear;
+}
+
+/* ===== Background Beams Animations ===== */
+@keyframes beam-fade {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-beam-1 {
+  animation: beam-fade 6s ease-in-out infinite;
+}
+
+.animate-beam-2 {
+  animation: beam-fade 8s ease-in-out infinite 2s;
+}
+
+.animate-beam-3 {
+  animation: beam-fade 7s ease-in-out infinite 4s;
+}
+
+/* ===== Gradient Text Shimmer ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient text */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text-animated {
+  background: linear-gradient(270deg, var(--color-accent-cyan), var(--color-accent-purple), var(--color-accent-cyan));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ===== Card Hover Glow ===== */
+.hover-glow {
+  position: relative;
+}
+
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, transparent, var(--color-accent-cyan), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+}
+
+.hover-glow:hover::before {
+  opacity: 0.5;
+}
+
+/* ===== Scroll Progress Bar ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-purple));
+  z-index: 9999;
+  transform-origin: left;
+}
+
+/* ===== Subtle float animation ===== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===== Pulse glow ===== */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 200, 240, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 200, 240, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
