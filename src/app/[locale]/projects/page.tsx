@@ -21,6 +21,7 @@ interface ProjectData {
   github?: string;
   live?: string;
   featured?: boolean;
+  status?: "beta" | "coming-soon";
 }
 
 const projectsData: ProjectData[] = [
@@ -37,6 +38,7 @@ const projectsData: ProjectData[] = [
     tags: ["Flutter", "Dart", "Supabase", "Digital Detox", "Productivity"],
     category: ["all", "mobile"],
     featured: true,
+    status: "beta",
   },
   {
     slug: "teknofest-combat-uav",
@@ -83,6 +85,7 @@ export default function ProjectsPage() {
       github: p.github,
       live: p.live,
       featured: p.featured,
+      status: p.status,
     }));
 
   return (

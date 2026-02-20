@@ -1,12 +1,12 @@
 export const founder = {
   name: "Muhammed Eren Gökceoğlu",
   title: {
-    en: "Mechanical Engineering Student & Mobile App Developer",
-    tr: "Makine Mühendisliği Öğrencisi & Mobil Uygulama Geliştirici",
+    en: "Mechanical Engineering Student & App Developer",
+    tr: "Makine Mühendisliği Öğrencisi & Uygulama Geliştirici",
   },
   bio: {
-    en: "A mechanical engineering student at METU with a passion for aviation, UAV design, and mobile app development. Building Focus Space at Volitan Labs while pursuing engineering excellence.",
-    tr: "ODTÜ'de makine mühendisliği öğrencisi. Havacılık, İHA tasarımı ve mobil uygulama geliştirme tutkunu. Mühendislik mükemmelliğini sürdürürken Volitan Labs'ta Focus Space'i geliştiriyor.",
+    en: "Mechanical engineering student at METU with an aerospace background. Channeling that engineering mindset into building apps at Volitan Labs — currently developing Focus Space.",
+    tr: "ODTÜ'de makine mühendisliği öğrencisi. Havacılık geçmişinden gelen mühendislik bakış açısıyla Volitan Labs'ta uygulama geliştiriyor — şu an Focus Space üzerinde çalışıyor.",
   },
   photo: "/images/founder/photo.svg",
   social: {

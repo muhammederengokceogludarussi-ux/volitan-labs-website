@@ -7,6 +7,7 @@ const staticPages = [
   "",
   "/about",
   "/projects",
+  "/apps",
   "/contact",
   "/privacy",
 ];
@@ -37,5 +38,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticEntries, ...projectEntries];
+  const appEntries = locales.map((locale) => ({
+    url: `${baseUrl}/${locale}/apps/focus-space`,
+    lastModified: new Date(),
+  }));
+
+  return [...staticEntries, ...projectEntries, ...appEntries];
 }

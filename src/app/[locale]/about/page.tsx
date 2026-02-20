@@ -52,26 +52,12 @@ export default function AboutPage() {
   const t = useTranslations("about");
   const locale = useLocale() as "en" | "tr";
 
-  const timelineItems = [
-    {
-      title: t("timeline.item1.title"),
-      subtitle: t("timeline.item1.subtitle"),
-      period: t("timeline.item1.period"),
-      description: t("timeline.item1.description"),
-    },
-    {
-      title: t("timeline.item2.title"),
-      subtitle: t("timeline.item2.subtitle"),
-      period: t("timeline.item2.period"),
-      description: t("timeline.item2.description"),
-    },
-    {
-      title: t("timeline.item3.title"),
-      subtitle: t("timeline.item3.subtitle"),
-      period: t("timeline.item3.period"),
-      description: t("timeline.item3.description"),
-    },
-  ];
+  const timelineItems = Array.from({ length: 5 }, (_, i) => ({
+    title: t(`timeline.item${i + 1}.title`),
+    subtitle: t(`timeline.item${i + 1}.subtitle`),
+    period: t(`timeline.item${i + 1}.period`),
+    description: t(`timeline.item${i + 1}.description`),
+  }));
 
   return (
     <>

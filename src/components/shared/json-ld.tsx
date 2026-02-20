@@ -23,7 +23,7 @@ export const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Muhammed Eren Gökceoğlu",
-  jobTitle: "Mechanical Engineering Student & Mobile App Developer",
+  jobTitle: "Mechanical Engineering Student & App Developer",
   url: "https://volitanlabs.dev",
   sameAs: [
     "https://github.com/muhammederengokceogludarussi-ux",
@@ -32,7 +32,7 @@ export const personSchema = {
   knowsAbout: [
     "Mechanical Engineering",
     "Flutter",
-    "Mobile Development",
+    "Software Development",
     "UAV Design",
     "CAD/CAM",
     "AI-Augmented Development",

@@ -9,10 +9,10 @@
   },
   "home": {
     "hero": {
-      "greeting": "Hi, I'm",
+      "greeting": "Muhammed Eren Gökceoğlu",
       "name": "Volitan Labs",
-      "roles": "Mechanical Engineering Student|Mobile App Developer|UAV Enthusiast|AI-Augmented Developer",
-      "description": "METU Mechanical Engineering student building mobile apps with Flutter — combining engineering discipline with creative software development.",
+      "roles": "Mechanical Engineering Student|App Developer|Aviation Enthusiast|AI-Augmented Developer",
+      "description": "METU Mechanical Engineering student — channeling an aerospace background and engineering discipline into building apps with Flutter.",
       "cta_projects": "View Projects",
       "cta_contact": "Get in Touch"
     },
@@ -43,11 +43,11 @@
     "skills": {
       "label": "Tech Stack",
       "title": "Skills & Expertise",
-      "subtitle": "Bridging mechanical engineering and software development — aerospace, UAV design, and mobile apps.",
+      "subtitle": "Bridging mechanical engineering and software development — aerospace, UAV design, and app development.",
       "items": {
         "flutter": {
           "title": "Flutter & Dart",
-          "description": "Cross-platform mobile apps with beautiful UIs and smooth animations."
+          "description": "Cross-platform apps with beautiful UIs and smooth animations."
         },
         "ai": {
           "title": "AI-Augmented Development",
@@ -70,11 +70,11 @@
     "blog": {
       "label": "Blog",
       "title": "Latest Posts",
-      "subtitle": "Thoughts on engineering, mobile development, and productivity.",
+      "subtitle": "Thoughts on engineering, software development, and productivity.",
       "posts": {
         "post1": {
           "title": "How Engineering Thinking Shapes My App Development",
-          "description": "How studying mechanical engineering at METU influences my approach to building mobile apps."
+          "description": "How studying mechanical engineering at METU influences my approach to building apps."
         },
         "post2": {
           "title": "Building Focus Space: A Flutter Journey",
@@ -94,9 +94,10 @@
   },
   "apps": {
     "title": "Our Apps",
-    "subtitle": "Mobile experiences built with care and precision.",
+    "subtitle": "Digital experiences built with care and precision.",
     "downloadOn": "Get it on",
     "comingSoon": "Coming Soon",
+    "beta": "In Beta",
     "features": "Features",
     "featuresTitle": "Everything You Need to Focus",
     "screenshots": "Preview",
@@ -108,17 +109,17 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Mechanical engineering student with a passion for aviation and mobile app development.",
+    "subtitle": "Mechanical engineering student channeling an aviation passion and engineering mindset into software development.",
     "story": {
       "title": "My Story",
       "heading": "The Journey So Far",
       "content": "I'm a Mechanical Engineering student at Middle East Technical University (METU). My journey in engineering started early — studying aircraft maintenance in high school, working at TUSAŞ on projects like the F-35 and GÖKBEY Helicopter, and earning an associate degree in Aircraft Technology from Gazi University.",
-      "content2": "Alongside my engineering studies, I discovered a passion for building mobile apps. Using Flutter and AI-augmented workflows, I'm developing Focus Space — a gamified productivity app — under the Volitan Labs brand. My goal is to combine engineering precision with creative software development."
+      "content2": "Along this journey, I also discovered a passion for software development. Using Flutter and AI-augmented workflows, I'm developing Focus Space — a gamified productivity app — under the Volitan Labs brand. My goal is to combine engineering precision with innovative software development."
     },
     "journey": {
       "label": "Journey",
       "title": "My Path",
-      "subtitle": "From aerospace manufacturing to mechanical engineering and mobile development."
+      "subtitle": "From aerospace manufacturing to mechanical engineering and software development."
     },
     "timeline": {
       "item1": {
@@ -129,15 +130,27 @@
       },
       "item2": {
         "title": "METU Mechanical Engineering",
-        "subtitle": "Orta Doğu Teknik Üniversitesi",
+        "subtitle": "Middle East Technical University",
         "period": "2020 - Present",
         "description": "Pursuing B.Sc. in Mechanical Engineering at one of Turkey's top universities. Specializing in aerospace, UAV design, and manufacturing systems."
       },
       "item3": {
-        "title": "TEKNOFEST & Volitan Labs",
-        "subtitle": "Competition & App Development",
-        "period": "2022 - Present",
-        "description": "TEKNOFEST 2022 Combat UAV Competition finalist as ANATEK Team's Mechanical Coordinator. Founded Volitan Labs to develop Focus Space and other mobile applications."
+        "title": "TEKNOFEST 2022",
+        "subtitle": "Combat UAV Competition — Finalist",
+        "period": "2022",
+        "description": "Reached the finals of TEKNOFEST 2022 Combat UAV Competition as the Mechanical Coordinator of the ANATEK Team. Led airframe structural design and aerodynamic analysis."
+      },
+      "item4": {
+        "title": "ARÇELİK A.Ş. Internship",
+        "subtitle": "Intern Engineer",
+        "period": "2024",
+        "description": "Gained hands-on experience in manufacturing processes and quality control as an intern engineer on the refrigerator production line."
+      },
+      "item5": {
+        "title": "Volitan Labs",
+        "subtitle": "Founder & Developer",
+        "period": "2025 - Present",
+        "description": "Founded Volitan Labs to develop Focus Space and other applications using Flutter and AI-augmented workflows."
       }
     },
     "achievements": {
@@ -192,12 +205,12 @@
     },
     "founder": {
       "title": "About Me",
-      "role": "Mechanical Engineering Student & Mobile App Developer"
+      "role": "Mechanical Engineering Student & App Developer"
     }
   },
   "projects": {
     "title": "Projects",
-    "subtitle": "From mobile apps to combat UAVs — a collection of things I've built and contributed to.",
+    "subtitle": "From apps to combat UAVs — a collection of things I've built and contributed to.",
     "featured": "Featured",
     "view_all": "View All",
     "view_project": "View Project",
@@ -213,7 +226,7 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Thoughts on engineering, mobile development, and productivity.",
+    "subtitle": "Thoughts on engineering, software development, and productivity.",
     "readMore": "Read More",
     "minRead": "min read",
     "noPosts": "No posts yet. Stay tuned!",
@@ -244,7 +257,7 @@
     "copyright": "All rights reserved."
   },
   "footer": {
-    "description": "Crafting mobile experiences with engineering precision.",
+    "description": "Crafting digital experiences with engineering precision.",
     "navigation": "Navigation",
     "connect": "Connect",
     "legal": "Legal"

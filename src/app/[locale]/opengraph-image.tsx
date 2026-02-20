@@ -14,13 +14,13 @@ export default async function OGImage({
 
   const title =
     locale === "tr"
-      ? "Makine Mühendisliği Öğrencisi & Mobil Uygulama Geliştirici"
-      : "Mechanical Engineering Student & Mobile App Developer";
+      ? "Makine Mühendisliği Öğrencisi & Uygulama Geliştirici"
+      : "Mechanical Engineering Student & App Developer";
 
   const subtitle =
     locale === "tr"
-      ? "Flutter ile mobil deneyimler • Mühendislik hassasiyetiyle"
-      : "Mobile experiences with Flutter • Engineering precision";
+      ? "Flutter ile dijital deneyimler • Mühendislik hassasiyetiyle"
+      : "Digital experiences with Flutter • Engineering precision";
 
   return new ImageResponse(
     (

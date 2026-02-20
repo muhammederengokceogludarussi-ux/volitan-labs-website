@@ -12,7 +12,7 @@ export const focusSpaceApp = {
   icon: "/images/apps/focus-space/icon.png",
   playStoreUrl: null, // Will be updated when app is published
   appStoreUrl: null,
-  status: "coming-soon" as const, // "published" | "coming-soon"
+  status: "beta" as "published" | "beta" | "coming-soon",
   colors: {
     primary: "#00D4FF",
     secondary: "#F59E0B",

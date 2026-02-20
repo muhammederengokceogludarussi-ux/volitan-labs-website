@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Volitan Labs",
   description:
-    "Volitan Labs crafts mobile experiences with engineering precision and a passion for beautiful design.",
+    "Volitan Labs crafts digital experiences with engineering precision and a passion for beautiful design.",
   url: "https://volitanlabs.dev",
   author: "Muhammed Eren Gökceoğlu",
   social: {

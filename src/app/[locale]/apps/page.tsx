@@ -37,6 +37,14 @@ export default function AppsPage() {
                         </span>
                       </div>
                     )}
+                    {app.status === "beta" && (
+                      <div className="absolute right-4 top-4">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-accent-purple/10 px-3 py-1 text-xs font-medium text-accent-purple">
+                          <Sparkles className="h-3 w-3" />
+                          {t("beta")}
+                        </span>
+                      </div>
+                    )}
 
                     {/* App Icon */}
                     <div

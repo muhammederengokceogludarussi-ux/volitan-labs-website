@@ -95,6 +95,12 @@ export default function AppDetailPage() {
                     {t("comingSoon")}
                   </span>
                 )}
+                {app.status === "beta" && (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-purple/10 px-3 py-1 text-xs font-medium text-accent-purple">
+                    <Sparkles className="h-3 w-3" />
+                    {t("beta")}
+                  </span>
+                )}
               </AnimatedSection>
 
               <AnimatedSection delay={0.2}>
@@ -126,7 +132,7 @@ export default function AppDetailPage() {
 
               <AnimatedSection delay={0.4}>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {app.status === "coming-soon" ? (
+                  {app.status !== "published" ? (
                     <ShimmerButton className="text-sm font-medium">
                       <Bell className="mr-2 h-4 w-4" />
                       {t("notifyMe")}
@@ -281,7 +287,7 @@ export default function AppDetailPage() {
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             <div className="mt-8">
-              {app.status === "coming-soon" ? (
+              {app.status !== "published" ? (
                 <ShimmerButton className="text-sm font-medium">
                   <Bell className="mr-2 h-4 w-4" />
                   {t("notifyMe")}

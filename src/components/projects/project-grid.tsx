@@ -12,6 +12,7 @@ interface Project {
   github?: string;
   live?: string;
   featured?: boolean;
+  status?: "beta" | "coming-soon";
 }
 
 interface ProjectGridProps {
@@ -31,6 +32,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
             github={project.github}
             live={project.live}
             featured={project.featured}
+            status={project.status}
           />
         </AnimatedSection>
       ))}
