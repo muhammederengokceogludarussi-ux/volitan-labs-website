@@ -8,14 +8,13 @@ import { m, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageToggle } from "@/components/ui/language-toggle";
 import { Container } from "@/components/ui/container";
+import { LogoIcon } from "@/components/shared/logo";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", key: "home" },
-  { href: "/apps", key: "apps" },
   { href: "/about", key: "about" },
   { href: "/projects", key: "projects" },
-  { href: "/blog", key: "blog" },
   { href: "/contact", key: "contact" },
 ] as const;
 
@@ -31,9 +30,10 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-display text-lg font-bold tracking-tight"
+            className="flex items-center gap-2 font-display text-lg font-bold tracking-tight"
           >
-            Volitan Labs
+            <LogoIcon size={28} />
+            <span>Volitan Labs</span>
           </Link>
 
           {/* Desktop Nav */}

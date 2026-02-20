@@ -1,0 +1,14 @@
+<svg width="375" height="812" viewBox="0 0 375 812" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="375" height="812" rx="40" fill="#08081A"/>
+  <rect x="20" y="60" width="335" height="60" rx="16" fill="#111128"/>
+  <text x="187" y="96" text-anchor="middle" fill="#00D4FF" font-family="system-ui" font-size="18" font-weight="bold">Focus Space</text>
+  <circle cx="187" cy="300" r="100" stroke="#00D4FF" stroke-width="4" fill="none" opacity="0.3"/>
+  <circle cx="187" cy="300" r="70" stroke="#00D4FF" stroke-width="3" fill="none" opacity="0.5"/>
+  <text x="187" y="310" text-anchor="middle" fill="#F0F0F5" font-family="system-ui" font-size="36" font-weight="bold">25:00</text>
+  <rect x="40" y="480" width="295" height="60" rx="12" fill="#111128"/>
+  <text x="187" y="516" text-anchor="middle" fill="#F59E0B" font-family="system-ui" font-size="14">🎯 Level 5 — 2,340 XP</text>
+  <rect x="40" y="560" width="295" height="80" rx="12" fill="#111128"/>
+  <text x="187" y="606" text-anchor="middle" fill="#8A8A9A" font-family="system-ui" font-size="13">Screenshot 1 — Focus Timer</text>
+  <rect x="100" y="720" width="175" height="50" rx="25" fill="#00D4FF"/>
+  <text x="187" y="751" text-anchor="middle" fill="#08081A" font-family="system-ui" font-size="16" font-weight="bold">Start Focus</text>
+</svg>

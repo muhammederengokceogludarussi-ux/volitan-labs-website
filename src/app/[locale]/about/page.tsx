@@ -18,6 +18,9 @@ import {
   Lightbulb,
   Target,
   Users,
+  Download,
+  Award,
+  Plane,
 } from "lucide-react";
 
 const values = [
@@ -132,8 +135,73 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      {/* Skills */}
+      {/* Achievements */}
       <Section className="bg-surface">
+        <Container>
+          <AnimatedSection>
+            <SectionHeading
+              label={t("achievements.label")}
+              title={t("achievements.title")}
+            />
+          </AnimatedSection>
+          <div className="mx-auto mt-8 max-w-2xl space-y-4">
+            <AnimatedSection delay={0.1}>
+              <div className="rounded-xl border border-accent-amber/20 bg-background p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-amber/10">
+                    <Award className="h-6 w-6 text-accent-amber" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-display text-lg font-semibold">
+                        {t("achievements.teknofest.title")}
+                      </h3>
+                      <span className="rounded-full bg-accent-amber/10 px-2.5 py-0.5 text-xs font-semibold text-accent-amber">
+                        {t("achievements.teknofest.badge")}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-text-secondary">
+                      {t("achievements.teknofest.description")}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-surface-elevated px-2.5 py-0.5 text-xs text-text-muted">
+                        <Plane className="h-3 w-3" />
+                        {t("achievements.teknofest.role")}
+                      </span>
+                      <span className="rounded-full bg-surface-elevated px-2.5 py-0.5 text-xs text-text-muted">
+                        ANATEK
+                      </span>
+                      <span className="rounded-full bg-surface-elevated px-2.5 py-0.5 text-xs text-text-muted">
+                        2022
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <div className="rounded-xl border border-border/30 bg-background p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-cyan/10">
+                    <Plane className="h-6 w-6 text-accent-cyan" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-display text-lg font-semibold">
+                      {t("achievements.drone.title")}
+                    </h3>
+                    <p className="mt-1 text-sm text-text-secondary">
+                      {t("achievements.drone.description")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Skills */}
+      <Section>
         <Container>
           <AnimatedSection>
             <SectionHeading
@@ -255,7 +323,15 @@ export default function AboutPage() {
             </p>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
-            <div className="mt-8 flex items-center justify-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="/cv.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-5 py-2.5 text-sm font-medium text-background transition-all hover:bg-accent-cyan/90"
+              >
+                <Download className="h-4 w-4" />
+                {locale === "tr" ? "CV İndir" : "Download CV"}
+              </a>
               <a
                 href={founder.social.github}
                 target="_blank"

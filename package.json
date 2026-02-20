@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "velite --watch & next dev",
+    "build": "velite && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "velite": "velite"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.2",
+    "lenis": "^1.3.17",
     "lucide-react": "^0.574.0",
     "next": "16.1.6",
     "next-intl": "^4.8.3",
@@ -20,7 +22,13 @@
     "radix-ui": "^1.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwind-merge": "^3.5.0"
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.14.1",
+    "rehype-slug": "^6.0.0",
+    "resend": "^6.9.2",
+    "shiki": "^3.22.0",
+    "tailwind-merge": "^3.5.0",
+    "velite": "^0.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

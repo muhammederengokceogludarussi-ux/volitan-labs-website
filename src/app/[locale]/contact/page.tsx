@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
@@ -8,10 +8,51 @@ import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { Send, CheckCircle, AlertCircle, Github, Linkedin, Mail } from "lucide-react";
+import { siteConfig } from "../../../../content/site";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function ContactPage() {
   const t = useTranslations("contact");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+
+  const handleTurnstileCallback = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || !turnstileRef.current) return;
+
+    // Load Turnstile script
+    const existing = document.querySelector('script[src*="turnstile"]');
+    if (!existing) {
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        renderTurnstile();
+      };
+    } else {
+      renderTurnstile();
+    }
+
+    function renderTurnstile() {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const win = window as any;
+      if (turnstileRef.current && win.turnstile) {
+        win.turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          callback: handleTurnstileCallback,
+          theme: "auto",
+        });
+      }
+    }
+  }, [handleTurnstileCallback]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,6 +75,8 @@ export default function ContactPage() {
           email: formData.get("email"),
           subject: formData.get("subject"),
           message: formData.get("message"),
+          token: turnstileToken,
+          honeypot: "",
         }),
       });
 
@@ -120,6 +163,11 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Cloudflare Turnstile */}
+              {TURNSTILE_SITE_KEY && (
+                <div ref={turnstileRef} className="flex justify-start" />
+              )}
+
               <ShimmerButton className="w-full text-sm font-medium" disabled={status === "sending"}>
                 {status === "sending" ? t("sending") : (
                   <>
@@ -153,14 +201,14 @@ export default function ContactPage() {
               </h3>
               <div className="mt-4 space-y-3">
                 <a
-                  href="mailto:hello@volitanlabs.com"
+                  href={`mailto:${siteConfig.social.email}`}
                   className="flex items-center gap-3 rounded-lg p-2.5 text-sm text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"
                 >
                   <Mail className="h-5 w-5 text-accent-cyan" />
-                  hello@volitanlabs.com
+                  {siteConfig.social.email}
                 </a>
                 <a
-                  href="https://github.com"
+                  href={siteConfig.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 rounded-lg p-2.5 text-sm text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"
@@ -169,7 +217,7 @@ export default function ContactPage() {
                   GitHub
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href={siteConfig.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 rounded-lg p-2.5 text-sm text-text-secondary transition-colors hover:bg-surface-elevated hover:text-text-primary"

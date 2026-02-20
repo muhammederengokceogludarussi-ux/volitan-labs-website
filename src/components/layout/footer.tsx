@@ -1,20 +1,19 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/container";
+import { LogoIcon } from "@/components/shared/logo";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:hello@volitanlabs.com", label: "Email" },
+  { icon: Github, href: "https://github.com/muhammederengokceogludarussi-ux", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/muhammed-eren-g%C3%B6kceo%C4%9Flu-33b5bb1b7/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:eren.gokceoglu@metu.edu.tr", label: "Email" },
 ];
 
 const navLinks = [
   { href: "/", key: "home" },
-  { href: "/apps", key: "apps" },
   { href: "/about", key: "about" },
   { href: "/projects", key: "projects" },
-  { href: "/blog", key: "blog" },
   { href: "/contact", key: "contact" },
 ] as const;
 
@@ -30,9 +29,10 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="font-display text-lg font-bold tracking-tight"
+              className="flex items-center gap-2 font-display text-lg font-bold tracking-tight"
             >
-              Volitan Labs
+              <LogoIcon size={24} />
+              <span>Volitan Labs</span>
             </Link>
             <p className="mt-2 text-sm text-text-secondary">
               {t("footer.description")}

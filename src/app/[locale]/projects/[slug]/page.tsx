@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -21,6 +22,8 @@ interface ProjectDetail {
   tags: string[];
   github?: string;
   live?: string;
+  icon?: string;
+  screenshots?: string[];
   features: { en: string[]; tr: string[] };
 }
 
@@ -29,30 +32,39 @@ const projectDetails: Record<string, ProjectDetail> = {
     slug: "focus-space",
     title: { en: "Focus Space", tr: "Focus Space" },
     description: {
-      en: "A gamified productivity app where you earn XP by focusing, build your own universe, and track your growth.",
-      tr: "Odaklanarak XP kazandığın, kendi evrenini inşa ettiğin ve gelişimini takip ettiğin oyunlaştırılmış verimlilik uygulaması.",
+      en: "A digital detox and productivity app designed to reduce screen time through space-themed gamification.",
+      tr: "Uzay temalı oyunlaştırma ile ekran süresini azaltmak için tasarlanmış dijital detoks ve verimlilik uygulaması.",
     },
     longDescription: {
-      en: "Focus Space reimagines productivity by turning deep work into an engaging experience. Start a focus session, earn XP as you concentrate, and use your progress to build and expand a personal universe. With ambient sounds, Pomodoro timing, and gamification mechanics, staying focused has never been this rewarding.",
-      tr: "Focus Space, derin çalışmayı ilgi çekici bir deneyime dönüştürerek üretkenliği yeniden hayal eder. Bir odaklanma oturumu başlat, konsantre oldukça XP kazan ve ilerlemenle kişisel bir evren inşa et ve genişlet. Ortam sesleri, Pomodoro zamanlayıcısı ve oyunlaştırma mekanikleri ile odaklanmak hiç bu kadar ödüllendirici olmamıştı.",
+      en: "Focus Space is a digital detox app that helps you reduce screen time and build healthier focus habits. Instead of mindlessly scrolling, start a focus session — the app rewards you with XP for every minute you stay off your phone. Use your XP to terraform planets, unlock achievements, and compete in weekly leagues. With Pomodoro timing, ambient sounds, and an app blocker, Focus Space makes putting your phone down genuinely rewarding.",
+      tr: "Focus Space, ekran süresini azaltmanıza ve daha sağlıklı odaklanma alışkanlıkları kazanmanıza yardımcı olan bir dijital detoks uygulamasıdır. Anlamsızca kaydırmak yerine bir odak oturumu başlatın — uygulama telefondan uzak kaldığınız her dakika için sizi XP ile ödüllendirir. XP'nizi gezegen terraforming, başarım açma ve haftalık liglerde yarışma için kullanın. Pomodoro zamanlayıcı, ortam sesleri ve uygulama engelleyici ile Focus Space, telefonunuzu bırakmayı gerçekten ödüllendirici kılar.",
     },
-    tags: ["Flutter", "Dart", "Firebase", "Gamification", "Productivity"],
+    tags: ["Flutter", "Dart", "Supabase", "Digital Detox", "Productivity"],
+    icon: "/images/apps/focus-space/icon.png",
+    screenshots: [
+      "/images/apps/focus-space/screenshot-cockpit.jpg",
+      "/images/apps/focus-space/screenshot-starmap.jpg",
+      "/images/apps/focus-space/screenshot-badges.jpg",
+      "/images/apps/focus-space/screenshot-stats.jpg",
+      "/images/apps/focus-space/screenshot-5.jpg",
+      "/images/apps/focus-space/screenshot-6.jpg",
+    ],
     features: {
       en: [
-        "Pomodoro timer with customizable intervals",
-        "XP and leveling system",
-        "Personal universe builder",
-        "Ambient sound library",
-        "App blocker during focus sessions",
-        "Detailed analytics and progress tracking",
+        "Reduces screen time with rewarding focus sessions",
+        "Pomodoro timer with customizable work/break intervals",
+        "XP system — earn rewards for staying off your phone",
+        "Planet terraforming — visualize your progress as a growing universe",
+        "Ambient sounds (rain, fireplace, birds) for deep focus",
+        "App blocker to eliminate distractions during sessions",
       ],
       tr: [
-        "Özelleştirilebilir aralıklarla Pomodoro zamanlayıcısı",
-        "XP ve seviye atlama sistemi",
-        "Kişisel evren inşa edici",
-        "Ortam sesleri kütüphanesi",
-        "Odak oturumlarında uygulama engelleyici",
-        "Detaylı analitik ve ilerleme takibi",
+        "Ödüllendirici odak oturumlarıyla ekran süresini azaltır",
+        "Özelleştirilebilir çalışma/mola aralıklarıyla Pomodoro zamanlayıcı",
+        "XP sistemi — telefondan uzak kalarak ödül kazanın",
+        "Gezegen terraforming — ilerlemenizi büyüyen bir evren olarak görselleştirin",
+        "Derin odak için ortam sesleri (yağmur, şömine, kuş sesleri)",
+        "Oturumlar sırasında dikkat dağıtıcıları ortadan kaldıran uygulama engelleyici",
       ],
     },
   },
@@ -175,9 +187,20 @@ export default function ProjectDetailPage() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <h1 className="mt-6 font-display text-4xl font-bold tracking-tight md:text-5xl">
-              {project.title[locale]}
-            </h1>
+            <div className="mt-6 flex items-center gap-4">
+              {project.icon && (
+                <Image
+                  src={project.icon}
+                  alt={project.title[locale]}
+                  width={64}
+                  height={64}
+                  className="h-16 w-16 rounded-2xl"
+                />
+              )}
+              <h1 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
+                {project.title[locale]}
+              </h1>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
@@ -253,6 +276,34 @@ export default function ProjectDetailPage() {
           </div>
         </Container>
       </Section>
+
+      {/* Screenshots */}
+      {project.screenshots && project.screenshots.length > 0 && (
+        <Section>
+          <Container>
+            <AnimatedSection>
+              <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
+                {locale === "tr" ? "Ekran Görüntüleri" : "Screenshots"}
+              </h2>
+            </AnimatedSection>
+            <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
+              {project.screenshots.map((src, index) => (
+                <AnimatedSection key={index} delay={0.1 * (index + 1)}>
+                  <div className="overflow-hidden rounded-2xl border border-border/30 bg-surface">
+                    <Image
+                      src={src}
+                      alt={`${project.title[locale]} screenshot ${index + 1}`}
+                      width={390}
+                      height={844}
+                      className="h-auto w-full"
+                    />
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
     </>
   );
 }

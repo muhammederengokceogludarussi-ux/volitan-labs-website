@@ -1,0 +1,43 @@
+---
+locale: tr
+title: "Focus Space Geliştirmek: Bir Flutter Yolculuğu"
+description: "Flutter ve yapay zeka desteğiyle oyunlaştırılmış bir verimlilik uygulaması oluşturmanın perde arkası."
+date: 2025-01-20
+published: true
+tags: ["Flutter", "Focus Space", "Verimlilik"]
+readingTime: 7
+---
+
+## Neden Focus Space?
+
+Dersler, projeler ve kişisel gelişim arasında gidip gelen bir mühendislik öğrencisi olarak, beni gerçekten motive eden bir odaklanma aracına ihtiyacım vardı. Çoğu verimlilik uygulaması steril hissettiriyordu — sadece zamanlayıcı, ruh yok.
+
+Odaklanmayı bir başarı gibi hissettiren bir şey istedim. **Focus Space** böyle doğdu: odaklanarak XP kazandığınız, kendi evreninizi inşa ettiğiniz ve gelişiminizi takip ettiğiniz oyunlaştırılmış bir verimlilik uygulaması.
+
+## Teknoloji Yığını
+
+Focus Space, **Flutter** ve **Dart** ile inşa edildi, bu da tek bir kod tabanından çapraz platform desteği sağlıyor:
+
+- **Flutter** — UI katmanı, özel animasyonlar, duyarlı düzenler
+- **Provider + Riverpod** — durum yönetimi
+- **Hive** — yerel veri kalıcılığı
+- **Firebase** — kimlik doğrulama ve bulut senkronizasyonu
+- **Özel animasyon sistemi** — evren oluşturma özelliği
+
+## Yol Boyunca Karşılaşılan Zorluklar
+
+### 1. Animasyon Sistemi
+
+Evren özelliği özel bir parçacık sistemi gerektiriyordu. Odaklanma seansları aracılığıyla açtığınız her "gezegen"in yörüngede dönmesi, titreşmesi ve diğer öğelerle etkileşime girmesi gerekiyordu. Flutter'ın `CustomPainter` ve `AnimationController`'ı bunu mümkün kıldı, ancak düşük performanslı cihazlarda doğru performansı elde etmek birkaç iterasyon aldı.
+
+### 2. Oyunlaştırma Dengesi
+
+Doğru XP eğrisini bulmak herhangi bir mühendislik hesaplamasından daha zordu. Çok kolay olursa kullanıcılar motivasyonunu kaybeder. Çok zor olursa vazgeçerler. Sonunda yoğunluk yerine tutarlılığı ödüllendiren logaritmik bir eğri kullandık.
+
+### 3. Zamanlayıcı Doğruluğu
+
+Arka planda çalışan, sistem pil optimizasyonuna saygı duyan ve zamanı doğru takip eden güvenilir bir odaklanma zamanlayıcısı oluşturmak şaşırtıcı derecede karmaşık. Sadece Android'in Doze modu bile güvenilir bir çözüm bulmadan önce üç farklı yaklaşım gerektirdi.
+
+## Ne Öğrendim
+
+Focus Space'i geliştirmek bana **mühendislik disiplini ile yaratıcı yazılım geliştirmenin zıtlar olmadığını** — birbirini tamamladığını öğretti. Siemens NX'te gerilim dağılımlarını analiz etmeme yardımcı olan aynı sistematik düşünce, temiz ve sürdürülebilir bir kod tabanı tasarlamamda da yardımcı oluyor.

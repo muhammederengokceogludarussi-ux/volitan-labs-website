@@ -1,0 +1,45 @@
+---
+locale: en
+title: "Building Focus Space: A Flutter Journey"
+description: "Behind the scenes of creating a gamified productivity app with Flutter and AI assistance."
+date: 2025-01-20
+published: true
+tags: ["Flutter", "Focus Space", "Productivity"]
+readingTime: 7
+---
+
+## Why Focus Space?
+
+As an engineering student juggling courses, projects, and personal development, I needed a focus tool that actually motivated me to stay on track. Most productivity apps felt sterile — all timers and no soul.
+
+I wanted something that made focusing feel like an achievement. That's how **Focus Space** was born: a gamified productivity app where you earn XP by focusing, build your own universe, and track your growth.
+
+## The Tech Stack
+
+Focus Space is built with **Flutter** and **Dart**, which gives us cross-platform support from a single codebase. Here's what's under the hood:
+
+- **Flutter** for the UI layer — custom animations, responsive layouts
+- **Provider + Riverpod** for state management
+- **Hive** for local data persistence
+- **Firebase** for authentication and cloud sync
+- **Custom animation system** for the universe-building feature
+
+## Challenges Along the Way
+
+### 1. The Animation System
+
+The universe feature required a custom particle system. Each "planet" you unlock through focus sessions needs to orbit, pulse, and interact with other elements. Flutter's `CustomPainter` and `AnimationController` made this possible, but getting the performance right on lower-end devices took several iterations.
+
+### 2. Gamification Balance
+
+Finding the right XP curve was harder than any engineering calculation. Too easy, and users lose motivation. Too hard, and they give up. We ended up with a logarithmic curve that rewards consistency over intensity.
+
+### 3. Timer Accuracy
+
+Building a reliable focus timer that works in the background, respects system battery optimization, and accurately tracks time is surprisingly complex. Android's Doze mode alone required three different approaches before we found a reliable solution.
+
+## What I Learned
+
+Building Focus Space taught me that **engineering discipline and creative software development aren't opposites** — they're complementary. The same systematic thinking that helps me analyze stress distributions in Siemens NX helps me architect a clean, maintainable codebase.
+
+The app is still in development, but every focus session I use to build it is, ironically, another data point proving the concept works.

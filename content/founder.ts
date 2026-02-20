@@ -8,7 +8,7 @@ export const founder = {
     en: "A mechanical engineering student at METU with a passion for aviation, UAV design, and mobile app development. Building Focus Space at Volitan Labs while pursuing engineering excellence.",
     tr: "ODTÜ'de makine mühendisliği öğrencisi. Havacılık, İHA tasarımı ve mobil uygulama geliştirme tutkunu. Mühendislik mükemmelliğini sürdürürken Volitan Labs'ta Focus Space'i geliştiriyor.",
   },
-  photo: "/images/founder/photo.jpg",
+  photo: "/images/founder/photo.svg",
   social: {
     github: "https://github.com/muhammederengokceogludarussi-ux",
     linkedin:

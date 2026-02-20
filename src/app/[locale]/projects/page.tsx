@@ -31,10 +31,10 @@ const projectsData: ProjectData[] = [
       tr: "Focus Space",
     },
     description: {
-      en: "A gamified productivity app where you earn XP by focusing, build your own universe, and track your growth. Built with Flutter.",
-      tr: "Odaklanarak XP kazandığın, kendi evrenini inşa ettiğin ve gelişimini takip ettiğin oyunlaştırılmış verimlilik uygulaması. Flutter ile geliştirildi.",
+      en: "A digital detox and productivity app that helps reduce screen time through space-themed gamification. Earn XP by putting your phone down, terraform planets, and compete in weekly leagues. Built with Flutter.",
+      tr: "Uzay temalı oyunlaştırma ile ekran süresini azaltmaya yardımcı dijital detoks ve verimlilik uygulaması. Telefonunu bırakarak XP kazan, gezegen terraform et ve haftalık liglerde yarış. Flutter ile geliştirildi.",
     },
-    tags: ["Flutter", "Dart", "Firebase", "Gamification"],
+    tags: ["Flutter", "Dart", "Supabase", "Digital Detox", "Productivity"],
     category: ["all", "mobile"],
     featured: true,
   },

@@ -18,25 +18,25 @@
     },
     "featuredApp": {
       "label": "Öne Çıkan Uygulama",
-      "tagline": "Odaklan. Kazan. İnşa Et.",
-      "description": "Odaklanarak XP kazandığın, kendi evrenini inşa ettiğin ve gelişimini takip ettiğin oyunlaştırılmış verimlilik uygulaması.",
+      "tagline": "Ekran Süresini Azalt. Odaklanma Alışkanlığı Kazan.",
+      "description": "Ekran süresini azaltmanıza yardımcı dijital detoks uygulaması. Telefonunuzu bırakarak XP kazanın, gezegen terraform edin ve haftalık liglerde yarışın — telefonunuzu bırakmak hiç bu kadar ödüllendirici olmamıştı.",
       "cta": "Daha Fazla",
       "features": {
         "focus": {
-          "title": "Derin Odak",
-          "description": "Ortam sesleri ile dikkat dağıtmayan odak oturumları."
+          "title": "Dijital Detoks",
+          "description": "Telefonunu bırak ve odaklanarak ödüller kazan."
         },
         "gamification": {
-          "title": "Oyunlaştırma",
-          "description": "XP kazan, seviye atla ve başarımların kilidini aç."
+          "title": "Ödüllendirici İlerleme",
+          "description": "XP kazan, gezegen terraform et ve ekransız zamanını takip et."
         },
         "pomodoro": {
           "title": "Akıllı Zamanlayıcı",
-          "description": "Özelleştirilebilir aralıklarla Pomodoro tekniği."
+          "description": "Özelleştirilebilir çalışma ve mola aralıklarıyla Pomodoro tekniği."
         },
         "universe": {
           "title": "Senin Evrenin",
-          "description": "Büyüdükçe kişisel alanını inşa et ve genişlet."
+          "description": "Odaklanma yolculuğunu büyüyen kişisel bir evren olarak görselleştir."
         }
       }
     },
@@ -138,6 +138,20 @@
         "subtitle": "Yarışma & Uygulama Geliştirme",
         "period": "2022 - Günümüz",
         "description": "TEKNOFEST 2022 Savaşan İHA Yarışması finalisti — ANATEK Takımı Mekanik Koordinatörü. Focus Space ve diğer mobil uygulamaları geliştirmek için Volitan Labs'ı kurdu."
+      }
+    },
+    "achievements": {
+      "label": "Başarılar",
+      "title": "Öne Çıkanlar",
+      "teknofest": {
+        "title": "TEKNOFEST 2022 — Savaşan İHA Yarışması",
+        "badge": "Finalist",
+        "description": "ANATEK Takımı'nın Mekanik Koordinatörü olarak Türkiye'nin en büyük teknoloji yarışmasında finale kaldı. Takımın savaşan İHA'sının gövde yapısal tasarımı ve aerodinamik analizini yönetti.",
+        "role": "Mekanik Koordinatör"
+      },
+      "drone": {
+        "title": "A1 Sertifikalı Drone Pilotu",
+        "description": "Uygulamalı İHA tasarım ve uçuş deneyimine sahip lisanslı drone pilotu."
       }
     },
     "skills": {

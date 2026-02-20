@@ -18,25 +18,25 @@
     },
     "featuredApp": {
       "label": "Featured App",
-      "tagline": "Focus. Earn. Build.",
-      "description": "A gamified productivity app where you earn XP by focusing, build your own universe, and track your growth.",
+      "tagline": "Reduce Screen Time. Build Focus Habits.",
+      "description": "A digital detox app that helps you reduce screen time. Earn XP by staying off your phone, terraform planets, and compete in weekly leagues — putting your phone down has never been this rewarding.",
       "cta": "Learn More",
       "features": {
         "focus": {
-          "title": "Deep Focus",
-          "description": "Distraction-free focus sessions with ambient sounds."
+          "title": "Digital Detox",
+          "description": "Put your phone down and earn rewards for staying focused."
         },
         "gamification": {
-          "title": "Gamification",
-          "description": "Earn XP, level up, and unlock achievements."
+          "title": "Rewarding Progress",
+          "description": "Earn XP, terraform planets, and track your screen-free time."
         },
         "pomodoro": {
           "title": "Smart Timer",
-          "description": "Pomodoro technique with customizable intervals."
+          "description": "Pomodoro technique with customizable work and break intervals."
         },
         "universe": {
           "title": "Your Universe",
-          "description": "Build and expand your personal space as you grow."
+          "description": "Visualize your focus journey as a growing personal universe."
         }
       }
     },
@@ -138,6 +138,20 @@
         "subtitle": "Competition & App Development",
         "period": "2022 - Present",
         "description": "TEKNOFEST 2022 Combat UAV Competition finalist as ANATEK Team's Mechanical Coordinator. Founded Volitan Labs to develop Focus Space and other mobile applications."
+      }
+    },
+    "achievements": {
+      "label": "Achievements",
+      "title": "Highlights",
+      "teknofest": {
+        "title": "TEKNOFEST 2022 — Combat UAV Competition",
+        "badge": "Finalist",
+        "description": "Reached the finals of Turkey's largest technology competition as the Mechanical Coordinator of the ANATEK Team. Led the airframe structural design and aerodynamic analysis of the team's combat UAV.",
+        "role": "Mechanical Coordinator"
+      },
+      "drone": {
+        "title": "A1 Certified Drone Pilot",
+        "description": "Licensed drone pilot with hands-on UAV design and flight experience."
       }
     },
     "skills": {

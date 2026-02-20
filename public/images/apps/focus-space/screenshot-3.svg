@@ -1,0 +1,32 @@
+<svg width="375" height="812" viewBox="0 0 375 812" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="375" height="812" rx="40" fill="#08081A"/>
+  <rect x="20" y="60" width="335" height="60" rx="16" fill="#111128"/>
+  <text x="187" y="96" text-anchor="middle" fill="#10B981" font-family="system-ui" font-size="18" font-weight="bold">Statistics</text>
+  <rect x="40" y="150" width="295" height="120" rx="16" fill="#111128"/>
+  <text x="187" y="190" text-anchor="middle" fill="#F0F0F5" font-family="system-ui" font-size="24" font-weight="bold">42h 30m</text>
+  <text x="187" y="215" text-anchor="middle" fill="#8A8A9A" font-family="system-ui" font-size="13">Total Focus Time</text>
+  <text x="187" y="250" text-anchor="middle" fill="#10B981" font-family="system-ui" font-size="12">↑ 23% vs last week</text>
+  <rect x="40" y="290" width="90" height="80" rx="12" fill="#111128"/>
+  <text x="85" y="326" text-anchor="middle" fill="#00D4FF" font-family="system-ui" font-size="20" font-weight="bold">156</text>
+  <text x="85" y="348" text-anchor="middle" fill="#8A8A9A" font-family="system-ui" font-size="10">Sessions</text>
+  <rect x="142" y="290" width="90" height="80" rx="12" fill="#111128"/>
+  <text x="187" y="326" text-anchor="middle" fill="#F59E0B" font-family="system-ui" font-size="20" font-weight="bold">2.3K</text>
+  <text x="187" y="348" text-anchor="middle" fill="#8A8A9A" font-family="system-ui" font-size="10">XP Earned</text>
+  <rect x="245" y="290" width="90" height="80" rx="12" fill="#111128"/>
+  <text x="290" y="326" text-anchor="middle" fill="#A78BFA" font-family="system-ui" font-size="20" font-weight="bold">12</text>
+  <text x="290" y="348" text-anchor="middle" fill="#8A8A9A" font-family="system-ui" font-size="10">Streaks</text>
+  <rect x="40" y="400" width="295" height="200" rx="16" fill="#111128"/>
+  <text x="187" y="430" text-anchor="middle" fill="#F0F0F5" font-family="system-ui" font-size="14">Weekly Overview</text>
+  <rect x="65" y="530" width="30" height="40" rx="4" fill="#00D4FF" opacity="0.7"/>
+  <rect x="110" y="510" width="30" height="60" rx="4" fill="#00D4FF" opacity="0.8"/>
+  <rect x="155" y="490" width="30" height="80" rx="4" fill="#00D4FF"/>
+  <rect x="200" y="520" width="30" height="50" rx="4" fill="#00D4FF" opacity="0.6"/>
+  <rect x="245" y="500" width="30" height="70" rx="4" fill="#00D4FF" opacity="0.9"/>
+  <rect x="290" y="540" width="30" height="30" rx="4" fill="#00D4FF" opacity="0.4"/>
+  <text x="80" y="585" text-anchor="middle" fill="#5A5A6A" font-family="system-ui" font-size="9">Mon</text>
+  <text x="125" y="585" text-anchor="middle" fill="#5A5A6A" font-family="system-ui" font-size="9">Tue</text>
+  <text x="170" y="585" text-anchor="middle" fill="#5A5A6A" font-family="system-ui" font-size="9">Wed</text>
+  <text x="215" y="585" text-anchor="middle" fill="#5A5A6A" font-family="system-ui" font-size="9">Thu</text>
+  <text x="260" y="585" text-anchor="middle" fill="#5A5A6A" font-family="system-ui" font-size="9">Fri</text>
+  <text x="305" y="585" text-anchor="middle" fill="#5A5A6A" font-family="system-ui" font-size="9">Sat</text>
+</svg>

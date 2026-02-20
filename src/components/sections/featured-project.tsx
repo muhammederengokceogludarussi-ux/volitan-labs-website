@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
@@ -28,17 +29,17 @@ export function FeaturedProject() {
     <Section className="bg-surface">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left: Phone mockup placeholder */}
+          {/* Left: Phone mockup with real screenshot */}
           <AnimatedSection>
-            <div className="relative mx-auto aspect-[9/16] w-full max-w-[280px] rounded-[2.5rem] border-2 border-border/30 bg-surface-elevated p-3 shadow-2xl">
-              <div className="flex h-full w-full flex-col items-center justify-center rounded-[2rem] bg-background">
-                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-accent-cyan to-accent-purple" />
-                <p className="mt-4 font-display text-lg font-bold">
-                  Focus Space
-                </p>
-                <p className="mt-1 text-sm text-text-secondary">
-                  {t("tagline")}
-                </p>
+            <div className="relative mx-auto aspect-[9/16] w-full max-w-[280px] overflow-hidden rounded-[2.5rem] border-2 border-border/30 bg-surface-elevated p-3 shadow-2xl">
+              <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
+                <Image
+                  src="/images/apps/focus-space/screenshot-cockpit.jpg"
+                  alt="Focus Space — Cockpit Timer"
+                  fill
+                  className="object-cover"
+                  sizes="280px"
+                />
               </div>
             </div>
           </AnimatedSection>
@@ -77,7 +78,7 @@ export function FeaturedProject() {
             <AnimatedSection delay={0.5}>
               <div className="mt-8">
                 <Link
-                  href="/apps"
+                  href="/projects/focus-space"
                   className="inline-flex items-center gap-2 rounded-full border border-accent-cyan/30 px-6 py-3 text-sm font-medium text-accent-cyan transition-all hover:bg-accent-cyan/10"
                 >
                   {t("cta")}

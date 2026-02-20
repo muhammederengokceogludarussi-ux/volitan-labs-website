@@ -2,12 +2,12 @@ export const focusSpaceApp = {
   slug: "focus-space",
   name: "Focus Space",
   tagline: {
-    en: "Your Space-Themed Productivity Companion",
-    tr: "Uzay Temali Verimlilik Yoldasiniz",
+    en: "Reduce Screen Time. Build Focus Habits.",
+    tr: "Ekran Süresini Azalt. Odaklanma Alışkanlığı Kazan.",
   },
   description: {
-    en: "Stay focused, earn XP, and build your own universe. Focus Space combines gamification with proven productivity techniques to help you achieve deep focus.",
-    tr: "Odaklan, XP kazan ve kendi evrenini insaa et. Focus Space, derin odaklanma elde etmenize yardimci olmak icin oyunlastirmayi kanitlanmis verimlilik teknikleriyle birlestir.",
+    en: "Focus Space is a digital detox and productivity app designed to help you reduce screen time and build healthy focus habits. Using space-themed gamification — XP, planet terraforming, and weekly leagues — it turns putting your phone down into a rewarding experience.",
+    tr: "Focus Space, ekran süresini azaltmanıza ve sağlıklı odaklanma alışkanlıkları kazanmanıza yardımcı olmak için tasarlanmış bir dijital detoks ve verimlilik uygulamasıdır. Uzay temalı oyunlaştırma — XP, gezegen terraforming ve haftalık ligler — ile telefonunuzu bırakmayı ödüllendirici bir deneyime dönüştürür.",
   },
   icon: "/images/apps/focus-space/icon.png",
   playStoreUrl: null, // Will be updated when app is published
@@ -60,45 +60,50 @@ export const focusSpaceApp = {
     tr: [
       {
         icon: "timer",
-        title: "Odaklanma Zamanlayicisi",
+        title: "Odaklanma Zamanlayıcısı",
         description:
-          "Calisma stilinize uygun Pomodoro, Derin Calisma ve Flowtime modlari.",
+          "Çalışma stilinize uygun Pomodoro, Derin Çalışma ve Flowtime modları.",
       },
       {
         icon: "trophy",
-        title: "XP & Oyunlastirma",
+        title: "XP & Oyunlaştırma",
         description:
-          "XP kazanin, seviye atlayin, basarimlar acin ve liderlik tablolarinda yarisin.",
+          "XP kazanın, seviye atlayın, başarımlar açın ve liderlik tablolarında yarışın.",
       },
       {
         icon: "globe",
         title: "Gezegen Terraforming",
         description:
-          "Odaklanirken prosedural olusturulan gezegenlerin canlanmasini izleyin.",
+          "Odaklanırken prosedüral oluşturulan gezegenlerin canlanmasını izleyin.",
       },
       {
         icon: "shield",
         title: "Uygulama Engelleyici",
         description:
-          "Odaklanma seanslarinda dikkat dagitici uygulamalari engelleyin.",
+          "Odaklanma seanslarında dikkat dağıtıcı uygulamaları engelleyin.",
       },
       {
         icon: "music",
         title: "Ortam Sesleri",
         description:
-          "Yagmur, somine, kus sesleri ve derin odak icin noro ses modlari.",
+          "Yağmur, şömine, kuş sesleri ve derin odak için nöro ses modları.",
       },
       {
         icon: "users",
         title: "Sosyal & Ligler",
         description:
-          "Arkadaslariniza meydan okuyun, haftalik liglere katilsin ve siralamada yuksel.",
+          "Arkadaşlarınıza meydan okuyun, haftalık liglere katılın ve sıralamada yükselin.",
       },
     ],
   },
   screenshots: [
-    "/images/apps/focus-space/screenshot-1.png",
-    "/images/apps/focus-space/screenshot-2.png",
-    "/images/apps/focus-space/screenshot-3.png",
+    "/images/apps/focus-space/screenshot-cockpit.jpg",
+    "/images/apps/focus-space/screenshot-starmap.jpg",
+    "/images/apps/focus-space/screenshot-badges.jpg",
+    "/images/apps/focus-space/screenshot-stats.jpg",
+    "/images/apps/focus-space/screenshot-5.jpg",
+    "/images/apps/focus-space/screenshot-6.jpg",
+    "/images/apps/focus-space/screenshot-7.jpg",
+    "/images/apps/focus-space/screenshot-8.jpg",
   ],
 };

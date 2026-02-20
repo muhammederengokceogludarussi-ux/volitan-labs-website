@@ -1,0 +1,20 @@
+<svg width="375" height="812" viewBox="0 0 375 812" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="375" height="812" rx="40" fill="#08081A"/>
+  <rect x="20" y="60" width="335" height="60" rx="16" fill="#111128"/>
+  <text x="187" y="96" text-anchor="middle" fill="#A78BFA" font-family="system-ui" font-size="18" font-weight="bold">Your Universe</text>
+  <circle cx="100" cy="250" r="20" fill="#00D4FF" opacity="0.6"/>
+  <circle cx="250" cy="200" r="15" fill="#F59E0B" opacity="0.5"/>
+  <circle cx="300" cy="350" r="25" fill="#A78BFA" opacity="0.4"/>
+  <circle cx="150" cy="380" r="18" fill="#10B981" opacity="0.5"/>
+  <circle cx="60" cy="400" r="12" fill="#00D4FF" opacity="0.3"/>
+  <circle cx="320" cy="250" r="10" fill="#F59E0B" opacity="0.4"/>
+  <circle cx="187" cy="300" r="35" fill="#A78BFA" opacity="0.7"/>
+  <text x="187" y="308" text-anchor="middle" fill="#F0F0F5" font-family="system-ui" font-size="12" font-weight="bold">HOME</text>
+  <rect x="40" y="500" width="295" height="100" rx="16" fill="#111128"/>
+  <text x="187" y="540" text-anchor="middle" fill="#F0F0F5" font-family="system-ui" font-size="14">🌍 Universe Stats</text>
+  <text x="187" y="570" text-anchor="middle" fill="#8A8A9A" font-family="system-ui" font-size="12">7 planets · 12 achievements</text>
+  <rect x="40" y="620" width="140" height="80" rx="12" fill="#111128"/>
+  <text x="110" y="666" text-anchor="middle" fill="#00D4FF" font-family="system-ui" font-size="12">42h focused</text>
+  <rect x="195" y="620" width="140" height="80" rx="12" fill="#111128"/>
+  <text x="265" y="666" text-anchor="middle" fill="#F59E0B" font-family="system-ui" font-size="12">Level 5</text>
+</svg>

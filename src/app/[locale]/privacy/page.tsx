@@ -35,7 +35,7 @@ const privacyContent = {
       },
       {
         title: "Your Rights",
-        content: "You have the right to:\n\n- Access the personal data we hold about you\n- Request correction or deletion of your personal data\n- Withdraw consent for data processing\n- File a complaint with a data protection authority\n\nTo exercise these rights, please contact us at hello@volitanlabs.com.",
+        content: "You have the right to:\n\n- Access the personal data we hold about you\n- Request correction or deletion of your personal data\n- Withdraw consent for data processing\n- File a complaint with a data protection authority\n\nTo exercise these rights, please contact us at eren.gokceoglu@metu.edu.tr.",
       },
       {
         title: "Changes to This Policy",
@@ -43,7 +43,7 @@ const privacyContent = {
       },
       {
         title: "Contact Us",
-        content: "If you have any questions about this Privacy Policy, please contact us at hello@volitanlabs.com.",
+        content: "If you have any questions about this Privacy Policy, please contact us at eren.gokceoglu@metu.edu.tr.",
       },
     ],
   },
@@ -51,40 +51,40 @@ const privacyContent = {
     lastUpdated: "15 Ocak 2025",
     sections: [
       {
-        title: "Giris",
-        content: "Volitan Labs (\"biz\") volitanlabs.dev web sitesini ve Focus Space mobil uygulamasini isletmektedir. Bu Gizlilik Politikasi, kisisel bilgilerinizi nasil topladigimizi, kullandigimizi ve korudugumuzu aciklar.",
+        title: "Giriş",
+        content: "Volitan Labs (\"biz\") volitanlabs.dev web sitesini ve Focus Space mobil uygulamasını işletmektedir. Bu Gizlilik Politikası, kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklar.",
       },
       {
-        title: "Topladigimiz Bilgiler",
-        content: "Hizmetlerimizi sunmak icin gereken minimum bilgileri topluyoruz:\n\n- Iletisim Formu: Iletisim formumuzu gonderdiginizde adinizi, e-posta adresinizi ve mesaj icerigini topluyoruz.\n- Analitik: Cerez kullanmadan anonim kullanim verileri toplayan Vercel Analytics kullaniyoruz.\n- Uygulama Verileri: Focus Space verimlilik verilerinizi cihazinizda yerel olarak saklar. Sunucularimiza kisisel veri gonderilmez.",
+        title: "Topladığımız Bilgiler",
+        content: "Hizmetlerimizi sunmak için gereken minimum bilgileri topluyoruz:\n\n- İletişim Formu: İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğini topluyoruz.\n- Analitik: Çerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.\n- Uygulama Verileri: Focus Space verimlilik verilerinizi cihazınızda yerel olarak saklar. Sunucularımıza kişisel veri gönderilmez.",
       },
       {
-        title: "Bilgilerinizi Nasil Kullaniyoruz",
-        content: "Topladigimiz bilgileri su amaclarla kullaniyoruz:\n\n- Iletisim formu araciligiyla gonderilen sorulariniza yanit vermek\n- Anonim analitiklere dayanarak web sitemizi ve hizmetlerimizi gelistirmek\n- Yalnizca acikca tercih ederseniz uygulamalarimiz hakkinda guncellemeler gondermek",
+        title: "Bilgilerinizi Nasıl Kullanıyoruz",
+        content: "Topladığımız bilgileri şu amaçlarla kullanıyoruz:\n\n- İletişim formu aracılığıyla gönderilen sorularınıza yanıt vermek\n- Anonim analitiklere dayanarak web sitemizi ve hizmetlerimizi geliştirmek\n- Yalnızca açıkça tercih ederseniz uygulamalarımız hakkında güncellemeler göndermek",
       },
       {
-        title: "Veri Depolama ve Guvenlik",
-        content: "Iletisim formu gonderimleri guvenli bir sekilde islenir. Kisisel tanimlanabilir bilgilerinizi ucuncu taraflara satmiyoruz, takas etmiyoruz veya baska sekilde aktarmiyoruz. Kisisel bilgilerinizi korumak icin uygun guvenlik onlemleri uyguluyoruz.",
+        title: "Veri Depolama ve Güvenlik",
+        content: "İletişim formu gönderimleri güvenli bir şekilde işlenir. Kişisel tanımlanabilir bilgilerinizi üçüncü taraflara satmıyoruz, takas etmiyoruz veya başka şekilde aktarmıyoruz. Kişisel bilgilerinizi korumak için uygun güvenlik önlemleri uyguluyoruz.",
       },
       {
-        title: "Cerezler",
-        content: "Web sitemiz yalnizca tema tercihi (koyu/acik mod) ve dil secimi icin temel cerezler kullanir. Izleme cerezleri veya ucuncu taraf reklam cerezleri kullanmiyoruz.",
+        title: "Çerezler",
+        content: "Web sitemiz yalnızca tema tercihi (koyu/açık mod) ve dil seçimi için temel çerezler kullanır. İzleme çerezleri veya üçüncü taraf reklam çerezleri kullanmıyoruz.",
       },
       {
-        title: "Ucuncu Taraf Hizmetleri",
-        content: "Asagidaki ucuncu taraf hizmetlerini kullaniyoruz:\n\n- Vercel: Web sitesi barindirma ve analitik (gizlilik dostu, cerez yok)\n- Cloudflare: DNS ve guvenlik (spam korumasi icin Turnstile)",
+        title: "Üçüncü Taraf Hizmetleri",
+        content: "Aşağıdaki üçüncü taraf hizmetlerini kullanıyoruz:\n\n- Vercel: Web sitesi barındırma ve analitik (gizlilik dostu, çerez yok)\n- Cloudflare: DNS ve güvenlik (spam koruması için Turnstile)",
       },
       {
-        title: "Haklariniz",
-        content: "Su haklara sahipsiniz:\n\n- Hakkimizda tuttugumuza kisisel verilere erisim\n- Kisisel verilerinizin duzeltilmesini veya silinmesini talep etme\n- Veri isleme icin onayinizi geri cekme\n- Veri koruma otoritesine sikayet dosyalama\n\nBu haklari kullanmak icin lutfen hello@volitanlabs.com adresinden bize ulasin.",
+        title: "Haklarınız",
+        content: "Şu haklara sahipsiniz:\n\n- Hakkınızda tuttuğumuz kişisel verilere erişim\n- Kişisel verilerinizin düzeltilmesini veya silinmesini talep etme\n- Veri işleme için onayınızı geri çekme\n- Veri koruma otoritesine şikâyet dosyalama\n\nBu hakları kullanmak için lütfen eren.gokceoglu@metu.edu.tr adresinden bize ulaşın.",
       },
       {
-        title: "Bu Politikadaki Degisiklikler",
-        content: "Bu Gizlilik Politikasini zaman zaman guncelleyebiliriz. Herhangi bir degisikligi bu sayfada yeni Gizlilik Politikasini yayinlayarak ve \"Son guncelleme\" tarihini guncelleyerek size bildireceğiz.",
+        title: "Bu Politikadaki Değişiklikler",
+        content: "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Herhangi bir değişikliği bu sayfada yeni Gizlilik Politikasını yayınlayarak ve \"Son güncelleme\" tarihini güncelleyerek size bildireceğiz.",
       },
       {
-        title: "Bize Ulasin",
-        content: "Bu Gizlilik Politikasi hakkinda sorulariniz varsa, lutfen hello@volitanlabs.com adresinden bize ulasin.",
+        title: "Bize Ulaşın",
+        content: "Bu Gizlilik Politikası hakkında sorularınız varsa, lütfen eren.gokceoglu@metu.edu.tr adresinden bize ulaşın.",
       },
     ],
   },

@@ -7,17 +7,8 @@ const staticPages = [
   "",
   "/about",
   "/projects",
-  "/apps",
-  "/apps/focus-space",
-  "/blog",
   "/contact",
   "/privacy",
-];
-
-const blogSlugs = [
-  "how-engineering-thinking-shapes-app-development",
-  "building-focus-space-flutter-journey",
-  "ai-augmented-development-workflow",
 ];
 
 const projectSlugs = [
@@ -39,13 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  const blogEntries = locales.flatMap((locale) =>
-    blogSlugs.map((slug) => ({
-      url: `${baseUrl}/${locale}/blog/${slug}`,
-      lastModified: new Date(),
-    }))
-  );
-
   const projectEntries = locales.flatMap((locale) =>
     projectSlugs.map((slug) => ({
       url: `${baseUrl}/${locale}/projects/${slug}`,
@@ -53,5 +37,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticEntries, ...blogEntries, ...projectEntries];
+  return [...staticEntries, ...projectEntries];
 }

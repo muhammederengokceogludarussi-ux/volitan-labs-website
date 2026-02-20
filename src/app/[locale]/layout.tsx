@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SkipToContent } from "@/components/shared/skip-to-content";
 import { BackToTop } from "@/components/shared/back-to-top";
+import { SmoothScroll } from "@/components/shared/smooth-scroll";
 import { JsonLd, websiteSchema, personSchema } from "@/components/shared/json-ld";
 
 export default async function LocaleLayout({
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
             <Footer />
           </div>
           <BackToTop />
+          <SmoothScroll />
         </Providers>
       </body>
     </html>
