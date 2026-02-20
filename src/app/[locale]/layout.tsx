@@ -9,6 +9,7 @@ import { SkipToContent } from "@/components/shared/skip-to-content";
 import { BackToTop } from "@/components/shared/back-to-top";
 import { SmoothScroll } from "@/components/shared/smooth-scroll";
 import { JsonLd, websiteSchema, personSchema } from "@/components/shared/json-ld";
+import { BackgroundStars } from "@/components/ui/background-stars";
 
 export default async function LocaleLayout({
   children,
@@ -35,8 +36,9 @@ export default async function LocaleLayout({
         className={`${fontVariables} font-sans bg-background text-text-primary antialiased`}
       >
         <Providers locale={locale} messages={messages}>
+          <BackgroundStars fixed density={100} />
           <SkipToContent />
-          <div className="flex min-h-screen flex-col">
+          <div className="relative z-[1] flex min-h-screen flex-col">
             <Header />
             <main id="main-content" className="flex-1">
               {children}

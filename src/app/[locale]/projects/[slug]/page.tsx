@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
+
 import Image from "next/image";
 import {
   ArrowLeft,
@@ -174,8 +175,9 @@ export default function ProjectDetailPage() {
   return (
     <>
       {/* Hero */}
-      <Section className="pt-20 md:pt-32">
-        <Container>
+      <Section className="relative overflow-hidden pt-20 md:pt-32">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <Link
               href="/projects"
@@ -230,7 +232,7 @@ export default function ProjectDetailPage() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-border/50 px-5 py-2.5 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
+                    className="inline-flex items-center gap-2 rounded-full border border-border/50 px-6 py-3 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
                   >
                     <Github className="h-4 w-4" />
                     GitHub
@@ -241,7 +243,7 @@ export default function ProjectDetailPage() {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                    className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-all hover:shadow-lg hover:shadow-accent-cyan/25"
                   >
                     <ExternalLink className="h-4 w-4" />
                     {t("liveDemo")}
@@ -254,8 +256,9 @@ export default function ProjectDetailPage() {
       </Section>
 
       {/* Features */}
-      <Section className="bg-surface">
-        <Container>
+      <Section className="relative overflow-hidden bg-surface">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
               {t("features")}
@@ -279,8 +282,9 @@ export default function ProjectDetailPage() {
 
       {/* Screenshots */}
       {project.screenshots && project.screenshots.length > 0 && (
-        <Section>
-          <Container>
+        <Section className="relative overflow-hidden">
+
+          <Container className="relative z-10">
             <AnimatedSection>
               <h2 className="font-display text-2xl font-bold tracking-tight md:text-3xl">
                 {locale === "tr" ? "Ekran Görüntüleri" : "Screenshots"}

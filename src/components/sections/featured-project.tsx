@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
+
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import {
@@ -26,8 +27,9 @@ export function FeaturedProject() {
   const t = useTranslations("home.featuredApp");
 
   return (
-    <Section className="bg-surface">
-      <Container>
+    <Section className="relative overflow-hidden">
+
+      <Container className="relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left: Phone mockup with real screenshot */}
           <AnimatedSection>
@@ -79,7 +81,7 @@ export function FeaturedProject() {
               <div className="mt-8">
                 <Link
                   href="/projects/focus-space"
-                  className="inline-flex items-center gap-2 rounded-full border border-accent-cyan/30 px-6 py-3 text-sm font-medium text-accent-cyan transition-all hover:bg-accent-cyan/10"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-all hover:shadow-lg hover:shadow-accent-cyan/25"
                 >
                   {t("cta")}
                   <ArrowRight className="h-4 w-4" />

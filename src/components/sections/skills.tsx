@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
+
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import {
@@ -46,8 +47,9 @@ export function Skills() {
   const t = useTranslations("home.skills");
 
   return (
-    <Section>
-      <Container>
+    <Section className="relative overflow-hidden">
+
+      <Container className="relative z-10">
         <AnimatedSection>
           <SectionHeading
             label={t("label")}

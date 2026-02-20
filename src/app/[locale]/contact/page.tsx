@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
+
 import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "../../../../content/site";
 
@@ -42,8 +43,9 @@ export default function ContactPage() {
   const t = useTranslations("contact");
 
   return (
-    <Section className="pt-20 md:pt-32">
-      <Container>
+    <Section className="relative overflow-hidden pt-20 md:pt-32">
+
+      <Container className="relative z-10">
         <AnimatedSection>
           <SectionHeading title={t("title")} subtitle={t("subtitle")} />
         </AnimatedSection>

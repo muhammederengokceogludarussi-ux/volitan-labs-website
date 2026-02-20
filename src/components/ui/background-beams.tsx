@@ -10,9 +10,7 @@ export function BackgroundBeams({ className }: { className?: string }) {
         className
       )}
     >
-      {/* Gradient orbs */}
-      <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-accent-cyan/5 blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-accent-purple/5 blur-3xl" />
+      {/* Beam lines only — gradient orbs removed */}
 
       {/* Animated beam lines */}
       <svg

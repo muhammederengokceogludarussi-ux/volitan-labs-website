@@ -7,6 +7,7 @@ import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ProjectGrid } from "@/components/projects/project-grid";
+
 import { cn } from "@/lib/utils";
 
 const filters = ["all", "mobile", "web", "engineering"] as const;
@@ -90,8 +91,9 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <Section className="pt-20 md:pt-32">
-        <Container>
+      <Section className="relative overflow-hidden pt-20 md:pt-32">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading
               title={t("title")}

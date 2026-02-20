@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Timeline } from "@/components/ui/timeline";
+
 import { founder } from "../../../../content/founder";
 import {
   Github,
@@ -62,8 +63,9 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <Section className="pt-20 md:pt-32">
-        <Container className="text-center">
+      <Section className="relative overflow-hidden pt-20 md:pt-32">
+
+        <Container className="relative z-10 text-center">
           <AnimatedSection>
             <p className="text-sm font-medium uppercase tracking-wider text-accent-cyan">
               {t("title")}
@@ -81,8 +83,9 @@ export default function AboutPage() {
       </Section>
 
       {/* Story */}
-      <Section className="bg-surface">
-        <Container>
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <div className="mx-auto max-w-3xl">
             <AnimatedSection>
               <SectionHeading
@@ -106,8 +109,9 @@ export default function AboutPage() {
       </Section>
 
       {/* Timeline */}
-      <Section>
-        <Container>
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading
               label={t("journey.label")}
@@ -122,8 +126,9 @@ export default function AboutPage() {
       </Section>
 
       {/* Achievements */}
-      <Section className="bg-surface">
-        <Container>
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading
               label={t("achievements.label")}
@@ -187,8 +192,9 @@ export default function AboutPage() {
       </Section>
 
       {/* Skills */}
-      <Section>
-        <Container>
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading
               label={t("skills.label")}
@@ -227,8 +233,9 @@ export default function AboutPage() {
       </Section>
 
       {/* Values */}
-      <Section>
-        <Container>
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading
               label={t("values.label")}
@@ -256,9 +263,10 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      {/* Education - Multiple entries */}
-      <Section className="bg-surface">
-        <Container>
+      {/* Education */}
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading
               label={t("education.label")}
@@ -298,8 +306,9 @@ export default function AboutPage() {
       </Section>
 
       {/* CTA - Social */}
-      <Section>
-        <Container className="text-center">
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10 text-center">
           <AnimatedSection>
             <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
               {t("connect.title")}
@@ -313,7 +322,7 @@ export default function AboutPage() {
               <a
                 href="/cv.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-5 py-2.5 text-sm font-medium text-background transition-all hover:bg-accent-cyan/90"
+                className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-all hover:shadow-lg hover:shadow-accent-cyan/25"
               >
                 <Download className="h-4 w-4" />
                 {locale === "tr" ? "CV İndir" : "Download CV"}
@@ -322,7 +331,7 @@ export default function AboutPage() {
                 href={founder.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border/50 px-5 py-2.5 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
+                className="inline-flex items-center gap-2 rounded-full border border-border/50 px-6 py-3 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
               >
                 <Github className="h-4 w-4" />
                 GitHub
@@ -331,7 +340,7 @@ export default function AboutPage() {
                 href={founder.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border/50 px-5 py-2.5 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
+                className="inline-flex items-center gap-2 rounded-full border border-border/50 px-6 py-3 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
               >
                 <Linkedin className="h-4 w-4" />
                 LinkedIn

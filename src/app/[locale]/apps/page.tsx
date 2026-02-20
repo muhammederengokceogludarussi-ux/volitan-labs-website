@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
+
 import { focusSpaceApp } from "../../../../content/apps/focus-space";
 import { ArrowRight, Sparkles } from "lucide-react";
 
@@ -17,8 +18,9 @@ export default function AppsPage() {
 
   return (
     <>
-      <Section className="pt-20 md:pt-32">
-        <Container>
+      <Section className="relative overflow-hidden pt-20 md:pt-32">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <SectionHeading title={t("title")} subtitle={t("subtitle")} />
           </AnimatedSection>

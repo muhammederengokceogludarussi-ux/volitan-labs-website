@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { BackgroundBeams } from "@/components/ui/background-beams";
+
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ArrowRight, Mail } from "lucide-react";
 
@@ -16,6 +17,7 @@ export function Hero() {
 
   return (
     <Section className="relative overflow-hidden pt-24 pb-16 md:pt-36 md:pb-24">
+
       <BackgroundBeams />
       <Container className="relative z-10 text-center">
         <AnimatedSection>
@@ -50,14 +52,14 @@ export function Hero() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent-cyan/20"
+              className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-7 py-3 text-sm font-semibold text-background transition-all hover:shadow-lg hover:shadow-accent-cyan/25"
             >
               {t("cta_projects")}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-text-primary transition-all hover:bg-surface-elevated"
+              className="inline-flex items-center gap-2 rounded-full border border-border/50 px-7 py-3 text-sm font-medium text-text-primary transition-all hover:border-accent-cyan/30 hover:bg-surface-elevated"
             >
               <Mail className="h-4 w-4" />
               {t("cta_contact")}

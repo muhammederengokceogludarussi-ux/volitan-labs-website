@@ -34,12 +34,17 @@ const mdxComponents = {
   strong: (props: React.HTMLAttributes<HTMLElement>) => (
     <strong className="font-semibold text-text-primary" {...props} />
   ),
-  a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a
-      className="text-accent-cyan underline decoration-accent-cyan/30 underline-offset-2 transition-colors hover:decoration-accent-cyan"
-      {...props}
-    />
-  ),
+  a: ({ href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const isExternal = href?.startsWith("http");
+    return (
+      <a
+        href={href}
+        className="text-accent-cyan underline decoration-accent-cyan/30 underline-offset-2 transition-colors hover:decoration-accent-cyan"
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...props}
+      />
+    );
+  },
   code: (props: React.HTMLAttributes<HTMLElement>) => (
     <code
       className="rounded bg-surface-elevated px-1.5 py-0.5 font-mono text-sm text-accent-amber"

@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+
 import { focusSpaceApp } from "../../../../../content/apps/focus-space";
 import {
   ArrowLeft,
@@ -66,15 +67,9 @@ export default function AppDetailPage() {
     <>
       {/* Hero */}
       <Section className="relative overflow-hidden pt-20 md:pt-32">
-        {/* Background gradient */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${app.colors.primary}40, transparent)`,
-          }}
-        />
 
-        <Container className="relative">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <Link
               href="/apps"
@@ -144,7 +139,7 @@ export default function AppDetailPage() {
                           href={app.playStoreUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                          className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-all hover:shadow-lg hover:shadow-accent-cyan/25"
                         >
                           {t("downloadOn")} Google Play
                         </a>
@@ -192,8 +187,9 @@ export default function AppDetailPage() {
       </Section>
 
       {/* Features Grid */}
-      <Section className="bg-surface">
-        <Container>
+      <Section className="relative overflow-hidden bg-surface">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <div className="text-center">
               <p className="text-sm font-medium uppercase tracking-wider text-accent-cyan">
@@ -231,8 +227,9 @@ export default function AppDetailPage() {
       </Section>
 
       {/* Screenshots Placeholder */}
-      <Section>
-        <Container>
+      <Section className="relative overflow-hidden">
+
+        <Container className="relative z-10">
           <AnimatedSection>
             <div className="text-center">
               <p className="text-sm font-medium uppercase tracking-wider text-accent-cyan">
@@ -275,8 +272,9 @@ export default function AppDetailPage() {
       </Section>
 
       {/* CTA */}
-      <Section className="bg-surface">
-        <Container className="text-center">
+      <Section className="relative overflow-hidden bg-surface">
+
+        <Container className="relative z-10 text-center">
           <AnimatedSection>
             <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
               {t("ctaTitle")}

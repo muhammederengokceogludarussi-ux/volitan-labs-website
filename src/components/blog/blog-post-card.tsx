@@ -12,6 +12,7 @@ interface BlogPostCardProps {
   tags: string[];
   readMoreLabel: string;
   minReadLabel: string;
+  locale?: string;
 }
 
 export function BlogPostCard({
@@ -23,8 +24,10 @@ export function BlogPostCard({
   tags,
   readMoreLabel,
   minReadLabel,
+  locale = "en",
 }: BlogPostCardProps) {
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  const dateLocale = locale === "tr" ? "tr-TR" : "en-US";
+  const formattedDate = new Date(date).toLocaleDateString(dateLocale, {
     year: "numeric",
     month: "short",
     day: "numeric",

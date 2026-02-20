@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
+
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 
 export default async function BlogPage({
@@ -16,8 +17,9 @@ export default async function BlogPage({
   const posts = getPostsByLocale(locale);
 
   return (
-    <Section className="pt-20 md:pt-32">
-      <Container>
+    <Section className="relative overflow-hidden pt-20 md:pt-32">
+
+      <Container className="relative z-10">
         <AnimatedSection>
           <SectionHeading title={t("title")} subtitle={t("subtitle")} />
         </AnimatedSection>
@@ -41,6 +43,7 @@ export default async function BlogPage({
                   tags={post.tags ?? []}
                   readMoreLabel={t("readMore")}
                   minReadLabel={t("minRead")}
+                  locale={locale}
                 />
               </AnimatedSection>
             ))}

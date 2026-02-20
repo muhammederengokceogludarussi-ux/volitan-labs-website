@@ -30,8 +30,8 @@ export function LogoIcon({ className, size = 32 }: LogoIconProps) {
           y2="28"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#00C8F0" />
-          <stop offset="1" stopColor="#9B7BF0" />
+          <stop stopColor="#9B7BF0" />
+          <stop offset="1" stopColor="#00C8F0" />
         </linearGradient>
       </defs>
       <path
