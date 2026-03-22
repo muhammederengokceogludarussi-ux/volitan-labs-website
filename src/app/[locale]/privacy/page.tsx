@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { BackgroundGrid } from "@/components/ui/background-grid";
 
 const privacyContent = {
   en: {
@@ -51,40 +52,40 @@ const privacyContent = {
     lastUpdated: "15 Ocak 2025",
     sections: [
       {
-        title: "Giriş",
-        content: "Volitan Labs (\"biz\") volitanlabs.dev web sitesini ve Focus Space mobil uygulamasını işletmektedir. Bu Gizlilik Politikası, kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklar.",
+        title: "Giris",
+        content: "Volitan Labs (\"biz\") volitanlabs.dev web sitesini ve Focus Space mobil uygulamasını isletmektedir. Bu Gizlilik Politikası, kisisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu acıklar.",
       },
       {
         title: "Topladığımız Bilgiler",
-        content: "Hizmetlerimizi sunmak için gereken minimum bilgileri topluyoruz:\n\n- İletişim Formu: İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğini topluyoruz.\n- Analitik: Çerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.\n- Uygulama Verileri: Focus Space verimlilik verilerinizi cihazınızda yerel olarak saklar. Sunucularımıza kişisel veri gönderilmez.",
+        content: "Hizmetlerimizi sunmak icin gereken minimum bilgileri topluyoruz:\n\n- Iletisim Formu: Iletisim formumuzu gonderdiginizde adınızı, e-posta adresinizi ve mesaj icerigini topluyoruz.\n- Analitik: Cerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.\n- Uygulama Verileri: Focus Space verimlilik verilerinizi cihazınızda yerel olarak saklar. Sunucularımıza kisisel veri gonderilmez.",
       },
       {
         title: "Bilgilerinizi Nasıl Kullanıyoruz",
-        content: "Topladığımız bilgileri şu amaçlarla kullanıyoruz:\n\n- İletişim formu aracılığıyla gönderilen sorularınıza yanıt vermek\n- Anonim analitiklere dayanarak web sitemizi ve hizmetlerimizi geliştirmek\n- Yalnızca açıkça tercih ederseniz uygulamalarımız hakkında güncellemeler göndermek",
+        content: "Topladığımız bilgileri su amaclarla kullanıyoruz:\n\n- Iletisim formu aracılığıyla gonderilen sorularınıza yanıt vermek\n- Anonim analitiklere dayanarak web sitemizi ve hizmetlerimizi gelistirmek\n- Yalnızca acıkca tercih ederseniz uygulamalarımız hakkında guncellemeler gondermek",
       },
       {
-        title: "Veri Depolama ve Güvenlik",
-        content: "İletişim formu gönderimleri güvenli bir şekilde işlenir. Kişisel tanımlanabilir bilgilerinizi üçüncü taraflara satmıyoruz, takas etmiyoruz veya başka şekilde aktarmıyoruz. Kişisel bilgilerinizi korumak için uygun güvenlik önlemleri uyguluyoruz.",
+        title: "Veri Depolama ve Guvenlik",
+        content: "Iletisim formu gonderimleri guvenli bir sekilde islenir. Kisisel tanımlanabilir bilgilerinizi ucuncu taraflara satmıyoruz, takas etmiyoruz veya baska sekilde aktarmıyoruz. Kisisel bilgilerinizi korumak icin uygun guvenlik onlemleri uyguluyoruz.",
       },
       {
-        title: "Çerezler",
-        content: "Web sitemiz yalnızca tema tercihi (koyu/açık mod) ve dil seçimi için temel çerezler kullanır. İzleme çerezleri veya üçüncü taraf reklam çerezleri kullanmıyoruz.",
+        title: "Cerezler",
+        content: "Web sitemiz yalnızca tema tercihi (koyu/acık mod) ve dil secimi icin temel cerezler kullanır. Izleme cerezleri veya ucuncu taraf reklam cerezleri kullanmıyoruz.",
       },
       {
-        title: "Üçüncü Taraf Hizmetleri",
-        content: "Aşağıdaki üçüncü taraf hizmetlerini kullanıyoruz:\n\n- Vercel: Web sitesi barındırma ve analitik (gizlilik dostu, çerez yok)\n- Cloudflare: DNS ve güvenlik (spam koruması için Turnstile)",
+        title: "Ucuncu Taraf Hizmetleri",
+        content: "Asagıdaki ucuncu taraf hizmetlerini kullanıyoruz:\n\n- Vercel: Web sitesi barındırma ve analitik (gizlilik dostu, cerez yok)\n- Cloudflare: DNS ve guvenlik (spam koruması icin Turnstile)",
       },
       {
         title: "Haklarınız",
-        content: "Şu haklara sahipsiniz:\n\n- Hakkınızda tuttuğumuz kişisel verilere erişim\n- Kişisel verilerinizin düzeltilmesini veya silinmesini talep etme\n- Veri işleme için onayınızı geri çekme\n- Veri koruma otoritesine şikâyet dosyalama\n\nBu hakları kullanmak için lütfen eren.gokceoglu@metu.edu.tr adresinden bize ulaşın.",
+        content: "Su haklara sahipsiniz:\n\n- Hakkınızda tuttuğumuz kisisel verilere erisim\n- Kisisel verilerinizin duzeltilmesini veya silinmesini talep etme\n- Veri isleme icin onayınızı geri cekme\n- Veri koruma otoritesine sikayet dosyalama\n\nBu hakları kullanmak icin lutfen eren.gokceoglu@metu.edu.tr adresinden bize ulasın.",
       },
       {
-        title: "Bu Politikadaki Değişiklikler",
-        content: "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Herhangi bir değişikliği bu sayfada yeni Gizlilik Politikasını yayınlayarak ve \"Son güncelleme\" tarihini güncelleyerek size bildireceğiz.",
+        title: "Bu Politikadaki Degisiklikler",
+        content: "Bu Gizlilik Politikasını zaman zaman guncelleyebiliriz. Herhangi bir degisikligi bu sayfada yeni Gizlilik Politikasını yayınlayarak ve \"Son guncelleme\" tarihini guncelleyerek size bildirecegiz.",
       },
       {
-        title: "Bize Ulaşın",
-        content: "Bu Gizlilik Politikası hakkında sorularınız varsa, lütfen eren.gokceoglu@metu.edu.tr adresinden bize ulaşın.",
+        title: "Bize Ulasın",
+        content: "Bu Gizlilik Politikası hakkında sorularınız varsa, lutfen eren.gokceoglu@metu.edu.tr adresinden bize ulasın.",
       },
     ],
   },
@@ -96,36 +97,35 @@ export default function PrivacyPage() {
   const data = privacyContent[locale];
 
   return (
-    <Section className="pt-20 md:pt-32">
+    <Section className="relative overflow-hidden pt-20 md:pt-32">
+      <BackgroundGrid variant="dots" />
       <Container>
         <div className="mx-auto max-w-3xl">
-          <AnimatedSection>
-            <h1 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
+          <AnimatedSection variant="fade">
+            <h1 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
               {t("title")}
             </h1>
             <p className="mt-2 text-sm text-text-muted">
               {t("lastUpdated")}: {data.lastUpdated}
             </p>
-          </AnimatedSection>
 
-          <div className="mt-10 space-y-8">
-            {data.sections.map((section, index) => (
-              <AnimatedSection key={index} delay={0.05 * (index + 1)}>
-                <div>
-                  <h2 className="font-display text-xl font-semibold">
+            <div className="mt-10 space-y-8">
+              {data.sections.map((section, index) => (
+                <div key={index}>
+                  <h2 className="font-display text-xl font-semibold tracking-[-0.03em]">
                     {section.title}
                   </h2>
                   <div className="mt-3 space-y-3">
                     {section.content.split("\n\n").map((paragraph, i) => (
-                      <p key={i} className="text-sm text-text-secondary leading-relaxed whitespace-pre-line">
+                      <p key={i} className="text-sm leading-relaxed text-text-secondary whitespace-pre-line">
                         {paragraph}
                       </p>
                     ))}
                   </div>
                 </div>
-              </AnimatedSection>
-            ))}
-          </div>
+              ))}
+            </div>
+          </AnimatedSection>
         </div>
       </Container>
     </Section>

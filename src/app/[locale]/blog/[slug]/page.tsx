@@ -44,7 +44,7 @@ export default async function BlogPostPage({
               {/* Back link */}
               <Link
                 href="/blog"
-                className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent-cyan"
+                className="mb-8 inline-flex items-center gap-2 text-sm text-text-secondary transition-[color] duration-200 hover:text-accent-primary"
               >
                 <ArrowLeft className="h-4 w-4" />
                 {t("allPosts")}
@@ -55,7 +55,7 @@ export default async function BlogPostPage({
                 {post.tags?.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-accent-purple/10 px-3 py-1 text-xs font-medium text-accent-purple"
+                    className="rounded-full bg-accent-primary/10 px-3 py-1 text-xs font-medium text-accent-primary"
                   >
                     {tag}
                   </span>
@@ -63,17 +63,17 @@ export default async function BlogPostPage({
               </div>
 
               {/* Title */}
-              <h1 className="mt-4 font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+              <h1 className="mt-4 font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl lg:text-5xl">
                 {post.title}
               </h1>
 
               {/* Description */}
-              <p className="mt-4 text-lg text-text-secondary">
+              <p className="mt-4 text-lg leading-relaxed text-text-secondary">
                 {post.description}
               </p>
 
               {/* Meta */}
-              <div className="mt-6 flex items-center gap-4 border-b border-border/30 pb-6 text-sm text-text-muted">
+              <div className="mt-6 flex items-center gap-4 border-b border-border pb-6 text-sm text-text-muted">
                 <span className="flex items-center gap-1.5">
                   <Calendar className="h-4 w-4" />
                   {formattedDate}
@@ -90,10 +90,10 @@ export default async function BlogPostPage({
               </div>
 
               {/* Back to blog */}
-              <div className="mt-12 border-t border-border/30 pt-8">
+              <div className="mt-12 border-t border-border pt-8">
                 <Link
                   href="/blog"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent-cyan transition-colors hover:text-accent-cyan/80"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-accent-primary transition-[color] duration-200 hover:text-accent-primary/80"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   {t("allPosts")}

@@ -9,13 +9,13 @@ interface BlogPostContentProps {
 const mdxComponents = {
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
-      className="mt-10 mb-4 font-display text-2xl font-bold tracking-tight text-text-primary"
+      className="mt-10 mb-4 font-display text-2xl font-bold tracking-[-0.03em] text-text-primary"
       {...props}
     />
   ),
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
-      className="mt-8 mb-3 font-display text-xl font-semibold text-text-primary"
+      className="mt-8 mb-3 font-display text-xl font-semibold tracking-[-0.03em] text-text-primary"
       {...props}
     />
   ),
@@ -39,7 +39,7 @@ const mdxComponents = {
     return (
       <a
         href={href}
-        className="text-accent-cyan underline decoration-accent-cyan/30 underline-offset-2 transition-colors hover:decoration-accent-cyan"
+        className="text-accent-primary underline decoration-accent-primary/30 underline-offset-2 transition-[color,text-decoration-color] duration-200 hover:decoration-accent-primary"
         {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         {...props}
       />
@@ -47,23 +47,23 @@ const mdxComponents = {
   },
   code: (props: React.HTMLAttributes<HTMLElement>) => (
     <code
-      className="rounded bg-surface-elevated px-1.5 py-0.5 font-mono text-sm text-accent-amber"
+      className="rounded bg-surface-elevated px-1.5 py-0.5 font-mono text-sm text-accent-secondary"
       {...props}
     />
   ),
   pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
     <pre
-      className="mb-4 overflow-x-auto rounded-xl border border-border/30 bg-surface p-4 font-mono text-sm"
+      className="mb-4 overflow-x-auto rounded-xl border border-border bg-surface p-4 font-mono text-sm shadow-card"
       {...props}
     />
   ),
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
-      className="mb-4 border-l-2 border-accent-cyan pl-4 italic text-text-muted"
+      className="mb-4 border-l-2 border-accent-primary pl-4 italic text-text-muted"
       {...props}
     />
   ),
-  hr: () => <hr className="my-8 border-border/30" />,
+  hr: () => <hr className="my-8 border-border" />,
 };
 
 function useMDXComponent(code: string) {

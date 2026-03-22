@@ -13,6 +13,8 @@
       "name": "Volitan Labs",
       "roles": "Makine Mühendisliği Öğrencisi|Uygulama Geliştirici|Havacılık Tutkunu|Yapay Zeka Destekli Geliştirici",
       "description": "ODTÜ Makine Mühendisliği öğrencisi — havacılık geçmişinden gelen mühendislik disipliniyle Flutter'da uygulamalar geliştiriyor.",
+      "badge": "Uygulama Odaklı",
+      "title": "Hassas Mühendislik & Tasarım.",
       "cta_projects": "Projeleri Gör",
       "cta_contact": "İletişime Geç"
     },
@@ -102,6 +104,13 @@
     "featuresTitle": "Odaklanmak İçin İhtiyacınız Olan Her Şey",
     "screenshots": "Ön İzleme",
     "screenshotsTitle": "Nasıl Görünüyor",
+    "badge": "Uygulama Odaklı",
+    "viewFeatures": "Özellikleri Gör",
+    "featureHighlights": {
+      "item1": "Cam Efektli Arayüz",
+      "item2": "Akıllı Görev AI Sıralama (NOVA)",
+      "item3": "Mini Yıldız Haritası Oyunlaştırma"
+    },
     "learnMore": "Daha Fazla",
     "notifyMe": "Haber Ver",
     "ctaTitle": "Odaklanmaya Hazır mısınız?",

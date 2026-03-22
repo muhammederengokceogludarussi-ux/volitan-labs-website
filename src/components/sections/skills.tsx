@@ -1,45 +1,25 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
-import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
-
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { SectionHeading } from "@/components/shared/section-heading";
-import {
-  Smartphone,
-  Cpu,
-  Cog,
-  Brain,
-  Code2,
-} from "lucide-react";
+import { Smartphone, Cog, Brain } from "lucide-react";
 
 const skills = [
   {
     key: "flutter",
     Icon: Smartphone,
-    className: "lg:col-span-2 lg:row-span-1",
-  },
-  {
-    key: "ai",
-    Icon: Brain,
-    className: "lg:col-span-1 lg:row-span-1",
+    colSpan: "md:col-span-2 lg:col-span-2",
   },
   {
     key: "engineering",
     Icon: Cog,
-    className: "lg:col-span-1 lg:row-span-1",
+    colSpan: "col-span-1",
   },
   {
-    key: "fullstack",
-    Icon: Code2,
-    className: "lg:col-span-1 lg:row-span-1",
-  },
-  {
-    key: "systems",
-    Icon: Cpu,
-    className: "lg:col-span-1 lg:row-span-1",
+    key: "ai",
+    Icon: Brain,
+    colSpan: "col-span-1",
   },
 ] as const;
 
@@ -47,31 +27,34 @@ export function Skills() {
   const t = useTranslations("home.skills");
 
   return (
-    <Section className="relative overflow-hidden">
+    <section className="mx-auto w-full max-w-[1200px] px-4 py-20 sm:px-6">
+      <h2 className="flex items-center gap-4 text-3xl font-bold font-display tracking-tight text-white mb-10">
+        <span className="h-px w-12 bg-white/20" />
+        {t("title")}
+        <span className="h-px w-12 bg-white/20" />
+      </h2>
 
-      <Container className="relative z-10">
-        <AnimatedSection>
-          <SectionHeading
-            label={t("label")}
-            title={t("title")}
-            subtitle={t("subtitle")}
-          />
-        </AnimatedSection>
-
-        <AnimatedSection delay={0.2}>
-          <BentoGrid className="mt-12 auto-rows-[14rem] grid-cols-1 lg:grid-cols-3">
-            {skills.map((skill) => (
-              <BentoCard
-                key={skill.key}
-                name={t(`items.${skill.key}.title`)}
-                description={t(`items.${skill.key}.description`)}
-                Icon={skill.Icon}
-                className={skill.className}
-              />
-            ))}
-          </BentoGrid>
-        </AnimatedSection>
-      </Container>
-    </Section>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {skills.map((skill, i) => (
+          <AnimatedSection key={skill.key} delay={i * 0.05}>
+            <SpotlightCard
+              className={`${skill.colSpan} flex h-[340px] flex-col justify-between p-8 group hover:border-white/10`}
+            >
+              <div className="relative z-10">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all">
+                  <skill.Icon className="h-6 w-6" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-white">
+                  {t(`items.${skill.key}.title`)}
+                </h3>
+                <p className="text-sm leading-relaxed text-zinc-400">
+                  {t(`items.${skill.key}.description`)}
+                </p>
+              </div>
+            </SpotlightCard>
+          </AnimatedSection>
+        ))}
+      </div>
+    </section>
   );
 }

@@ -2,6 +2,8 @@
 
 import { Link } from "@/i18n/navigation";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { GlassCard } from "@/components/ui/glass-card";
 
 interface BlogPostCardProps {
   slug: string;
@@ -13,6 +15,7 @@ interface BlogPostCardProps {
   readMoreLabel: string;
   minReadLabel: string;
   locale?: string;
+  featured?: boolean;
 }
 
 export function BlogPostCard({
@@ -25,6 +28,7 @@ export function BlogPostCard({
   readMoreLabel,
   minReadLabel,
   locale = "en",
+  featured,
 }: BlogPostCardProps) {
   const dateLocale = locale === "tr" ? "tr-TR" : "en-US";
   const formattedDate = new Date(date).toLocaleDateString(dateLocale, {
@@ -35,47 +39,66 @@ export function BlogPostCard({
 
   return (
     <Link href={`/blog/${slug}`} className="group block">
-      <article className="h-full rounded-xl border-l-2 border border-border/30 border-l-transparent bg-surface p-6 transition-all duration-300 hover:border-accent-cyan/30 hover:border-l-accent-cyan hover:shadow-lg">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-accent-purple/10 px-2.5 py-0.5 text-xs font-medium text-accent-purple"
-            >
-              {tag}
+      <GlassCard
+        as="article"
+        glow="subtle"
+        className={cn(
+          "h-full p-6",
+          featured && "md:flex md:items-start md:gap-8"
+        )}
+      >
+        <div className={cn(featured && "flex-1")}>
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-accent-primary/10 px-2.5 py-0.5 text-xs font-medium text-accent-primary"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Title */}
+          <h2
+            className={cn(
+              "mt-4 font-display font-semibold tracking-[-0.03em] transition-[color] duration-200 group-hover:text-accent-primary",
+              featured ? "text-xl md:text-2xl" : "text-lg"
+            )}
+          >
+            {title}
+          </h2>
+
+          {/* Description */}
+          <p
+            className={cn(
+              "mt-2 text-sm leading-relaxed text-text-secondary",
+              featured ? "line-clamp-4" : "line-clamp-3"
+            )}
+          >
+            {description}
+          </p>
+
+          {/* Meta */}
+          <div className="mt-4 flex items-center gap-3 text-xs text-text-muted">
+            <span className="flex items-center gap-1">
+              <Calendar className="h-3 w-3" />
+              {formattedDate}
             </span>
-          ))}
+            <span className="flex items-center gap-1">
+              <Clock className="h-3 w-3" />
+              {readingTime} {minReadLabel}
+            </span>
+          </div>
+
+          {/* Read More — always visible */}
+          <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-primary">
+            {readMoreLabel}
+            <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </div>
         </div>
-
-        {/* Title */}
-        <h2 className="mt-4 font-display text-lg font-semibold transition-colors group-hover:text-accent-cyan">
-          {title}
-        </h2>
-
-        {/* Description */}
-        <p className="mt-2 text-sm text-text-secondary line-clamp-3">
-          {description}
-        </p>
-
-        {/* Meta */}
-        <div className="mt-4 flex items-center gap-3 text-xs text-text-muted">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-3 w-3" />
-            {formattedDate}
-          </span>
-          <span className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            {readingTime} {minReadLabel}
-          </span>
-        </div>
-
-        {/* Read More */}
-        <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-cyan opacity-0 transition-all group-hover:opacity-100">
-          {readMoreLabel}
-          <ArrowRight className="h-3 w-3" />
-        </div>
-      </article>
+      </GlassCard>
     </Link>
   );
 }

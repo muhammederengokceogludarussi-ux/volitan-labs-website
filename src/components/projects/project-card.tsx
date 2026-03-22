@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { GlassCard } from "@/components/ui/glass-card";
 
 interface ProjectCardProps {
   title: string;
@@ -35,83 +36,87 @@ export function ProjectCard({
   return (
     <Link
       href={href}
-      className={cn(
-        "group relative block rounded-xl border border-border/30 bg-surface p-5 transition-all duration-300 hover:border-accent-cyan/30 hover:shadow-lg hover-glow cursor-pointer",
-        featured && "ring-1 ring-accent-amber/20",
-        className
-      )}
+      className={cn("group relative block", className)}
     >
-      <div className="flex items-center gap-2">
-        {featured && (
-          <span className="absolute -top-2.5 right-4 rounded-full bg-accent-amber/10 px-3 py-0.5 text-xs font-medium text-accent-amber">
-            {t("featured")}
+      <GlassCard
+        glow={featured ? "accent" : "subtle"}
+        className={cn(
+          "p-5 h-full",
+          featured && "ring-1 ring-accent-secondary/20"
+        )}
+      >
+        <div className="flex items-center gap-2">
+          {featured && (
+            <span className="absolute -top-2.5 right-4 rounded-full bg-accent-secondary/10 px-3 py-0.5 text-xs font-medium text-accent-secondary">
+              {t("featured")}
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <h3 className="font-display text-lg font-semibold tracking-[-0.03em] transition-[color] duration-200 group-hover:text-accent-primary">
+            {title}
+          </h3>
+          {status === "beta" && (
+            <span className="rounded-full bg-accent-primary/10 px-2.5 py-0.5 text-xs font-medium text-accent-primary">
+              {tApps("beta")}
+            </span>
+          )}
+          {status === "coming-soon" && (
+            <span className="rounded-full bg-accent-secondary/10 px-2.5 py-0.5 text-xs font-medium text-accent-secondary">
+              {tApps("comingSoon")}
+            </span>
+          )}
+        </div>
+
+        <p className="mt-2 text-sm leading-relaxed text-text-secondary line-clamp-3">
+          {description}
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-2.5 py-0.5 text-xs text-text-muted"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-5 flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-primary">
+            {t("view_project")}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
           </span>
-        )}
-      </div>
 
-      <div className="flex items-center gap-2">
-        <h3 className="font-display text-lg font-semibold transition-colors group-hover:text-accent-cyan">
-          {title}
-        </h3>
-        {status === "beta" && (
-          <span className="rounded-full bg-accent-purple/10 px-2.5 py-0.5 text-xs font-medium text-accent-purple">
-            {tApps("beta")}
-          </span>
-        )}
-        {status === "coming-soon" && (
-          <span className="rounded-full bg-accent-amber/10 px-2.5 py-0.5 text-xs font-medium text-accent-amber">
-            {tApps("comingSoon")}
-          </span>
-        )}
-      </div>
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="relative z-10 flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-[color,background-color] duration-200 hover:text-text-primary hover:bg-surface-elevated"
+              aria-label="GitHub"
+            >
+              <Github className="h-4 w-4" />
+            </a>
+          )}
 
-      <p className="mt-2 text-sm text-text-secondary line-clamp-3">
-        {description}
-      </p>
-
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full bg-surface-elevated px-2.5 py-0.5 text-xs text-text-muted"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <div className="mt-5 flex items-center gap-3">
-        <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-cyan transition-colors group-hover:text-accent-cyan/80">
-          {t("view_project")}
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </span>
-
-        {github && (
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="relative z-10 flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-colors hover:text-text-primary hover:bg-surface-elevated"
-            aria-label="GitHub"
-          >
-            <Github className="h-4 w-4" />
-          </a>
-        )}
-
-        {live && (
-          <a
-            href={live}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="relative z-10 flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-colors hover:text-text-primary hover:bg-surface-elevated"
-            aria-label="Live demo"
-          >
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        )}
-      </div>
+          {live && (
+            <a
+              href={live}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="relative z-10 flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-[color,background-color] duration-200 hover:text-text-primary hover:bg-surface-elevated"
+              aria-label="Live demo"
+            >
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
+        </div>
+      </GlassCard>
     </Link>
   );
 }

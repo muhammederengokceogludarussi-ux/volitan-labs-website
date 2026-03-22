@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volitan Labs - Engineering & Design</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#000000',
+                        surface: '#09090b',
+                        border: '#27272a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Sora', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer base { body { @apply bg-background text-zinc-100 font-sans antialiased min-h-screen flex flex-col overflow-x-hidden; } }
+        @layer utilities { 
+            .nav-link { @apply text-sm text-zinc-400 font-medium relative hover:text-white transition-colors duration-200 overflow-hidden; }
+            .nav-link::after { content: ''; @apply absolute bottom-0 left-0 w-full h-[1px] bg-white translate-x-[-100%] transition-transform duration-300; }
+            .nav-link:hover::after { @apply translate-x-0; }
+            
+            /* Spotlight Card Base */
+            .spotlight-card { 
+                @apply relative bg-zinc-950 rounded-[2rem] border border-white/5 overflow-hidden transition-all duration-500 shadow-2xl;
+                --mouse-x: 50%;
+                --mouse-y: 50%;
+            }
+            .spotlight-card::before {
+                content: "";
+                @apply absolute inset-0 opacity-0 transition-opacity duration-500 z-0 pointer-events-none;
+                background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+            }
+            .spotlight-card:hover::before { @apply opacity-100; }
+            
+            /* Hacker Text Base */
+            .hacker-text { @apply font-mono cursor-default relative inline-block; }
+            
+            /* Magnetic button base */
+            .magnetic-btn { @apply relative inline-flex items-center justify-center; }
+            .magnetic-content { @apply relative z-10 transition-transform duration-300 ease-out pointer-events-none; }
+            .magnetic-bg { @apply absolute inset-0 rounded-full transition-transform duration-300 ease-out pointer-events-none; }
+        }
+    </style>
+</head>
+<body class="relative flex flex-col min-h-screen selection:bg-white/20">
+    
+    <!-- Interactive Particle Background -->
+    <canvas id="bg-canvas" class="fixed inset-0 z-0 pointer-events-none" style="opacity: 0.6;"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[95%] sm:w-full max-w-3xl px-2 sm:px-6 transition-all duration-500" id="navbar">
+        <div class="flex items-center justify-between px-4 sm:px-6 py-3 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-all duration-500 will-change-[background,padding]">
+            <!-- Logo -->
+            <a href="#" class="font-bold text-white tracking-tight flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center text-sm overflow-hidden border border-white group-hover:bg-zinc-200 transition-colors">
+                    <span class="hacker-text font-bold" data-value="V">V</span>
+                </div>
+                <span class="hidden sm:block text-sm font-display hacker-text" data-value="Volitan Labs">Volitan Labs</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="homepage.html" class="nav-link text-white">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Work</a>
+                <a href="apps.html" class="nav-link">Apps</a>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-2">
+                <button class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/5 transition-colors group">
+                    <span class="text-[10px] font-mono group-hover:hidden">EN</span>
+                    <span class="text-[10px] font-mono hidden group-hover:block">TR</span>
+                </button>
+                <div class="w-[1px] h-4 bg-white/10 mx-1"></div>
+                <a href="contact.html" class="hidden sm:flex px-4 py-2 rounded-full bg-white text-black text-xs font-semibold hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)]">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10 flex-1 flex flex-col">
+        <!-- Hero Section -->
+        <section class="min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 px-4 sm:px-6 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-zinc-400 mb-8 font-mono tracking-wide hover:border-white/20 transition-colors cursor-default backdrop-blur-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6] animate-pulse"></span> App Store Focus
+            </div>
+
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black font-display tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-200 to-zinc-600 mb-6 drop-shadow-2xl">
+                Precision<br>Engineering &<br>Design.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                Bridging the gap between the physical constraints of mechanical engineering and the infinite canvas of software. 
+                Building Focus Space and autonomous physical systems.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                <!-- Magnetic Button 1 -->
+                <a href="projects.html" class="magnetic-btn w-full sm:w-auto h-14 px-8 rounded-full border border-white/20 text-black font-medium group">
+                    <div class="magnetic-bg bg-white shadow-[0_0_30px_rgba(255,255,255,0.3)] group-hover:shadow-[0_0_40px_rgba(255,255,255,0.5)]"></div>
+                    <span class="magnetic-content flex items-center gap-2">
+                        Explore Work 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                
+                <!-- Magnetic Button 2 -->
+                <a href="contact.html" class="magnetic-btn w-full sm:w-auto h-14 px-8 rounded-full border border-white/10 text-white font-medium group">
+                    <div class="magnetic-bg bg-black/50 backdrop-blur-xl group-hover:bg-white/5"></div>
+                    <span class="magnetic-content flex items-center gap-2">
+                        Get in Touch
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Bento Grid Skills Section -->
+        <section class="max-w-[1200px] mx-auto w-full px-4 sm:px-6 py-20">
+            <h2 class="text-3xl font-display font-bold mb-10 text-white tracking-tight flex items-center gap-4">
+                <span class="w-12 h-[1px] bg-white/20"></span> Expertise <span class="w-12 h-[1px] bg-white/20"></span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Large Skill Card -->
+                <div class="spotlight-card md:col-span-2 lg:col-span-2 p-8 flex flex-col justify-between group h-[340px]">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Mobile & App Development</h3>
+                        <p class="text-zinc-400 leading-relaxed max-w-md">Creating fluid, hyper-responsive cross-platform applications using Flutter and Dart. Focus Space is the prime example.</p>
+                    </div>
+                </div>
+
+                <!-- Small Skill Card 1 -->
+                <div class="spotlight-card col-span-1 p-8 flex flex-col justify-between group h-[340px]">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 hacker-text" data-value="Mechanical Eng">Mechanical Eng</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">System dynamics, CAD, drone fabrication, and rigorous physical optimizations.</p>
+                    </div>
+                </div>
+
+                <!-- Small Skill Card 2 -->
+                <div class="spotlight-card col-span-1 p-8 flex flex-col justify-between group h-[340px]">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 hacker-text" data-value="AI & ML">AI & ML</h3>
+                        <p class="text-sm text-zinc-400 leading-relaxed">Integrating LLMs and intelligent sorting algorithms directly into app ecosystems.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured App Section -->
+        <section class="max-w-[1200px] mx-auto w-full px-4 sm:px-6 py-20">
+            <div class="spotlight-card p-10 md:p-14 flex flex-col lg:flex-row gap-12 items-center group">
+                <div class="flex-1 w-full order-2 lg:order-1 relative z-10">
+                    <h2 class="text-5xl font-black font-display text-white mb-6 tracking-tight hacker-text" data-value="Focus Space">Focus Space</h2>
+                    <p class="text-xl text-zinc-400 mb-8 leading-relaxed font-light mt-4">
+                        A next-generation productivity hub that fuses task management with a gamified cosmic journey. Designed meticulously with fluid animations and powered by an AI assistant.
+                    </p>
+                    <a href="apps.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                        Learn More
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                
+                <div class="w-full max-w-[320px] lg:flex-1 order-1 lg:order-2 flex justify-center perspective-[1000px] z-10">
+                    <div class="w-full rounded-[2.5rem] border-[8px] border-zinc-900 shadow-[0_0_50px_rgba(0,0,0,1)] overflow-hidden aspect-[1/2] group-hover:rotate-y-[10deg] group-hover:-translate-y-4 transition-all duration-700">
+                        <img src="https://placehold.co/400x800/111/fff?text=App+UI" alt="Focus Space" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-white/10 bg-black/80 backdrop-blur-md relative z-10">
+        <div class="max-w-[1200px] mx-auto w-full px-4 sm:px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3 text-zinc-400 font-mono text-sm">
+                <div class="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center font-bold text-xs">V</div>
+                &copy; 2026 Volitan Labs.
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-zinc-500 hover:text-white transition-colors">GitHub</a>
+                <a href="#" class="text-zinc-500 hover:text-white transition-colors">LinkedIn</a>
+                <a href="mailto:hello@volitan.com" class="text-zinc-500 hover:text-white transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS Scripts (21st.dev style Magic) -->
+    <script>
+        // 1. Spotlight Overlay Effect for Cards
+        const handleOnMouseMove = e => {
+            const { currentTarget: target } = e;
+            const rect = target.getBoundingClientRect(),
+                x = e.clientX - rect.left,
+                y = e.clientY - rect.top;
+            target.style.setProperty("--mouse-x", `${x}px`);
+            target.style.setProperty("--mouse-y", `${y}px`);
+        };
+        for(const card of document.querySelectorAll(".spotlight-card")) {
+            card.onmousemove = e => handleOnMouseMove(e);
+        }
+
+        // 2. Hacker Text Reveal Effect
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+        document.querySelectorAll('.hacker-text').forEach(el => {
+            el.addEventListener('mouseover', event => {
+                let iteration = 0;
+                let target = event.target;
+                if (!target.dataset.value) return;
+                clearInterval(target.interval);
+                target.interval = setInterval(() => {
+                    target.innerText = target.innerText
+                        .split("")
+                        .map((letter, index) => {
+                            if(index < iteration) return target.dataset.value[index];
+                            return letters[Math.floor(Math.random() * letters.length)];
+                        })
+                        .join("");
+                    if(iteration >= target.dataset.value.length) clearInterval(target.interval);
+                    iteration += 1 / 3;
+                }, 30);
+            });
+        });
+
+        // 3. Magnetic Buttons
+        const magneticElements = document.querySelectorAll('.magnetic-btn');
+        magneticElements.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                const bg = btn.querySelector('.magnetic-bg');
+                const content = btn.querySelector('.magnetic-content');
+                if (bg) bg.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                if (content) content.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                const bg = btn.querySelector('.magnetic-bg');
+                const content = btn.querySelector('.magnetic-content');
+                if (bg) bg.style.transform = '';
+                if (content) content.style.transform = '';
+            });
+        });
+
+        // 4. Navbar scroll threshold (blur change)
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                const navChild = navbar.firstElementChild;
+                if(window.scrollY > 50) {
+                    navChild.classList.add('bg-black/80', 'py-2');
+                    navChild.classList.remove('bg-black/40', 'py-3');
+                } else {
+                    navChild.classList.add('bg-black/40', 'py-3');
+                    navChild.classList.remove('bg-black/80', 'py-2');
+                }
+            });
+        }
+
+        // 5. Interactive Particle Network Background
+        const canvas = document.getElementById('bg-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resizeParams() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+            window.addEventListener('resize', resizeParams);
+            resizeParams();
+
+            const particles = [];
+            const particleCount = Math.floor(width / 25); // Lower count for elegance
+            const connectionDistance = 140;
+
+            let mouseInfo = { x: -1000, y: -1000, radius: 200 };
+            window.addEventListener('mousemove', e => {
+                mouseInfo.x = e.clientX;
+                mouseInfo.y = e.clientY;
+            });
+            window.addEventListener('mouseout', () => {
+                mouseInfo.x = -1000;
+                mouseInfo.y = -1000;
+            });
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.size = Math.random() * 1.5 + 0.5;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                    // Repel from mouse slightly
+                    let dx = mouseInfo.x - this.x;
+                    let dy = mouseInfo.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouseInfo.radius) {
+                        let forceX = dx / distance;
+                        let forceY = dy / distance;
+                        let force = (mouseInfo.radius - distance) / mouseInfo.radius;
+                        this.x -= forceX * force * 1.5;
+                        this.y -= forceY * force * 1.5;
+                    }
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animateCanvas() {
+                requestAnimationFrame(animateCanvas);
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+
+                    for (let j = i; j < particles.length; j++) {
+                        let dx = particles[i].x - particles[j].x;
+                        let dy = particles[i].y - particles[j].y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < connectionDistance) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - distance / connectionDistance * 0.1})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                    
+                    // Interaction lines to cursor
+                    let dxMouse = particles[i].x - mouseInfo.x;
+                    let dyMouse = particles[i].y - mouseInfo.y;
+                    let distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+                    if (distanceMouse < mouseInfo.radius) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(139, 108, 240, ${0.4 - distanceMouse / mouseInfo.radius * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouseInfo.x, mouseInfo.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            animateCanvas();
+        }
+    </script>
+</body>
+</html>

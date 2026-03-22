@@ -5,26 +5,28 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-accent-cyan focus-visible:ring-accent-cyan/50 focus-visible:ring-[3px] aria-invalid:ring-accent-red/20 dark:aria-invalid:ring-accent-red/40 aria-invalid:border-accent-red",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[background-color,box-shadow,border-color] duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-accent-primary/50 focus-visible:ring-[3px] aria-invalid:ring-accent-danger/20 dark:aria-invalid:ring-accent-danger/40 aria-invalid:border-accent-danger",
   {
     variants: {
       variant: {
-        default: "bg-accent-cyan text-background hover:bg-accent-cyan/90",
+        default: "bg-accent-primary text-white shadow-button hover:bg-accent-primary/90 hover:shadow-card-hover",
         destructive:
-          "bg-accent-red text-white hover:bg-accent-red/90 focus-visible:ring-accent-red/20 dark:focus-visible:ring-accent-red/40 dark:bg-accent-red/60",
+          "bg-accent-danger text-white hover:bg-accent-danger/90 focus-visible:ring-accent-danger/20 dark:focus-visible:ring-accent-danger/40",
         outline:
-          "border border-border bg-background shadow-xs hover:bg-surface-elevated hover:text-text-primary dark:border-border dark:hover:bg-surface-elevated/80",
+          "border border-border bg-background hover:bg-surface-elevated hover:border-border-hover hover:text-text-primary",
         secondary:
           "bg-surface text-text-primary hover:bg-surface-elevated",
         ghost:
-          "hover:bg-surface-elevated hover:text-text-primary dark:hover:bg-surface-elevated/50",
-        link: "text-accent-cyan underline-offset-4 hover:underline",
+          "hover:bg-surface-elevated hover:text-text-primary",
+        link: "text-accent-primary underline-offset-4 hover:underline",
+        pill: "bg-accent-primary text-white rounded-full shadow-button hover:bg-accent-primary/90 hover:shadow-card-hover",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        xl: "h-12 rounded-lg px-8 text-base has-[>svg]:px-6",
         icon: "size-9",
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",

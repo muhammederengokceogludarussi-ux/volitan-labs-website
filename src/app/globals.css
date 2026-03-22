@@ -7,47 +7,69 @@
 
 /* ===== Theme Tokens ===== */
 @theme {
-  /* Dark Mode Colors (default) */
-  --color-background: #0A0A0F;
-  --color-surface: #141419;
-  --color-surface-elevated: #1E1E26;
-  --color-border: #1F1F2A;
-  --color-text-primary: #F0F0F5;
-  --color-text-secondary: #8A8A9A;
-  --color-text-muted: #5A5A6A;
+  /* Dark Mode Colors — Pure black + zinc monochromatic (Gemini design) */
+  --color-background: #000000;
+  --color-surface: #09090b;
+  --color-surface-elevated: #18181b;
+  --color-surface-floating: #27272a;
+  --color-border: #27272a;
+  --color-border-hover: #3f3f46;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
 
   /* Accent Colors */
-  --color-accent-cyan: #9B7BF0;
-  --color-accent-amber: #E8910A;
-  --color-accent-purple: #00C8F0;
-  --color-accent-green: #0FAA74;
-  --color-accent-red: #EF4444;
+  --color-accent-primary: #8B6CF0;
+  --color-accent-primary-fg: #C4B5FF;
+  --color-accent-secondary: #E8A040;
+  --color-accent-success: #34D399;
+  --color-accent-danger: #F87171;
+  --color-accent-blue: #3b82f6;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #9B7BF0, #00C8F0);
-  --gradient-warm: linear-gradient(135deg, #E8910A, #9B7BF0);
+  --gradient-primary: linear-gradient(135deg, #8B6CF0, #C084FC);
+  --gradient-hero: linear-gradient(to bottom right, #ffffff, #e4e4e7, #71717a);
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-floating: 0 0 30px rgba(0, 0, 0, 0.5);
+  --shadow-button: 0 0 15px rgba(255, 255, 255, 0.2);
+  --shadow-button-hover: 0 0 40px rgba(255, 255, 255, 0.5);
+  --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.1);
 
   /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 /* ===== Light Mode Overrides ===== */
 .light {
-  --color-background: #FAFAFA;
-  --color-surface: #FFFFFF;
-  --color-surface-elevated: #F5F5F7;
-  --color-border: #E5E5EA;
-  --color-text-primary: #111118;
-  --color-text-secondary: #6B6B7B;
-  --color-text-muted: #9A9AAA;
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f4f4f5;
+  --color-surface-floating: #e4e4e7;
+  --color-border: #e4e4e7;
+  --color-border-hover: #d4d4d8;
+  --color-text-primary: #09090b;
+  --color-text-secondary: #52525b;
+  --color-text-muted: #a1a1aa;
 
-  /* Light mode accent overrides (darker for accessibility) */
-  --color-accent-cyan: #7C5CD6;
-  --color-accent-amber: #D97706;
-  --color-accent-purple: #0090B0;
-  --color-accent-green: #059669;
+  --color-accent-primary: #7C5AE8;
+  --color-accent-primary-fg: #6B4AD4;
+  --color-accent-secondary: #D4890E;
+  --color-accent-success: #059669;
+  --color-accent-danger: #DC2626;
+
+  --gradient-hero: linear-gradient(to bottom right, #09090b, #3f3f46, #71717a);
+
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 6px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-floating: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-button: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-button-hover: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-glow: none;
 }
 
 /* ===== Base Styles ===== */
@@ -57,6 +79,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Lenis smooth scroll */
@@ -72,17 +95,12 @@ html.lenis, html.lenis body {
 
 /* Selection */
 ::selection {
-  background-color: var(--color-accent-cyan);
-  color: var(--color-background);
-}
-
-.dark ::selection {
-  background-color: var(--color-accent-purple);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Focus ring */
 *:focus-visible {
-  outline: 2px solid var(--color-accent-cyan);
+  outline: 2px solid var(--color-accent-primary);
   outline-offset: 2px;
 }
 
@@ -101,110 +119,109 @@ html.lenis, html.lenis body {
   --radius: 0.625rem;
 }
 
-/* ===== Shimmer Button Animations ===== */
-@keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
-  }
-}
-
-@keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
-  }
-  15%,
-  35% {
-    transform: translateZ(0) rotate(90deg);
-  }
-  65%,
-  85% {
-    transform: translateZ(0) rotate(270deg);
-  }
-  100% {
-    transform: translateZ(0) rotate(360deg);
-  }
-}
-
-.animate-shimmer-slide {
-  animation: shimmer-slide var(--speed) ease-in-out infinite alternate;
-}
-
-.animate-spin-around {
-  animation: spin-around calc(var(--speed) * 2) infinite linear;
-}
-
-/* ===== Background Beams Animations ===== */
-@keyframes beam-fade {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.animate-beam-1 {
-  animation: beam-fade 6s ease-in-out infinite;
-}
-
-.animate-beam-2 {
-  animation: beam-fade 8s ease-in-out infinite 2s;
-}
-
-.animate-beam-3 {
-  animation: beam-fade 7s ease-in-out infinite 4s;
-}
-
-/* ===== Gradient Text Shimmer ===== */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Animated gradient text */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.gradient-text-animated {
-  background: linear-gradient(270deg, var(--color-accent-cyan), var(--color-accent-purple), var(--color-accent-cyan));
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 4s ease infinite;
-}
-
-/* ===== Card Hover Glow ===== */
-.hover-glow {
+/* ===== Spotlight Card Effect ===== */
+.spotlight-card {
   position: relative;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
 }
 
-.hover-glow::before {
+.spotlight-card::before {
   content: "";
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, transparent, var(--color-accent-cyan), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 1px;
+  transition: opacity 500ms;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
-.hover-glow:hover::before {
-  opacity: 0.5;
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.light .spotlight-card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(0, 0, 0, 0.03),
+    transparent 40%
+  );
+}
+
+/* ===== Nav Link Underline ===== */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: translateX(-100%);
+  transition: transform 300ms;
+}
+
+.nav-link:hover::after {
+  transform: translateX(0);
+}
+
+/* ===== Magnetic Button ===== */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magnetic-content {
+  position: relative;
+  z-index: 10;
+  transition: transform 300ms ease-out;
+  pointer-events: none;
+}
+
+.magnetic-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: transform 300ms ease-out;
+  pointer-events: none;
+}
+
+/* ===== Gradient Text ===== */
+.gradient-text-hero {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-card::before,
+  .nav-link::after {
+    transition: none;
+  }
+
+  .magnetic-content,
+  .magnetic-bg {
+    transition: none !important;
+  }
+
+  canvas {
+    display: none !important;
+  }
 }
 
 /* ===== Scroll Progress Bar ===== */
@@ -213,59 +230,9 @@ html.lenis, html.lenis body {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-purple));
+  background: linear-gradient(90deg, var(--color-accent-primary), #C084FC);
   z-index: 9999;
   transform-origin: left;
-}
-
-/* ===== Subtle float animation ===== */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* ===== Pulse glow ===== */
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(155, 123, 240, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(155, 123, 240, 0.2);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-/* ===== Geometric Line Glow Animation ===== */
-@keyframes line-glow-travel {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
-}
-
-.line-glow-travel {
-  animation-name: line-glow-travel;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .line-glow-travel {
-    animation: none;
-  }
 }
 
 /* ===== Theme Toggle Switch ===== */
@@ -352,11 +319,11 @@ html.lenis, html.lenis body {
 
 /* Dark mode (checked) states */
 :where(.dark, .dark *) .theme-switch__track {
-  background-color: hsl(290, 90%, 40%);
+  background-color: hsl(264, 70%, 45%);
 }
 
 :where(.dark, .dark *) .theme-switch__track::before {
-  background-color: hsl(220, 90%, 40%);
+  background-color: hsl(264, 60%, 30%);
 }
 
 :where(.dark, .dark *) .theme-switch__thumb {
@@ -388,5 +355,5 @@ html.lenis, html.lenis body {
 
 /* Focus visible ring */
 .theme-switch:focus-visible .theme-switch__track {
-  box-shadow: 0 0 0 2px var(--color-accent-cyan);
+  box-shadow: 0 0 0 2px var(--color-accent-primary);
 }

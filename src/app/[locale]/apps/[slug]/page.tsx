@@ -6,7 +6,8 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { GlassCard } from "@/components/ui/glass-card";
 
 import { focusSpaceApp } from "../../../../../content/apps/focus-space";
 import {
@@ -48,10 +49,10 @@ export default function AppDetailPage() {
     return (
       <Section className="pt-20 md:pt-32">
         <Container className="text-center">
-          <h1 className="font-display text-3xl font-bold">App not found</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em]">App not found</h1>
           <Link
             href="/apps"
-            className="mt-4 inline-flex items-center gap-2 text-accent-cyan"
+            className="mt-4 inline-flex items-center gap-2 text-accent-primary"
           >
             <ArrowLeft className="h-4 w-4" />
             {tCommon("backTo", { page: t("title") })}
@@ -67,13 +68,12 @@ export default function AppDetailPage() {
     <>
       {/* Hero */}
       <Section className="relative overflow-hidden pt-20 md:pt-32">
-
-
+        <AuroraBackground intensity="medium" />
         <Container className="relative z-10">
           <AnimatedSection>
             <Link
               href="/apps"
-              className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
+              className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-[color] duration-200 hover:text-text-primary"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               {tCommon("backTo", { page: t("title") })}
@@ -85,23 +85,21 @@ export default function AppDetailPage() {
             <div>
               <AnimatedSection delay={0.1}>
                 {app.status === "coming-soon" && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-amber/10 px-3 py-1 text-xs font-medium text-accent-amber">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-secondary/10 px-3 py-1 text-xs font-medium text-accent-secondary">
                     <Sparkles className="h-3 w-3" />
                     {t("comingSoon")}
                   </span>
                 )}
                 {app.status === "beta" && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-purple/10 px-3 py-1 text-xs font-medium text-accent-purple">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-primary/10 px-3 py-1 text-xs font-medium text-accent-primary">
                     <Sparkles className="h-3 w-3" />
                     {t("beta")}
                   </span>
                 )}
-              </AnimatedSection>
 
-              <AnimatedSection delay={0.2}>
                 <div className="mt-4 flex items-center gap-4">
                   <div
-                    className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl shadow-lg"
+                    className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl shadow-floating"
                     style={{
                       background: `linear-gradient(135deg, ${app.colors.primary}, ${app.colors.accent})`,
                     }}
@@ -109,7 +107,7 @@ export default function AppDetailPage() {
                     <span className="text-2xl font-bold text-white">F</span>
                   </div>
                   <div>
-                    <h1 className="font-display text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+                    <h1 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl lg:text-5xl">
                       {app.name}
                     </h1>
                     <p className="mt-1 text-text-secondary">
@@ -117,21 +115,17 @@ export default function AppDetailPage() {
                     </p>
                   </div>
                 </div>
-              </AnimatedSection>
 
-              <AnimatedSection delay={0.3}>
-                <p className="mt-6 text-lg text-text-secondary leading-relaxed">
+                <p className="mt-6 text-lg leading-relaxed text-text-secondary">
                   {app.description[locale]}
                 </p>
-              </AnimatedSection>
 
-              <AnimatedSection delay={0.4}>
                 <div className="mt-8 flex flex-wrap gap-3">
                   {app.status !== "published" ? (
-                    <ShimmerButton className="text-sm font-medium">
+                    <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]">
                       <Bell className="mr-2 h-4 w-4" />
                       {t("notifyMe")}
-                    </ShimmerButton>
+                    </button>
                   ) : (
                     <>
                       {app.playStoreUrl && (
@@ -139,7 +133,7 @@ export default function AppDetailPage() {
                           href={app.playStoreUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-accent-cyan px-6 py-3 text-sm font-medium text-background transition-all hover:shadow-lg hover:shadow-accent-cyan/25"
+                          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-6 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]"
                         >
                           {t("downloadOn")} Google Play
                         </a>
@@ -149,7 +143,7 @@ export default function AppDetailPage() {
                           href={app.appStoreUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full border border-border/50 px-6 py-3 text-sm font-medium transition-all hover:border-accent-cyan/30 hover:bg-surface"
+                          className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[border-color,background-color] duration-200 hover:border-border-hover hover:bg-surface"
                         >
                           {t("downloadOn")} App Store
                         </a>
@@ -161,24 +155,28 @@ export default function AppDetailPage() {
             </div>
 
             {/* Right: Phone Mockup */}
-            <AnimatedSection delay={0.3}>
-              <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px] rounded-[2.5rem] border-2 border-border/30 bg-surface-elevated p-3 shadow-2xl">
-                <div
-                  className="flex h-full w-full flex-col items-center justify-center rounded-[2rem]"
-                  style={{ backgroundColor: app.colors.background }}
-                >
+            <AnimatedSection delay={0.2}>
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px]">
+                {/* Glow behind mockup */}
+                <div className="absolute inset-[-20%] rounded-full bg-accent-primary/15 blur-[80px]" />
+                <div className="relative rounded-[2.5rem] border-2 border-border bg-surface-elevated p-3 shadow-floating">
                   <div
-                    className="h-20 w-20 rounded-2xl"
-                    style={{
-                      background: `linear-gradient(135deg, ${app.colors.primary}, ${app.colors.accent})`,
-                    }}
-                  />
-                  <p className="mt-4 font-display text-xl font-bold text-white">
-                    {app.name}
-                  </p>
-                  <p className="mt-1 text-sm" style={{ color: `${app.colors.primary}cc` }}>
-                    {app.tagline[locale]}
-                  </p>
+                    className="flex h-full w-full flex-col items-center justify-center rounded-[2rem]"
+                    style={{ backgroundColor: app.colors.background }}
+                  >
+                    <div
+                      className="h-20 w-20 rounded-2xl"
+                      style={{
+                        background: `linear-gradient(135deg, ${app.colors.primary}, ${app.colors.accent})`,
+                      }}
+                    />
+                    <p className="mt-4 font-display text-xl font-bold text-white">
+                      {app.name}
+                    </p>
+                    <p className="mt-1 text-sm" style={{ color: `${app.colors.primary}cc` }}>
+                      {app.tagline[locale]}
+                    </p>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>
@@ -188,60 +186,56 @@ export default function AppDetailPage() {
 
       {/* Features Grid */}
       <Section className="relative overflow-hidden bg-surface">
-
         <Container className="relative z-10">
           <AnimatedSection>
             <div className="text-center">
-              <p className="text-sm font-medium uppercase tracking-wider text-accent-cyan">
+              <p className="text-sm font-medium uppercase tracking-wider text-accent-primary">
                 {t("features")}
               </p>
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
                 {t("featuresTitle")}
               </h2>
             </div>
           </AnimatedSection>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => {
-              const Icon = iconMap[feature.icon] || Sparkles;
-              return (
-                <AnimatedSection key={index} delay={0.1 * (index + 1)}>
-                  <div className="rounded-xl border border-border/30 bg-background p-6 transition-all duration-300 hover:border-accent-cyan/20 hover:shadow-lg">
-                    <div
-                      className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-cyan/10"
-                    >
-                      <Icon className="h-5 w-5 text-accent-cyan" />
+          <AnimatedSection variant="fade" delay={0.1}>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {features.map((feature, index) => {
+                const Icon = iconMap[feature.icon] || Sparkles;
+                return (
+                  <GlassCard key={index} glow="subtle" className="p-6">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-primary/20 to-accent-primary/5">
+                      <Icon className="h-5 w-5 text-accent-primary" />
                     </div>
-                    <h3 className="mt-4 font-display text-base font-semibold">
+                    <h3 className="mt-4 font-display text-base font-semibold tracking-[-0.03em]">
                       {feature.title}
                     </h3>
-                    <p className="mt-2 text-sm text-text-secondary">
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
                       {feature.description}
                     </p>
-                  </div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
+                  </GlassCard>
+                );
+              })}
+            </div>
+          </AnimatedSection>
         </Container>
       </Section>
 
       {/* Screenshots Placeholder */}
       <Section className="relative overflow-hidden">
-
         <Container className="relative z-10">
           <AnimatedSection>
             <div className="text-center">
-              <p className="text-sm font-medium uppercase tracking-wider text-accent-cyan">
+              <p className="text-sm font-medium uppercase tracking-wider text-accent-primary">
                 {t("screenshots")}
               </p>
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-tight md:text-4xl">
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
                 {t("screenshotsTitle")}
               </h2>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.2}>
+          <AnimatedSection variant="fade" delay={0.1}>
             <div className="mt-12 flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
               {app.screenshots.map((_, index) => (
                 <div
@@ -249,7 +243,7 @@ export default function AppDetailPage() {
                   className="flex-none snap-center"
                 >
                   <div
-                    className="aspect-[9/16] w-[200px] rounded-2xl border border-border/30 md:w-[240px]"
+                    className="aspect-[9/16] w-[200px] rounded-2xl border border-border shadow-card md:w-[240px]"
                     style={{ backgroundColor: app.colors.background }}
                   >
                     <div className="flex h-full w-full flex-col items-center justify-center rounded-2xl">
@@ -273,29 +267,26 @@ export default function AppDetailPage() {
 
       {/* CTA */}
       <Section className="relative overflow-hidden bg-surface">
-
         <Container className="relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
               {t("ctaTitle")}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-text-secondary">
+            <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-text-secondary">
               {t("ctaSubtitle")}
             </p>
-          </AnimatedSection>
-          <AnimatedSection delay={0.2}>
             <div className="mt-8">
               {app.status !== "published" ? (
-                <ShimmerButton className="text-sm font-medium">
+                <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]">
                   <Bell className="mr-2 h-4 w-4" />
                   {t("notifyMe")}
-                </ShimmerButton>
+                </button>
               ) : (
                 <Link href="/contact">
-                  <ShimmerButton className="text-sm font-medium">
+                  <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]">
                     {t("learnMore")}
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </ShimmerButton>
+                  </button>
                 </Link>
               )}
             </div>

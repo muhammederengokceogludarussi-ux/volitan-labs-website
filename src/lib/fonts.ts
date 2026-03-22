@@ -1,4 +1,4 @@
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Sora, JetBrains_Mono } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -6,9 +6,9 @@ export const inter = Inter({
   display: "swap",
 });
 
-export const spaceGrotesk = Space_Grotesk({
+export const sora = Sora({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-space-grotesk",
+  variable: "--font-sora",
   display: "swap",
 });
 
@@ -18,4 +18,4 @@ export const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-export const fontVariables = `${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`;
+export const fontVariables = `${inter.variable} ${sora.variable} ${jetbrainsMono.variable}`;

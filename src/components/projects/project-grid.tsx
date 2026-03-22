@@ -21,10 +21,11 @@ interface ProjectGridProps {
 
 export function ProjectGrid({ projects }: ProjectGridProps) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((project, index) => (
-        <AnimatedSection key={project.slug} delay={0.1 * (index + 1)}>
+    <AnimatedSection variant="fade">
+      <div className="grid gap-6 sm:grid-cols-2">
+        {projects.map((project) => (
           <ProjectCard
+            key={project.slug}
             title={project.title}
             description={project.description}
             tags={project.tags}
@@ -34,8 +35,8 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
             featured={project.featured}
             status={project.status}
           />
-        </AnimatedSection>
-      ))}
-    </div>
+        ))}
+      </div>
+    </AnimatedSection>
   );
 }

@@ -1,41 +1,35 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Container } from "@/components/ui/container";
-import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { SectionHeading } from "@/components/shared/section-heading";
-
-import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { siteConfig } from "../../../../content/site";
+import { Mail, Github, Linkedin } from "lucide-react";
 
 const contactLinks = [
   {
     key: "email",
-    icon: Mail,
+    Icon: Mail,
+    title: "Email",
     label: siteConfig.social.email,
     href: `mailto:${siteConfig.social.email}`,
-    color: "text-accent-cyan",
-    bgColor: "bg-accent-cyan/10",
-    external: false,
+    hoverBg: "group-hover:bg-white group-hover:border-white group-hover:text-black",
   },
   {
     key: "github",
-    icon: Github,
-    label: "GitHub",
+    Icon: Github,
+    title: "GitHub",
+    label: "@volitanlabs",
     href: siteConfig.social.github,
-    color: "text-text-primary",
-    bgColor: "bg-surface-elevated",
-    external: true,
+    hoverBg: "group-hover:bg-white group-hover:border-white group-hover:text-black",
   },
   {
     key: "linkedin",
-    icon: Linkedin,
-    label: "LinkedIn",
+    Icon: Linkedin,
+    title: "LinkedIn",
+    label: "Let's connect",
     href: siteConfig.social.linkedin,
-    color: "text-[#0A66C2]",
-    bgColor: "bg-[#0A66C2]/10",
-    external: true,
+    hoverBg: "group-hover:bg-[#0a66c2] group-hover:border-[#0a66c2] group-hover:text-white",
   },
 ];
 
@@ -43,38 +37,46 @@ export default function ContactPage() {
   const t = useTranslations("contact");
 
   return (
-    <Section className="relative overflow-hidden pt-20 md:pt-32">
-
-      <Container className="relative z-10">
+    <div className="flex flex-1 flex-col justify-center pt-40 pb-32 md:pt-48">
+      <div className="mx-auto w-full max-w-[800px] px-4 sm:px-6">
         <AnimatedSection>
-          <SectionHeading title={t("title")} subtitle={t("subtitle")} />
+          <header className="mb-16 text-center">
+            <h1 className="mb-6 font-display text-5xl font-bold tracking-tighter text-white md:text-6xl">
+              {t("title")}.
+            </h1>
+            <p className="mx-auto max-w-lg text-xl leading-relaxed text-zinc-400">
+              {t("subtitle")}
+            </p>
+          </header>
         </AnimatedSection>
 
-        <div className="mx-auto mt-12 max-w-lg space-y-4">
-          {contactLinks.map((link, index) => (
-            <AnimatedSection key={link.key} delay={0.1 * (index + 1)}>
+        <AnimatedSection delay={0.15}>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {contactLinks.map((link) => (
               <a
+                key={link.key}
                 href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                className="group flex items-center gap-4 rounded-xl border border-border/30 bg-surface p-5 transition-all duration-300 hover:border-accent-cyan/30 hover:shadow-lg cursor-pointer"
+                target={link.key !== "email" ? "_blank" : undefined}
+                rel={link.key !== "email" ? "noopener noreferrer" : undefined}
               >
-                <div
-                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${link.bgColor}`}
-                >
-                  <link.icon className={`h-6 w-6 ${link.color}`} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-display font-semibold truncate">
+                <SpotlightCard className="flex flex-col items-center p-8 text-center group hover:border-white/20 hover:-translate-y-2 transition-all duration-500">
+                  <div
+                    className={`mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition-all ${link.hoverBg}`}
+                  >
+                    <link.Icon className="h-[22px] w-[22px]" />
+                  </div>
+                  <h3 className="mb-1 text-lg font-bold text-white">
+                    {link.title}
+                  </h3>
+                  <p className="font-mono text-sm text-zinc-500">
                     {link.label}
                   </p>
-                </div>
-                <ArrowUpRight className="h-5 w-5 text-text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-cyan" />
+                </SpotlightCard>
               </a>
-            </AnimatedSection>
-          ))}
-        </div>
-      </Container>
-    </Section>
+            ))}
+          </div>
+        </AnimatedSection>
+      </div>
+    </div>
   );
 }

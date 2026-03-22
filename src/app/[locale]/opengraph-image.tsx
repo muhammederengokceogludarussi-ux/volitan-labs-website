@@ -44,7 +44,7 @@ export default async function OGImage({
             left: 0,
             right: 0,
             height: "4px",
-            background: "linear-gradient(90deg, #9B7BF0, #00C8F0)",
+            background: "linear-gradient(90deg, #8B6CF0, #C084FC)",
           }}
         />
 
@@ -62,7 +62,7 @@ export default async function OGImage({
               width: "48px",
               height: "48px",
               borderRadius: "12px",
-              background: "linear-gradient(135deg, #9B7BF0, #00C8F0)",
+              background: "linear-gradient(135deg, #8B6CF0, #C084FC)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -101,7 +101,7 @@ export default async function OGImage({
         <p
           style={{
             fontSize: "28px",
-            color: "#9B7BF0",
+            color: "#8B6CF0",
             margin: "16px 0 0 0",
             fontWeight: 500,
           }}

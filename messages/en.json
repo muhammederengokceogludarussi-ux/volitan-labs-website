@@ -13,6 +13,8 @@
       "name": "Volitan Labs",
       "roles": "Mechanical Engineering Student|App Developer|Aviation Enthusiast|AI-Augmented Developer",
       "description": "METU Mechanical Engineering student — channeling an aerospace background and engineering discipline into building apps with Flutter.",
+      "badge": "App Store Focus",
+      "title": "Precision Engineering & Design.",
       "cta_projects": "View Projects",
       "cta_contact": "Get in Touch"
     },
@@ -102,6 +104,13 @@
     "featuresTitle": "Everything You Need to Focus",
     "screenshots": "Preview",
     "screenshotsTitle": "See It in Action",
+    "badge": "App Store Focus",
+    "viewFeatures": "View Features",
+    "featureHighlights": {
+      "item1": "Ethereal Glassmorphism UI",
+      "item2": "Smart Task AI Sorting (NOVA)",
+      "item3": "Mini Star Map Gamification"
+    },
     "learnMore": "Learn More",
     "notifyMe": "Notify Me",
     "ctaTitle": "Ready to Focus?",

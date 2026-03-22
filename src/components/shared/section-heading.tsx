@@ -12,7 +12,7 @@ export function SectionHeading({
   title,
   subtitle,
   label,
-  align = "center",
+  align = "left",
   className,
 }: SectionHeadingProps) {
   return (
@@ -23,22 +23,19 @@ export function SectionHeading({
       )}
     >
       {label && (
-        <p className="text-sm font-medium uppercase tracking-wider text-accent-cyan">
+        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-accent-primary">
           {label}
         </p>
       )}
       <h2
-        className={cn(
-          "font-display text-3xl font-bold tracking-tight md:text-4xl",
-          label && "mt-2"
-        )}
+        className="font-display text-4xl font-bold tracking-[-0.03em] md:text-5xl lg:text-6xl"
       >
         {title}
       </h2>
       {subtitle && (
         <p
           className={cn(
-            "mt-4 text-lg text-text-secondary",
+            "mt-4 text-lg leading-relaxed text-text-secondary",
             align === "center" && "mx-auto max-w-2xl"
           )}
         >

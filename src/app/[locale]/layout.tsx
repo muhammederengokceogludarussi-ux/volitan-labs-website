@@ -5,11 +5,8 @@ import { fontVariables } from "@/lib/fonts";
 import { Providers } from "@/components/layout/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { SkipToContent } from "@/components/shared/skip-to-content";
-import { BackToTop } from "@/components/shared/back-to-top";
-import { SmoothScroll } from "@/components/shared/smooth-scroll";
+import { ParticleBackground } from "@/components/ui/particle-background";
 import { JsonLd, websiteSchema, personSchema } from "@/components/shared/json-ld";
-import { BackgroundStars } from "@/components/ui/background-stars";
 
 export default async function LocaleLayout({
   children,
@@ -36,17 +33,12 @@ export default async function LocaleLayout({
         className={`${fontVariables} font-sans bg-background text-text-primary antialiased`}
       >
         <Providers locale={locale} messages={messages}>
-          <BackgroundStars fixed density={100} />
-          <SkipToContent />
-          <div className="relative z-[1] flex min-h-screen flex-col">
-            <Header />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <BackToTop />
-          <SmoothScroll />
+          <ParticleBackground />
+          <Header />
+          <main className="relative z-10 flex min-h-screen flex-col">
+            {children}
+          </main>
+          <Footer />
         </Providers>
       </body>
     </html>
