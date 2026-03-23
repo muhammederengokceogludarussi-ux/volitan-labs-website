@@ -4,7 +4,8 @@ import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { GlassCard } from "@/components/ui/glass-card";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 import { focusSpaceApp } from "../../../../content/apps/focus-space";
 import { Check } from "lucide-react";
 
@@ -15,8 +16,10 @@ export default function AppsPage() {
   const locale = useLocale() as "en" | "tr";
 
   return (
-    <div className="pt-40 pb-32 md:pt-48">
-      <div className="mx-auto flex w-full max-w-[1000px] flex-col gap-10 px-4 sm:px-6 lg:px-8">
+    <div className="relative pt-40 pb-32 md:pt-48">
+      <AuroraBackground intensity="subtle" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1000px] flex-col gap-10 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <header className="border-b border-white/10 pb-12 text-center md:text-left">
           <AnimatedSection>
@@ -31,11 +34,11 @@ export default function AppsPage() {
 
         {/* Focus Space Feature Card */}
         <AnimatedSection>
-          <SpotlightCard className="flex flex-col items-center gap-12 p-8 group md:p-12 lg:flex-row hover:border-white/10 transition-colors duration-500">
+          <GlassCard glow="accent" className="flex flex-col items-center gap-12 p-8 group md:p-12 lg:flex-row">
             {/* Left: Content */}
             <div className="order-2 w-full flex-1 lg:order-1 relative z-10">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs tracking-wide text-zinc-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-primary/20 bg-accent-primary/5 px-3 py-1.5 font-mono text-xs tracking-wide text-accent-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent-primary animate-pulse" />
                 {t("badge")}
               </div>
 
@@ -53,8 +56,8 @@ export default function AppsPage() {
                     key={key}
                     className="flex cursor-default items-center gap-4 transition-transform hover:translate-x-1"
                   >
-                    <div className="rounded bg-white/5 p-1">
-                      <Check className="h-4 w-4 text-white" />
+                    <div className="rounded bg-accent-primary/10 p-1">
+                      <Check className="h-4 w-4 text-accent-primary" />
                     </div>
                     {t(`featureHighlights.${key}`)}
                   </li>
@@ -63,7 +66,7 @@ export default function AppsPage() {
 
               <Link
                 href={`/${locale}/apps/focus-space`}
-                className="inline-block rounded-full border border-white/10 bg-black/50 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-white hover:text-black group-hover:shadow-glow"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-primary to-[#C084FC] px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,108,240,0.3)] hover:shadow-[0_0_40px_rgba(139,108,240,0.5)] hover:scale-[1.03] transition-all"
               >
                 {t("viewFeatures")}
               </Link>
@@ -74,7 +77,9 @@ export default function AppsPage() {
               className="order-1 flex w-full max-w-[300px] flex-1 justify-center lg:order-2 relative z-10"
               style={{ perspective: "1000px" }}
             >
-              <div className="w-full overflow-hidden rounded-[2.5rem] border-[6px] border-zinc-900 shadow-[0_0_50px_rgba(0,0,0,1)] aspect-[1/2] group-hover:[transform:rotateY(15deg)] group-hover:-translate-y-4 transition-all duration-700 relative">
+              {/* Glow */}
+              <div className="absolute inset-[-15%] rounded-full bg-accent-primary/15 blur-[80px]" />
+              <div className="relative w-full overflow-hidden rounded-[2.5rem] border-[6px] border-zinc-900 shadow-[0_0_50px_rgba(0,0,0,1)] aspect-[1/2] group-hover:[transform:rotateY(15deg)] group-hover:-translate-y-4 transition-all duration-700">
                 <Image
                   src="/images/apps/focus-space/screenshot-cockpit.jpg"
                   alt="Focus Space App Preview"
@@ -85,7 +90,7 @@ export default function AppsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
             </div>
-          </SpotlightCard>
+          </GlassCard>
         </AnimatedSection>
       </div>
     </div>

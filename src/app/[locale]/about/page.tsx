@@ -2,7 +2,8 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { AuroraBackground } from "@/components/ui/aurora-background";
+import { GlassCard } from "@/components/ui/glass-card";
 import { founder } from "../../../../content/founder";
 import Image from "next/image";
 
@@ -18,12 +19,14 @@ export default function AboutPage() {
   }));
 
   return (
-    <div className="pt-40 pb-32 md:pt-48">
-      <div className="mx-auto flex w-full max-w-[900px] flex-col gap-16 px-4 sm:px-6 lg:px-8">
+    <div className="relative pt-40 pb-32 md:pt-48">
+      <AuroraBackground intensity="subtle" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[900px] flex-col gap-16 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <header className="border-b border-white/10 pb-12 text-center md:text-left">
           <AnimatedSection>
-            <h1 className="mb-6 font-display text-5xl font-bold tracking-tighter text-white md:text-6xl">
+            <h1 className="mb-6 font-display text-5xl font-bold tracking-tighter text-white md:text-6xl gradient-text-animated">
               {t("title")}.
             </h1>
             <p className="max-w-2xl text-xl leading-relaxed text-zinc-400">
@@ -35,7 +38,7 @@ export default function AboutPage() {
         {/* Profile + Story */}
         <section className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <AnimatedSection className="md:col-span-1">
-            <div className="aspect-[3/4] overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-900 shadow-card grayscale transition-all duration-700 hover:grayscale-0">
+            <div className="aspect-[3/4] overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-900 shadow-card grayscale transition-all duration-700 hover:grayscale-0 hover:shadow-[var(--shadow-glow-strong)]">
               <Image
                 src={founder.photo}
                 alt={founder.name}
@@ -55,22 +58,22 @@ export default function AboutPage() {
 
             <AnimatedSection delay={0.2}>
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                  <h4 className="mb-2 font-mono text-xs text-zinc-500">
+                <GlassCard glow="subtle" className="p-4">
+                  <h4 className="mb-2 font-mono text-xs text-accent-primary">
                     {t("skills.software")}
                   </h4>
                   <p className="text-sm font-medium">
                     {founder.skills.software.slice(0, 4).join(", ")}
                   </p>
-                </div>
-                <div className="rounded-2xl border border-white/5 bg-white/5 p-4">
-                  <h4 className="mb-2 font-mono text-xs text-zinc-500">
+                </GlassCard>
+                <GlassCard glow="subtle" className="p-4">
+                  <h4 className="mb-2 font-mono text-xs text-accent-primary">
                     {t("skills.engineering")}
                   </h4>
                   <p className="text-sm font-medium">
                     {founder.skills.engineering.slice(0, 3).join(", ")}
                   </p>
-                </div>
+                </GlassCard>
               </div>
             </AnimatedSection>
           </div>
@@ -84,19 +87,19 @@ export default function AboutPage() {
             </h2>
           </AnimatedSection>
 
-          <div className="relative flex flex-col gap-10 border-l border-white/10 pl-6">
+          <div className="relative flex flex-col gap-10 border-l border-accent-primary/20 pl-6">
             {timelineItems.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.05}>
                 <div className="relative transition-transform hover:-translate-y-1">
-                  {/* Timeline dot */}
+                  {/* Timeline dot — gradient */}
                   <div
                     className={`absolute -left-[30px] top-1 h-3 w-3 rounded-full border-[3px] border-black ${
                       i === 0
-                        ? "bg-white shadow-[0_0_10px_#fff]"
+                        ? "bg-accent-primary shadow-[0_0_12px_rgba(139,108,240,0.5)]"
                         : "bg-zinc-600"
                     }`}
                   />
-                  <div className="mb-2 font-mono text-xs uppercase text-zinc-500">
+                  <div className="mb-2 font-mono text-xs uppercase text-accent-primary/60">
                     {item.period}
                   </div>
                   <h3 className="mb-2 text-xl font-bold text-white">

@@ -4,7 +4,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { SpotlightCard } from "@/components/ui/spotlight-card";
+import { GlassCard } from "@/components/ui/glass-card";
+import { BackgroundGrid } from "@/components/ui/background-grid";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Plane } from "lucide-react";
 import Image from "next/image";
@@ -60,8 +61,10 @@ export default function ProjectsPage() {
   const filtered = projectsData.filter((p) => p.category.includes(activeFilter));
 
   return (
-    <div className="pt-40 pb-32 md:pt-48">
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-4 sm:px-6 lg:px-8">
+    <div className="relative pt-40 pb-32 md:pt-48">
+      <BackgroundGrid variant="dots" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-4 sm:px-6 lg:px-8">
         {/* Header with filters */}
         <header className="flex flex-col justify-between gap-6 border-b border-white/10 pb-12 md:flex-row md:items-end">
           <AnimatedSection>
@@ -80,10 +83,10 @@ export default function ProjectsPage() {
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
                   className={cn(
-                    "whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-transform hover:scale-105",
+                    "whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-all",
                     activeFilter === filter
-                      ? "bg-white text-black"
-                      : "border border-white/10 text-zinc-400 hover:text-white"
+                      ? "bg-gradient-to-r from-accent-primary to-[#C084FC] text-white shadow-[0_0_15px_rgba(139,108,240,0.3)]"
+                      : "glass text-zinc-400 hover:text-white hover:border-[var(--glass-border-hover)]"
                   )}
                 >
                   {t(`filters.${filter}`)}
@@ -98,9 +101,9 @@ export default function ProjectsPage() {
           {filtered.map((project, i) => (
             <AnimatedSection key={project.slug} delay={i * 0.1}>
               <Link href={project.href || "#"} className="group block">
-                <SpotlightCard className="flex h-[400px] flex-col hover:border-white/10">
+                <GlassCard glow="accent" className="flex h-[400px] flex-col overflow-hidden">
                   {/* Image area with logo */}
-                  <div className="relative flex-1 overflow-hidden bg-zinc-900/80">
+                  <div className="relative flex-1 overflow-hidden bg-zinc-900/40">
                     <div className="flex h-full w-full flex-col items-center justify-center gap-3">
                       {project.icon ? (
                         <Image
@@ -119,16 +122,15 @@ export default function ProjectsPage() {
                         {project.title[locale]}
                       </span>
                     </div>
-                    <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
                   </div>
 
                   {/* Info */}
-                  <div className="border-t border-white/5 bg-surface p-6 transition-colors hover:bg-surface-elevated">
+                  <div className="border-t border-white/5 p-6">
                     <div className="mb-2 flex items-start justify-between">
                       <h3 className="text-xl font-bold text-white">
                         {project.title[locale]}
                       </h3>
-                      <ArrowRight className="h-5 w-5 text-zinc-500 transition-all group-hover:-rotate-45 group-hover:scale-110 group-hover:text-white" />
+                      <ArrowRight className="h-5 w-5 text-zinc-500 transition-all group-hover:-rotate-45 group-hover:scale-110 group-hover:text-accent-primary" />
                     </div>
                     <p className="mb-4 line-clamp-2 text-sm text-zinc-400">
                       {project.description[locale]}
@@ -137,14 +139,14 @@ export default function ProjectsPage() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded border border-white/5 bg-white/5 px-2 py-1 font-mono text-xs text-zinc-500"
+                          className="glass rounded px-2 py-1 font-mono text-xs text-zinc-500"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
-                </SpotlightCard>
+                </GlassCard>
               </Link>
             </AnimatedSection>
           ))}

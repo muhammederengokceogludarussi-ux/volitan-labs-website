@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
@@ -98,16 +99,15 @@ export default function AppDetailPage() {
                 )}
 
                 <div className="mt-4 flex items-center gap-4">
-                  <div
-                    className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl shadow-floating"
-                    style={{
-                      background: `linear-gradient(135deg, ${app.colors.primary}, ${app.colors.accent})`,
-                    }}
-                  >
-                    <span className="text-2xl font-bold text-white">F</span>
-                  </div>
+                  <Image
+                    src={app.icon}
+                    alt={app.name}
+                    width={64}
+                    height={64}
+                    className="rounded-2xl shadow-floating"
+                  />
                   <div>
-                    <h1 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl lg:text-5xl">
+                    <h1 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl lg:text-5xl gradient-text-animated">
                       {app.name}
                     </h1>
                     <p className="mt-1 text-text-secondary">
@@ -122,7 +122,7 @@ export default function AppDetailPage() {
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   {app.status !== "published" ? (
-                    <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]">
+                    <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,108,240,0.3)] transition-all hover:shadow-[0_0_40px_rgba(139,108,240,0.5)] hover:scale-[1.02]">
                       <Bell className="mr-2 h-4 w-4" />
                       {t("notifyMe")}
                     </button>
@@ -133,7 +133,7 @@ export default function AppDetailPage() {
                           href={app.playStoreUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-6 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]"
+                          className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-6 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,108,240,0.3)] transition-all hover:shadow-[0_0_40px_rgba(139,108,240,0.5)] hover:scale-[1.02]"
                         >
                           {t("downloadOn")} Google Play
                         </a>
@@ -143,7 +143,7 @@ export default function AppDetailPage() {
                           href={app.appStoreUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[border-color,background-color] duration-200 hover:border-border-hover hover:bg-surface"
+                          className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all hover:border-[var(--glass-border-hover)]"
                         >
                           {t("downloadOn")} App Store
                         </a>
@@ -154,29 +154,19 @@ export default function AppDetailPage() {
               </AnimatedSection>
             </div>
 
-            {/* Right: Phone Mockup */}
+            {/* Right: Phone Mockup with real screenshot */}
             <AnimatedSection delay={0.2}>
-              <div className="relative mx-auto aspect-[9/16] w-full max-w-[300px]">
+              <div className="relative mx-auto w-full max-w-[300px]">
                 {/* Glow behind mockup */}
                 <div className="absolute inset-[-20%] rounded-full bg-accent-primary/15 blur-[80px]" />
-                <div className="relative rounded-[2.5rem] border-2 border-border bg-surface-elevated p-3 shadow-floating">
-                  <div
-                    className="flex h-full w-full flex-col items-center justify-center rounded-[2rem]"
-                    style={{ backgroundColor: app.colors.background }}
-                  >
-                    <div
-                      className="h-20 w-20 rounded-2xl"
-                      style={{
-                        background: `linear-gradient(135deg, ${app.colors.primary}, ${app.colors.accent})`,
-                      }}
-                    />
-                    <p className="mt-4 font-display text-xl font-bold text-white">
-                      {app.name}
-                    </p>
-                    <p className="mt-1 text-sm" style={{ color: `${app.colors.primary}cc` }}>
-                      {app.tagline[locale]}
-                    </p>
-                  </div>
+                <div className="relative overflow-hidden rounded-[2.5rem] border-[6px] border-zinc-900 shadow-[0_0_60px_rgba(0,0,0,0.8)]">
+                  <Image
+                    src={app.screenshots[0]}
+                    alt={`${app.name} screenshot`}
+                    width={300}
+                    height={650}
+                    className="w-full h-auto"
+                  />
                 </div>
               </div>
             </AnimatedSection>
@@ -185,7 +175,7 @@ export default function AppDetailPage() {
       </Section>
 
       {/* Features Grid */}
-      <Section className="relative overflow-hidden bg-surface">
+      <Section className="relative overflow-hidden">
         <Container className="relative z-10">
           <AnimatedSection>
             <div className="text-center">
@@ -203,8 +193,8 @@ export default function AppDetailPage() {
               {features.map((feature, index) => {
                 const Icon = iconMap[feature.icon] || Sparkles;
                 return (
-                  <GlassCard key={index} glow="subtle" className="p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-primary/20 to-accent-primary/5">
+                  <GlassCard key={index} glow="accent" className="p-6 group">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-primary/20 to-accent-primary/5 border border-accent-primary/10 group-hover:shadow-[0_0_15px_rgba(139,108,240,0.2)] transition-all">
                       <Icon className="h-5 w-5 text-accent-primary" />
                     </div>
                     <h3 className="mt-4 font-display text-base font-semibold tracking-[-0.03em]">
@@ -221,7 +211,7 @@ export default function AppDetailPage() {
         </Container>
       </Section>
 
-      {/* Screenshots Placeholder */}
+      {/* Screenshots — Real images */}
       <Section className="relative overflow-hidden">
         <Container className="relative z-10">
           <AnimatedSection>
@@ -237,26 +227,16 @@ export default function AppDetailPage() {
 
           <AnimatedSection variant="fade" delay={0.1}>
             <div className="mt-12 flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
-              {app.screenshots.map((_, index) => (
-                <div
-                  key={index}
-                  className="flex-none snap-center"
-                >
-                  <div
-                    className="aspect-[9/16] w-[200px] rounded-2xl border border-border shadow-card md:w-[240px]"
-                    style={{ backgroundColor: app.colors.background }}
-                  >
-                    <div className="flex h-full w-full flex-col items-center justify-center rounded-2xl">
-                      <div
-                        className="h-12 w-12 rounded-xl opacity-30"
-                        style={{
-                          background: `linear-gradient(135deg, ${app.colors.primary}, ${app.colors.accent})`,
-                        }}
-                      />
-                      <p className="mt-3 text-xs text-text-muted">
-                        Screenshot {index + 1}
-                      </p>
-                    </div>
+              {app.screenshots.map((src, index) => (
+                <div key={index} className="flex-none snap-center">
+                  <div className="overflow-hidden rounded-[2rem] border-[4px] border-zinc-800 shadow-[0_0_40px_rgba(0,0,0,0.6)] w-[200px] md:w-[240px] transition-transform hover:scale-[1.02] hover:-translate-y-1">
+                    <Image
+                      src={src}
+                      alt={`${app.name} screenshot ${index + 1}`}
+                      width={240}
+                      height={520}
+                      className="w-full h-auto"
+                    />
                   </div>
                 </div>
               ))}
@@ -266,10 +246,11 @@ export default function AppDetailPage() {
       </Section>
 
       {/* CTA */}
-      <Section className="relative overflow-hidden bg-surface">
+      <Section className="relative overflow-hidden">
+        <AuroraBackground intensity="subtle" />
         <Container className="relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
+            <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl gradient-text-animated">
               {t("ctaTitle")}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-text-secondary">
@@ -277,13 +258,13 @@ export default function AppDetailPage() {
             </p>
             <div className="mt-8">
               {app.status !== "published" ? (
-                <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]">
+                <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,108,240,0.3)] transition-all hover:shadow-[0_0_40px_rgba(139,108,240,0.5)] hover:scale-[1.02]">
                   <Bell className="mr-2 h-4 w-4" />
                   {t("notifyMe")}
                 </button>
               ) : (
                 <Link href="/contact">
-                  <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-button transition-[box-shadow,transform] duration-200 hover:shadow-[0_0_30px_rgba(139,108,240,0.3)] hover:scale-[1.02]">
+                  <button className="inline-flex items-center rounded-full bg-gradient-to-r from-accent-primary to-[#A78BFA] px-7 py-3 text-sm font-medium text-white shadow-[0_0_20px_rgba(139,108,240,0.3)] transition-all hover:shadow-[0_0_40px_rgba(139,108,240,0.5)] hover:scale-[1.02]">
                     {t("learnMore")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </button>
