@@ -2,6 +2,7 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { focusSpaceApp } from "../../../../content/apps/focus-space";
@@ -60,9 +61,12 @@ export default function AppsPage() {
                 ))}
               </ul>
 
-              <button className="rounded-full border border-white/10 bg-black/50 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-white hover:text-black group-hover:shadow-glow">
+              <Link
+                href={`/${locale}/apps/focus-space`}
+                className="inline-block rounded-full border border-white/10 bg-black/50 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-white hover:text-black group-hover:shadow-glow"
+              >
                 {t("viewFeatures")}
-              </button>
+              </Link>
             </div>
 
             {/* Right: Phone mockup */}
