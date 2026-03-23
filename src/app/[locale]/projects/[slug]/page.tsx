@@ -209,7 +209,7 @@ export default function ProjectDetailPage() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-surface-elevated px-3 py-1 text-sm text-text-secondary"
+                  className="glass rounded-full px-3 py-1 text-sm text-text-secondary"
                 >
                   {tag}
                 </span>
@@ -276,7 +276,7 @@ export default function ProjectDetailPage() {
           <Container className="relative z-10">
             <AnimatedSection>
               <h2 className="font-display text-2xl font-bold tracking-[-0.03em] md:text-3xl">
-                {locale === "tr" ? "Ekran Görüntüleri" : "Screenshots"}
+                {t("screenshots")}
               </h2>
             </AnimatedSection>
             <AnimatedSection variant="fade" delay={0.1}>

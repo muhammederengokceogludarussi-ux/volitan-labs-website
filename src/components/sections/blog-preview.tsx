@@ -38,7 +38,7 @@ export function BlogPreview() {
               href="/blog"
               className="hidden items-center gap-1 text-sm font-medium text-accent-primary transition-colors duration-200 hover:text-accent-primary/80 sm:inline-flex"
             >
-              {tBlog("allPosts") ?? "All Posts"}
+              {tBlog("allPosts")}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </AnimatedSection>
@@ -82,7 +82,7 @@ export function BlogPreview() {
             href="/blog"
             className="inline-flex items-center gap-1 text-sm font-medium text-accent-primary"
           >
-            {tBlog("allPosts") ?? "All Posts"}
+            {tBlog("allPosts")}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

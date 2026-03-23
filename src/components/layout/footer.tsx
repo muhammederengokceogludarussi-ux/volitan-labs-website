@@ -5,14 +5,16 @@ import { Link } from "@/i18n/navigation";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
-  { label: "GitHub", Icon: Github, href: "https://github.com/muhammederengokceogludarussi-ux" },
-  { label: "LinkedIn", Icon: Linkedin, href: "https://www.linkedin.com/in/muhammed-eren-g%C3%B6kceo%C4%9Flu-33b5bb1b7/" },
-  { label: "Email", Icon: Mail, href: "mailto:eren.gokceoglu@metu.edu.tr" },
+  { key: "github", Icon: Github, href: "https://github.com/muhammederengokceogludarussi-ux" },
+  { key: "linkedin", Icon: Linkedin, href: "https://www.linkedin.com/in/muhammed-eren-g%C3%B6kceo%C4%9Flu-33b5bb1b7/" },
+  { key: "email", Icon: Mail, href: "mailto:eren.gokceoglu@metu.edu.tr" },
 ];
 
 export function Footer() {
   const tPrivacy = useTranslations("privacy");
   const tNav = useTranslations("nav");
+  const tFooter = useTranslations("footer");
+  const tCommon = useTranslations("common");
   const year = new Date().getFullYear();
 
   return (
@@ -31,9 +33,7 @@ export function Footer() {
               </span>
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
-              {tNav("home") === "Ana Sayfa"
-                ? "Mühendislik hassasiyetiyle dijital deneyimler."
-                : "Digital experiences with engineering precision."}
+              {tFooter("description")}
             </p>
           </div>
 
@@ -62,12 +62,12 @@ export function Footer() {
             <div className="flex items-center gap-3">
               {socialLinks.map((link) => (
                 <a
-                  key={link.label}
+                  key={link.key}
                   href={link.href}
-                  target={link.label !== "Email" ? "_blank" : undefined}
-                  rel={link.label !== "Email" ? "noopener noreferrer" : undefined}
+                  target={link.key !== "email" ? "_blank" : undefined}
+                  rel={link.key !== "email" ? "noopener noreferrer" : undefined}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-zinc-500 transition-all hover:border-white/20 hover:text-white hover:bg-white/5"
-                  aria-label={link.label}
+                  aria-label={link.key.charAt(0).toUpperCase() + link.key.slice(1)}
                 >
                   <link.Icon className="h-4 w-4" />
                 </a>
@@ -79,7 +79,7 @@ export function Footer() {
         {/* Bottom divider + copyright */}
         <div className="mt-12 border-t border-white/5 pt-6">
           <p className="text-center text-xs text-zinc-600">
-            &copy; {year} Volitan Labs. All rights reserved.
+            &copy; {year} Volitan Labs. {tCommon("copyright")}
           </p>
         </div>
       </div>

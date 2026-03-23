@@ -50,7 +50,9 @@ export default function AppDetailPage() {
     return (
       <Section className="pt-20 md:pt-32">
         <Container className="text-center">
-          <h1 className="font-display text-3xl font-bold tracking-[-0.03em]">App not found</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em]">
+            {locale === "tr" ? "Uygulama bulunamadı" : "App not found"}
+          </h1>
           <Link
             href="/apps"
             className="mt-4 inline-flex items-center gap-2 text-accent-primary"

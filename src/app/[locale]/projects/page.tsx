@@ -41,15 +41,30 @@ const projectsData: ProjectData[] = [
   },
   {
     slug: "teknofest-drone",
-    title: { en: "Teknofest Drone", tr: "Teknofest Drone" },
+    title: {
+      en: "TEKNOFEST 2022 — Combat UAV",
+      tr: "TEKNOFEST 2022 — Savaşan İHA",
+    },
     description: {
       en: "Complete mechanical design, fabrication, and flight controller integration for autonomous operation.",
       tr: "Otonom operasyon için eksiksiz mekanik tasarım, üretim ve uçuş kontrolcüsü entegrasyonu.",
     },
-    tags: ["Hardware", "C++"],
+    tags: ["UAV Design", "Siemens NX", "XFLR5"],
     category: ["all", "engineering"],
     iconFallback: "plane",
+    href: "/projects/teknofest-combat-uav",
     featured: true,
+  },
+  {
+    slug: "volitan-labs-website",
+    title: { en: "Volitan Labs Website", tr: "Volitan Labs Web Sitesi" },
+    description: {
+      en: "A modern bilingual portfolio and app showcase website built with Next.js, Tailwind CSS, and Framer Motion.",
+      tr: "Next.js, Tailwind CSS ve Framer Motion ile geliştirilmiş modern çift dilli portfolyo ve uygulama vitrin sitesi.",
+    },
+    tags: ["Next.js", "Tailwind CSS", "TypeScript"],
+    category: ["all", "web"],
+    href: "/projects/volitan-labs-website",
   },
 ];
 

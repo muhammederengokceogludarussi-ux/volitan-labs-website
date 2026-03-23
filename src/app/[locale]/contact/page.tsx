@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -11,28 +11,29 @@ const contactLinks = [
   {
     key: "email",
     Icon: Mail,
-    title: "Email",
-    label: siteConfig.social.email,
+    title: { en: "Email", tr: "E-posta" },
+    label: { en: siteConfig.social.email, tr: siteConfig.social.email },
     href: `mailto:${siteConfig.social.email}`,
   },
   {
     key: "github",
     Icon: Github,
-    title: "GitHub",
-    label: "@volitanlabs",
+    title: { en: "GitHub", tr: "GitHub" },
+    label: { en: "@volitanlabs", tr: "@volitanlabs" },
     href: siteConfig.social.github,
   },
   {
     key: "linkedin",
     Icon: Linkedin,
-    title: "LinkedIn",
-    label: "Let's connect",
+    title: { en: "LinkedIn", tr: "LinkedIn" },
+    label: { en: "Let's connect", tr: "Bağlantı kuralım" },
     href: siteConfig.social.linkedin,
   },
 ];
 
 export default function ContactPage() {
   const t = useTranslations("contact");
+  const locale = useLocale() as "en" | "tr";
 
   return (
     <div className="relative flex flex-1 flex-col justify-center pt-40 pb-32 md:pt-48">
@@ -64,10 +65,10 @@ export default function ContactPage() {
                     <link.Icon className="h-[22px] w-[22px]" />
                   </div>
                   <h3 className="mb-1 text-lg font-bold text-white">
-                    {link.title}
+                    {link.title[locale]}
                   </h3>
                   <p className="font-mono text-sm text-zinc-500">
-                    {link.label}
+                    {link.label[locale]}
                   </p>
                 </GlassCard>
               </a>
