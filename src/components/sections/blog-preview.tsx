@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { GlassCard } from "@/components/ui/glass-card";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
@@ -22,8 +21,6 @@ export function BlogPreview() {
 
   return (
     <Section className="relative overflow-hidden">
-      <AuroraBackground intensity="subtle" />
-
       <Container className="relative z-10">
         <div className="flex items-end justify-between">
           <AnimatedSection>

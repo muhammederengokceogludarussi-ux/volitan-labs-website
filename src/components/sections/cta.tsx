@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundGrid } from "@/components/ui/background-grid";
 import { ArrowRight } from "lucide-react";
 
@@ -12,7 +11,6 @@ export function CTA() {
 
   return (
     <section className="relative mx-auto w-full max-w-[1200px] overflow-hidden px-4 py-20 sm:px-6 text-center">
-      <AuroraBackground intensity="medium" />
       <BackgroundGrid variant="lines" className="opacity-20" />
 
       <div className="relative z-10">

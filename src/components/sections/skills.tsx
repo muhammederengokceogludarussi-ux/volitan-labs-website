@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { GlassCard } from "@/components/ui/glass-card";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundGrid } from "@/components/ui/background-grid";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { Smartphone, Cog, Brain } from "lucide-react";
@@ -30,7 +29,6 @@ export function Skills() {
 
   return (
     <section className="relative mx-auto w-full max-w-[1200px] overflow-hidden px-4 py-20 sm:px-6">
-      <AuroraBackground intensity="subtle" />
       <BackgroundGrid variant="dots" className="opacity-20" />
 
       <div className="relative z-10">

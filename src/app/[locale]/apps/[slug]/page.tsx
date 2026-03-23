@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { GlassCard } from "@/components/ui/glass-card";
 
 import { focusSpaceApp } from "../../../../../content/apps/focus-space";
@@ -71,7 +70,6 @@ export default function AppDetailPage() {
     <>
       {/* Hero */}
       <Section className="relative overflow-hidden pt-20 md:pt-32">
-        <AuroraBackground intensity="medium" />
         <Container className="relative z-10">
           <AnimatedSection>
             <Link
@@ -249,7 +247,6 @@ export default function AppDetailPage() {
 
       {/* CTA */}
       <Section className="relative overflow-hidden">
-        <AuroraBackground intensity="subtle" />
         <Container className="relative z-10 text-center">
           <AnimatedSection>
             <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl gradient-text-animated">

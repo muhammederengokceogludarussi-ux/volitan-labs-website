@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { BackgroundGrid } from "@/components/ui/background-grid";
 
 const stagger = {
@@ -26,7 +25,6 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-4 pt-32 pb-20 text-center sm:px-6">
-      <AuroraBackground intensity="strong" />
       <BackgroundGrid variant="dots" className="opacity-30" />
 
       <m.div initial="hidden" animate="visible" variants={stagger} className="relative z-10">

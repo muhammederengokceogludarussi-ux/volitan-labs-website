@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { GlassCard } from "@/components/ui/glass-card";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { focusSpaceApp } from "../../../../content/apps/focus-space";
 import { Check } from "lucide-react";
 
@@ -17,7 +16,6 @@ export default function AppsPage() {
 
   return (
     <div className="relative pt-40 pb-32 md:pt-48">
-      <AuroraBackground intensity="subtle" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1000px] flex-col gap-10 px-4 sm:px-6 lg:px-8">
         {/* Header */}

@@ -2,7 +2,6 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { GlassCard } from "@/components/ui/glass-card";
 import { founder } from "../../../../content/founder";
 import Image from "next/image";
@@ -20,7 +19,6 @@ export default function AboutPage() {
 
   return (
     <div className="relative pt-40 pb-32 md:pt-48">
-      <AuroraBackground intensity="subtle" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-[900px] flex-col gap-16 px-4 sm:px-6 lg:px-8">
         {/* Header */}

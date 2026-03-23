@@ -3,7 +3,6 @@
 import { useTranslations, useLocale } from "next-intl";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { GlassCard } from "@/components/ui/glass-card";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { siteConfig } from "../../../../content/site";
 import { Mail, Github, Linkedin } from "lucide-react";
 
@@ -37,7 +36,6 @@ export default function ContactPage() {
 
   return (
     <div className="relative flex flex-1 flex-col justify-center pt-40 pb-32 md:pt-48">
-      <AuroraBackground intensity="medium" />
 
       <div className="relative z-10 mx-auto w-full max-w-[800px] px-4 sm:px-6">
         <AnimatedSection>
