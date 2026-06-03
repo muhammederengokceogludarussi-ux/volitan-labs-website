@@ -2,6 +2,7 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { PageHeader } from "@/components/shared/page-header";
 import { GlassCard } from "@/components/ui/glass-card";
 import { founder } from "../../../../content/founder";
 import Image from "next/image";
@@ -22,16 +23,7 @@ export default function AboutPage() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[900px] flex-col gap-16 px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="border-b border-white/10 pb-12 text-center md:text-left">
-          <AnimatedSection>
-            <h1 className="mb-6 font-display text-5xl font-bold tracking-tighter text-white md:text-6xl gradient-text-animated">
-              {t("title")}.
-            </h1>
-            <p className="max-w-2xl text-xl leading-relaxed text-zinc-400">
-              {t("subtitle")}
-            </p>
-          </AnimatedSection>
-        </header>
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
 
         {/* Profile + Story */}
         <section className="grid grid-cols-1 gap-12 md:grid-cols-3">

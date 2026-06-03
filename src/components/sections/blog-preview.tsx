@@ -7,7 +7,9 @@ import { Section } from "@/components/ui/section";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { PostMeta } from "@/components/shared/post-meta";
+import { ReadMoreLink } from "@/components/shared/read-more-link";
+import { ArrowRight } from "lucide-react";
 
 const placeholderPosts = [
   { key: "post1", date: "2025-01-15", readTime: 5 },
@@ -49,26 +51,18 @@ export function BlogPreview() {
                 glow="subtle"
                 className="p-5 h-full"
               >
-                <div className="flex items-center gap-3 text-xs text-text-muted">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {post.date}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {post.readTime} {tBlog("minRead")}
-                  </span>
-                </div>
+                <PostMeta
+                  date={post.date}
+                  readingTime={post.readTime}
+                  minReadLabel={tBlog("minRead")}
+                />
                 <h3 className="mt-3 font-display text-lg font-semibold transition-colors duration-200 group-hover:text-accent-primary">
                   {t(`posts.${post.key}.title`)}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary line-clamp-2">
                   {t(`posts.${post.key}.description`)}
                 </p>
-                <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-primary">
-                  {tBlog("readMore")}
-                  <ArrowRight className="h-3 w-3" />
-                </div>
+                <ReadMoreLink label={tBlog("readMore")} className="mt-4" />
               </GlassCard>
             </AnimatedSection>
           ))}

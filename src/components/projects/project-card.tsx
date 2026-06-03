@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
+import { TagList } from "@/components/shared/tag-list";
+import { StatusBadge } from "@/components/shared/status-badge";
 
 interface ProjectCardProps {
   title: string;
@@ -58,14 +60,10 @@ export function ProjectCard({
             {title}
           </h3>
           {status === "beta" && (
-            <span className="rounded-full bg-accent-primary/10 px-2.5 py-0.5 text-xs font-medium text-accent-primary">
-              {tApps("beta")}
-            </span>
+            <StatusBadge label={tApps("beta")} variant="primary" />
           )}
           {status === "coming-soon" && (
-            <span className="rounded-full bg-accent-secondary/10 px-2.5 py-0.5 text-xs font-medium text-accent-secondary">
-              {tApps("comingSoon")}
-            </span>
+            <StatusBadge label={tApps("comingSoon")} variant="secondary" />
           )}
         </div>
 
@@ -73,16 +71,7 @@ export function ProjectCard({
           {description}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full px-2.5 py-0.5 text-xs text-text-muted"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        <TagList tags={tags} variant="muted" className="mt-4" />
 
         <div className="mt-5 flex items-center gap-3">
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-primary">

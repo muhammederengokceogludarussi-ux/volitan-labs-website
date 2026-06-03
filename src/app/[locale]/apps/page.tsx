@@ -1,9 +1,10 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
 import Link from "next/link";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { PageHeader } from "@/components/shared/page-header";
+import { PhoneMockup } from "@/components/shared/phone-mockup";
 import { GlassCard } from "@/components/ui/glass-card";
 import { focusSpaceApp } from "../../../../content/apps/focus-space";
 import { Check } from "lucide-react";
@@ -19,16 +20,7 @@ export default function AppsPage() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1000px] flex-col gap-10 px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="border-b border-white/10 pb-12 text-center md:text-left">
-          <AnimatedSection>
-            <h1 className="mb-6 font-display text-5xl font-bold tracking-tighter text-white md:text-6xl">
-              {t("title")}.
-            </h1>
-            <p className="max-w-2xl text-xl leading-relaxed text-zinc-400">
-              {t("subtitle")}
-            </p>
-          </AnimatedSection>
-        </header>
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
 
         {/* Focus Space Feature Card */}
         <AnimatedSection>
@@ -71,22 +63,12 @@ export default function AppsPage() {
             </div>
 
             {/* Right: Phone mockup */}
-            <div
-              className="order-1 flex w-full max-w-[300px] flex-1 justify-center lg:order-2 relative z-10"
-              style={{ perspective: "1000px" }}
-            >
-              {/* Glow */}
-              <div className="absolute inset-[-15%] rounded-full bg-accent-primary/15 blur-[80px]" />
-              <div className="relative w-full overflow-hidden rounded-[2.5rem] border-[6px] border-zinc-900 shadow-[0_0_50px_rgba(0,0,0,1)] aspect-[1/2] group-hover:[transform:rotateY(15deg)] group-hover:-translate-y-4 transition-all duration-700">
-                <Image
-                  src="/images/apps/focus-space/screenshot-cockpit.jpg"
-                  alt="Focus Space App Preview"
-                  fill
-                  className="object-cover"
-                  sizes="300px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              </div>
+            <div className="order-1 flex w-full flex-1 justify-center lg:order-2 relative z-10">
+              <PhoneMockup
+                src="/images/apps/focus-space/screenshot-cockpit.jpg"
+                alt="Focus Space App Preview"
+                hoverRotate
+              />
             </div>
           </GlassCard>
         </AnimatedSection>

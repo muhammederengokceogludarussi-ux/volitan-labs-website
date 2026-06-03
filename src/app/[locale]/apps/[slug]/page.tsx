@@ -7,11 +7,14 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { NotFoundSection } from "@/components/shared/not-found-section";
+import { BackLink } from "@/components/shared/back-link";
+import { StatusBadge } from "@/components/shared/status-badge";
+import { IconBadge } from "@/components/shared/icon-badge";
 import { GlassCard } from "@/components/ui/glass-card";
 
 import { focusSpaceApp } from "../../../../../content/apps/focus-space";
 import {
-  ArrowLeft,
   ArrowRight,
   Timer,
   Trophy,
@@ -47,20 +50,11 @@ export default function AppDetailPage() {
 
   if (!app) {
     return (
-      <Section className="pt-20 md:pt-32">
-        <Container className="text-center">
-          <h1 className="font-display text-3xl font-bold tracking-[-0.03em]">
-            {locale === "tr" ? "Uygulama bulunamadı" : "App not found"}
-          </h1>
-          <Link
-            href="/apps"
-            className="mt-4 inline-flex items-center gap-2 text-accent-primary"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {tCommon("backTo", { page: t("title") })}
-          </Link>
-        </Container>
-      </Section>
+      <NotFoundSection
+        title={locale === "tr" ? "Uygulama bulunamadı" : "App not found"}
+        backHref="/apps"
+        backLabel={tCommon("backTo", { page: t("title") })}
+      />
     );
   }
 
@@ -72,13 +66,7 @@ export default function AppDetailPage() {
       <Section className="relative overflow-hidden pt-20 md:pt-32">
         <Container className="relative z-10">
           <AnimatedSection>
-            <Link
-              href="/apps"
-              className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-[color] duration-200 hover:text-text-primary"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              {tCommon("backTo", { page: t("title") })}
-            </Link>
+            <BackLink href="/apps" label={tCommon("backTo", { page: t("title") })} />
           </AnimatedSection>
 
           <div className="mt-8 grid items-center gap-12 lg:grid-cols-2">
@@ -86,16 +74,10 @@ export default function AppDetailPage() {
             <div>
               <AnimatedSection delay={0.1}>
                 {app.status === "coming-soon" && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-secondary/10 px-3 py-1 text-xs font-medium text-accent-secondary">
-                    <Sparkles className="h-3 w-3" />
-                    {t("comingSoon")}
-                  </span>
+                  <StatusBadge label={t("comingSoon")} variant="secondary" />
                 )}
                 {app.status === "beta" && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-primary/10 px-3 py-1 text-xs font-medium text-accent-primary">
-                    <Sparkles className="h-3 w-3" />
-                    {t("beta")}
-                  </span>
+                  <StatusBadge label={t("beta")} variant="primary" />
                 )}
 
                 <div className="mt-4 flex items-center gap-4">
@@ -194,9 +176,7 @@ export default function AppDetailPage() {
                 const Icon = iconMap[feature.icon] || Sparkles;
                 return (
                   <GlassCard key={index} glow="accent" className="p-6 group">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent-primary/20 to-accent-primary/5 border border-accent-primary/10 group-hover:shadow-[0_0_15px_rgba(139,108,240,0.2)] transition-all">
-                      <Icon className="h-5 w-5 text-accent-primary" />
-                    </div>
+                    <IconBadge icon={Icon} size="md" />
                     <h3 className="mt-4 font-display text-base font-semibold tracking-[-0.03em]">
                       {feature.title}
                     </h3>
