@@ -16,8 +16,11 @@ export function getPostBySlug(slug: string, locale: string) {
 export function getAllPostSlugs() {
   return posts
     .filter((post) => post.published)
-    .map((post) => ({
-      slug: post.slug.split("/").pop()!,
-      locale: post.locale,
-    }));
+    .reduce<{ slug: string; locale: string }[]>((acc, post) => {
+      const slug = post.slug.split("/").pop();
+      if (slug) {
+        acc.push({ slug, locale: post.locale });
+      }
+      return acc;
+    }, []);
 }

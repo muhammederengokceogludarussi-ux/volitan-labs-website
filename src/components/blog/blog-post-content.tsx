@@ -1,5 +1,6 @@
 "use client";
 
+import { Component as ReactComponent, useMemo } from "react";
 import * as runtime from "react/jsx-runtime";
 
 interface BlogPostContentProps {
@@ -66,12 +67,65 @@ const mdxComponents = {
   hr: () => <hr className="my-8 border-border" />,
 };
 
-function useMDXComponent(code: string) {
-  const fn = new Function(code);
-  return fn({ ...runtime }).default;
+function compileMDX(code: string): React.ComponentType<{ components: typeof mdxComponents }> | null {
+  try {
+    const fn = new Function(code);
+    return fn({ ...runtime }).default;
+  } catch (err) {
+    console.error("[BlogPostContent] Failed to compile MDX:", err);
+    return null;
+  }
+}
+
+function MDXContentFallback() {
+  return (
+    <div className="rounded-xl border border-border bg-surface p-6 text-center">
+      <p className="text-text-secondary">
+        This content could not be rendered.
+      </p>
+    </div>
+  );
+}
+
+class MDXErrorBoundary extends ReactComponent<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error("[BlogPostContent] Render error:", error, info.componentStack);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <MDXContentFallback />;
+    }
+    return this.props.children;
+  }
+}
+
+function MDXRenderer({ code }: BlogPostContentProps) {
+  const MdxComponent = useMemo(() => compileMDX(code), [code]);
+
+  if (!MdxComponent) {
+    return <MDXContentFallback />;
+  }
+
+  return <MdxComponent components={mdxComponents} />;
 }
 
 export function BlogPostContent({ code }: BlogPostContentProps) {
-  const Component = useMDXComponent(code);
-  return <Component components={mdxComponents} />;
+  return (
+    <MDXErrorBoundary>
+      <MDXRenderer code={code} />
+    </MDXErrorBoundary>
+  );
 }
