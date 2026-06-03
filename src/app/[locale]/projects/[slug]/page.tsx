@@ -2,14 +2,15 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { useParams } from "next/navigation";
-import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { NotFoundSection } from "@/components/shared/not-found-section";
+import { BackLink } from "@/components/shared/back-link";
+import { TagList } from "@/components/shared/tag-list";
 
 import Image from "next/image";
 import {
-  ArrowLeft,
   ArrowRight,
   Github,
   ExternalLink,
@@ -155,20 +156,11 @@ export default function ProjectDetailPage() {
 
   if (!project) {
     return (
-      <Section className="pt-20 md:pt-32">
-        <Container className="text-center">
-          <h1 className="font-display text-3xl font-bold tracking-[-0.03em]">
-            {t("notFound")}
-          </h1>
-          <Link
-            href="/projects"
-            className="mt-4 inline-flex items-center gap-2 text-accent-primary"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {tCommon("backTo", { page: t("title") })}
-          </Link>
-        </Container>
-      </Section>
+      <NotFoundSection
+        title={t("notFound")}
+        backHref="/projects"
+        backLabel={tCommon("backTo", { page: t("title") })}
+      />
     );
   }
 
@@ -178,13 +170,7 @@ export default function ProjectDetailPage() {
       <Section className="relative overflow-hidden pt-20 md:pt-32">
         <Container className="relative z-10">
           <AnimatedSection>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-[color] duration-200 hover:text-text-primary"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              {tCommon("backTo", { page: t("title") })}
-            </Link>
+            <BackLink href="/projects" label={tCommon("backTo", { page: t("title") })} />
 
             <div className="mt-6 flex items-center gap-4">
               {project.icon && (
@@ -205,16 +191,7 @@ export default function ProjectDetailPage() {
               {project.longDescription[locale]}
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="glass rounded-full px-3 py-1 text-sm text-text-secondary"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <TagList tags={project.tags} variant="glass" className="mt-6" />
 
             {(project.github || project.live) && (
               <div className="mt-6 flex gap-3">

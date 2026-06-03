@@ -2,9 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { PhoneMockup } from "@/components/shared/phone-mockup";
 import { ArrowRight } from "lucide-react";
 
 export function FeaturedProject() {
@@ -33,19 +33,14 @@ export function FeaturedProject() {
           </div>
 
           {/* Phone mockup with glow */}
-          <div className="relative z-10 order-1 flex w-full max-w-[320px] flex-1 justify-center lg:order-2" style={{ perspective: "1000px" }}>
-            {/* Glow behind mockup */}
-            <div className="absolute inset-[-15%] rounded-full bg-accent-primary/15 blur-[80px]" />
-            <div className="relative w-full overflow-hidden rounded-[2.5rem] border-[8px] border-zinc-900 shadow-[0_0_50px_rgba(0,0,0,1)] aspect-[1/2] group-hover:[transform:rotateY(10deg)] group-hover:-translate-y-4 transition-all duration-700">
-              <Image
-                src="/images/apps/focus-space/screenshot-cockpit.jpg"
-                alt="Focus Space"
-                fill
-                className="object-cover"
-                sizes="320px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            </div>
+          <div className="relative z-10 order-1 flex w-full max-w-[320px] flex-1 justify-center lg:order-2">
+            <PhoneMockup
+              src="/images/apps/focus-space/screenshot-cockpit.jpg"
+              alt="Focus Space"
+              maxWidth="320px"
+              borderWidth={8}
+              hoverRotate
+            />
           </div>
         </GlassCard>
       </AnimatedSection>

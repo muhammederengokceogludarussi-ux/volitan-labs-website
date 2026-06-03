@@ -1,9 +1,11 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
+import { PostMeta } from "@/components/shared/post-meta";
+import { TagList } from "@/components/shared/tag-list";
+import { ReadMoreLink } from "@/components/shared/read-more-link";
 
 interface BlogPostCardProps {
   slug: string;
@@ -30,13 +32,6 @@ export function BlogPostCard({
   locale = "en",
   featured,
 }: BlogPostCardProps) {
-  const dateLocale = locale === "tr" ? "tr-TR" : "en-US";
-  const formattedDate = new Date(date).toLocaleDateString(dateLocale, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
   return (
     <Link href={`/blog/${slug}`} className="group block">
       <GlassCard
@@ -49,16 +44,7 @@ export function BlogPostCard({
       >
         <div className={cn(featured && "flex-1")}>
           {/* Tags */}
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-accent-primary/10 px-2.5 py-0.5 text-xs font-medium text-accent-primary"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <TagList tags={tags} variant="accent" />
 
           {/* Title */}
           <h2
@@ -81,22 +67,16 @@ export function BlogPostCard({
           </p>
 
           {/* Meta */}
-          <div className="mt-4 flex items-center gap-3 text-xs text-text-muted">
-            <span className="flex items-center gap-1">
-              <Calendar className="h-3 w-3" />
-              {formattedDate}
-            </span>
-            <span className="flex items-center gap-1">
-              <Clock className="h-3 w-3" />
-              {readingTime} {minReadLabel}
-            </span>
-          </div>
+          <PostMeta
+            date={date}
+            readingTime={readingTime}
+            minReadLabel={minReadLabel}
+            locale={locale}
+            className="mt-4"
+          />
 
           {/* Read More — always visible */}
-          <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent-primary">
-            {readMoreLabel}
-            <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </div>
+          <ReadMoreLink label={readMoreLabel} className="mt-4" />
         </div>
       </GlassCard>
     </Link>

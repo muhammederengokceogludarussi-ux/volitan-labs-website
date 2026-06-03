@@ -5,20 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { m } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { BackgroundGrid } from "@/components/ui/background-grid";
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
-  },
-};
+import { staggerContainer, fadeUp } from "@/lib/animations";
 
 export function Hero() {
   const t = useTranslations("home.hero");
@@ -27,7 +14,7 @@ export function Hero() {
     <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-4 pt-32 pb-20 text-center sm:px-6">
       <BackgroundGrid variant="dots" className="opacity-30" />
 
-      <m.div initial="hidden" animate="visible" variants={stagger} className="relative z-10">
+      <m.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10">
         {/* Status badge */}
         <m.div variants={fadeUp} className="flex justify-center">
           <div className="glass inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-xs text-zinc-400 hover:border-white/20 transition-colors cursor-default">

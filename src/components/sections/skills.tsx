@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { GlassCard } from "@/components/ui/glass-card";
 import { BackgroundGrid } from "@/components/ui/background-grid";
 import { AnimatedSection } from "@/components/shared/animated-section";
+import { IconBadge } from "@/components/shared/icon-badge";
 import { Smartphone, Cog, Brain } from "lucide-react";
 
 const skills = [
@@ -43,9 +44,7 @@ export function Skills() {
             <AnimatedSection key={skill.key} delay={i * 0.05} className={skill.colSpan}>
               <GlassCard glow="accent" className="flex h-[340px] flex-col justify-between p-8 group">
                 <div className="relative z-10">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-accent-primary/20 to-accent-primary/5 border border-accent-primary/10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(139,108,240,0.2)] transition-all">
-                    <skill.Icon className="h-6 w-6 text-accent-primary" />
-                  </div>
+                  <IconBadge icon={skill.Icon} size="lg" className="mb-6" />
                   <h3 className="mb-3 text-xl font-bold text-white">
                     {t(`items.${skill.key}.title`)}
                   </h3>
