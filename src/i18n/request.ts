@@ -8,8 +8,15 @@ export default getRequestConfig(async ({ requestLocale }) => {
     ? requested
     : routing.defaultLocale;
 
+  let messages = {};
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (err) {
+    console.error(`[i18n/request] Failed to load messages for "${locale}":`, err);
+  }
+
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    messages,
   };
 });

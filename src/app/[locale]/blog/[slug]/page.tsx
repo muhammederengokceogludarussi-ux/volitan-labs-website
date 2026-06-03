@@ -29,10 +29,17 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const formattedDate = new Date(post.date).toLocaleDateString(
-    locale === "tr" ? "tr-TR" : "en-US",
-    { year: "numeric", month: "long", day: "numeric" }
-  );
+  let formattedDate: string;
+  try {
+    const parsed = new Date(post.date);
+    if (isNaN(parsed.getTime())) throw new Error("Invalid date");
+    formattedDate = parsed.toLocaleDateString(
+      locale === "tr" ? "tr-TR" : "en-US",
+      { year: "numeric", month: "long", day: "numeric" }
+    );
+  } catch {
+    formattedDate = post.date;
+  }
 
   return (
     <>

@@ -10,7 +10,12 @@ export default async function OGImage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  let locale: string;
+  try {
+    locale = (await params).locale;
+  } catch {
+    locale = "en";
+  }
 
   const title =
     locale === "tr"
@@ -22,6 +27,7 @@ export default async function OGImage({
       ? "Flutter ile dijital deneyimler • Mühendislik hassasiyetiyle"
       : "Digital experiences with Flutter • Engineering precision";
 
+  try {
   return new ImageResponse(
     (
       <div
@@ -139,4 +145,8 @@ export default async function OGImage({
     ),
     { ...size }
   );
+  } catch (err) {
+    console.error("[OGImage] Failed to generate OpenGraph image:", err);
+    return new Response("Failed to generate image", { status: 500 });
+  }
 }

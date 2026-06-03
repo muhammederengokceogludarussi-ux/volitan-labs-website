@@ -31,11 +31,18 @@ export function BlogPostCard({
   featured,
 }: BlogPostCardProps) {
   const dateLocale = locale === "tr" ? "tr-TR" : "en-US";
-  const formattedDate = new Date(date).toLocaleDateString(dateLocale, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  let formattedDate: string;
+  try {
+    const parsed = new Date(date);
+    if (isNaN(parsed.getTime())) throw new Error("Invalid date");
+    formattedDate = parsed.toLocaleDateString(dateLocale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  } catch {
+    formattedDate = date;
+  }
 
   return (
     <Link href={`/blog/${slug}`} className="group block">

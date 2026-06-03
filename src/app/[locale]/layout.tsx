@@ -21,7 +21,12 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = (await import(`../../../messages/${locale}.json`)).default;
+  let messages: Record<string, unknown> = {};
+  try {
+    messages = (await import(`../../../messages/${locale}.json`)).default;
+  } catch (err) {
+    console.error(`[LocaleLayout] Failed to load messages for "${locale}":`, err);
+  }
 
   return (
     <html lang={locale} suppressHydrationWarning>
