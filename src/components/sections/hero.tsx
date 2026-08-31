@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { m } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Gamepad2, Languages, Wrench } from "lucide-react";
 import { BackgroundGrid } from "@/components/ui/background-grid";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 
@@ -13,6 +13,8 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-4 pt-32 pb-20 text-center sm:px-6">
       <BackgroundGrid variant="dots" className="opacity-30" />
+      <div className="pointer-events-none absolute left-[-12rem] top-24 h-80 w-80 rounded-full bg-accent-primary/10 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-10 right-[-10rem] h-72 w-72 rounded-full bg-sky-400/10 blur-[110px]" />
 
       <m.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10">
         {/* Status badge */}
@@ -64,6 +66,22 @@ export function Hero() {
               {t("cta_contact")}
             </span>
           </Link>
+        </m.div>
+
+        <m.div
+          variants={fadeUp}
+          className="mx-auto mt-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-3 border-t border-white/10 pt-6 text-xs font-medium text-zinc-500"
+        >
+          {[
+            { icon: Gamepad2, label: t("proof.browser") },
+            { icon: Languages, label: t("proof.bilingual") },
+            { icon: Wrench, label: t("proof.engineering") },
+          ].map(({ icon: Icon, label }) => (
+            <span key={label} className="inline-flex items-center gap-2">
+              <Icon className="h-3.5 w-3.5 text-accent-primary" />
+              {label}
+            </span>
+          ))}
         </m.div>
       </m.div>
     </section>

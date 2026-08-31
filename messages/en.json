@@ -11,34 +11,35 @@
     "hero": {
       "greeting": "Muhammed Eren Gökceoğlu",
       "name": "Volitan Labs",
-      "roles": "Mechanical Engineering Student|App Developer|Aviation Enthusiast|AI-Augmented Developer",
-      "description": "METU Mechanical Engineering student — channeling an aerospace background and engineering discipline into building apps with Flutter.",
-      "badge": "App Store Focus",
-      "title": "Precision Engineering & Design.",
+      "roles": "Mechanical Engineering Student|Web Developer|Aviation Enthusiast|AI-Augmented Developer",
+      "description": "METU Mechanical Engineering student turning an aerospace background and engineering discipline into focused digital products and playful web experiences.",
+      "badge": "Independent Digital Lab",
+      "title": "Engineering Ideas Into Experiences.",
       "cta_projects": "View Projects",
-      "cta_contact": "Get in Touch"
+      "cta_contact": "Get in Touch",
+      "proof": {
+        "browser": "Playable in the browser",
+        "bilingual": "Built in English & Turkish",
+        "engineering": "Engineering-led design"
+      }
     },
     "featuredApp": {
-      "label": "Featured App",
-      "tagline": "Reduce Screen Time. Build Focus Habits.",
-      "description": "A digital detox app that helps you reduce screen time. Earn XP by staying off your phone, terraform planets, and compete in weekly leagues — putting your phone down has never been this rewarding.",
-      "cta": "Learn More",
+      "label": "Now Playable",
+      "tagline": "Fly. Rescue. Beat your high score.",
+      "description": "A lightweight one-touch helicopter game built for quick browser sessions. Manage your momentum and fuel, chain rescues, collect shields, and keep flying as the world shifts from day to night.",
+      "cta": "Play Blue Rescue",
       "features": {
-        "focus": {
-          "title": "Digital Detox",
-          "description": "Put your phone down and earn rewards for staying focused."
+        "flight": {
+          "title": "One-touch flight",
+          "description": "Hold to rise, release to descend."
         },
-        "gamification": {
-          "title": "Rewarding Progress",
-          "description": "Earn XP, terraform planets, and track your screen-free time."
+        "rescue": {
+          "title": "Fuel & rescue combos",
+          "description": "Balance resources while building a score chain."
         },
-        "pomodoro": {
-          "title": "Smart Timer",
-          "description": "Pomodoro technique with customizable work and break intervals."
-        },
-        "universe": {
-          "title": "Your Universe",
-          "description": "Visualize your focus journey as a growing personal universe."
+        "browser": {
+          "title": "Instant browser play",
+          "description": "No download or account required."
         }
       }
     },
@@ -47,9 +48,9 @@
       "title": "Skills & Expertise",
       "subtitle": "Bridging mechanical engineering and software development — aerospace, UAV design, and app development.",
       "items": {
-        "flutter": {
-          "title": "Flutter & Dart",
-          "description": "Cross-platform apps with beautiful UIs and smooth animations."
+        "web": {
+          "title": "Interactive Web Experiences",
+          "description": "Responsive products and browser games with thoughtful interfaces, motion, and performance."
         },
         "ai": {
           "title": "AI-Augmented Development",
@@ -79,8 +80,8 @@
           "description": "How studying mechanical engineering at METU influences my approach to building apps."
         },
         "post2": {
-          "title": "Building Focus Space: A Flutter Journey",
-          "description": "Behind the scenes of creating a gamified productivity app with Flutter and AI assistance."
+          "title": "Building Blue Rescue: From Physics to Play",
+          "description": "How a simple one-touch idea became a responsive helicopter rescue game."
         },
         "post3": {
           "title": "AI-Augmented Development: My Workflow",
@@ -95,30 +96,13 @@
     }
   },
   "apps": {
-    "title": "Our Apps",
-    "subtitle": "Digital experiences built with care and precision.",
-    "downloadOn": "Get it on",
-    "comingSoon": "Coming Soon",
-    "beta": "In Beta",
-    "features": "Features",
-    "featuresTitle": "Everything You Need to Focus",
-    "screenshots": "Preview",
-    "screenshotsTitle": "See It in Action",
-    "badge": "App Store Focus",
-    "viewFeatures": "View Features",
-    "featureHighlights": {
-      "item1": "Ethereal Glassmorphism UI",
-      "item2": "Smart Task AI Sorting (NOVA)",
-      "item3": "Mini Star Map Gamification"
-    },
-    "learnMore": "Learn More",
-    "notifyMe": "Notify Me",
-    "ctaTitle": "Ready to Focus?",
-    "ctaSubtitle": "Be the first to know when Focus Space launches. Sign up for early access.",
+    "title": "Interactive Lab",
+    "subtitle": "Small, focused digital experiences you can try right now.",
     "blueRescue": {
-      "badge": "Playable Browser Game",
-      "description": "Fly a blue rescue helicopter, save stranded people, build a combo and beat your high score.",
-      "oneTouch": "One-touch controls",
+      "badge": "Live Browser Game",
+      "description": "Fly a blue rescue helicopter, save stranded people, build a combo, manage your fuel and beat your high score — directly in your browser.",
+      "instant": "Instant play",
+      "noAccount": "No account",
       "mobileReady": "Mobile ready",
       "playNow": "Play now"
     }
@@ -130,7 +114,7 @@
       "title": "My Story",
       "heading": "The Journey So Far",
       "content": "I'm a Mechanical Engineering student at Middle East Technical University (METU). My journey in engineering started early — studying aircraft maintenance in high school, working at TUSAŞ on projects like the F-35 and GÖKBEY Helicopter, and earning an associate degree in Aircraft Technology from Gazi University.",
-      "content2": "Along this journey, I also discovered a passion for software development. Using Flutter and AI-augmented workflows, I'm developing Focus Space — a gamified productivity app — under the Volitan Labs brand. My goal is to combine engineering precision with innovative software development."
+      "content2": "Along this journey, I discovered a passion for software development. Through Volitan Labs, I build focused web products and interactive experiments such as Blue Rescue, combining engineering precision with rapid, AI-augmented development."
     },
     "journey": {
       "label": "Journey",
@@ -166,7 +150,7 @@
         "title": "Volitan Labs",
         "subtitle": "Founder & Developer",
         "period": "2025 - Present",
-        "description": "Founded Volitan Labs to develop Focus Space and other applications using Flutter and AI-augmented workflows."
+        "description": "Founded Volitan Labs as an independent space for web products, interactive experiments, and engineering-led software."
       }
     },
     "achievements": {

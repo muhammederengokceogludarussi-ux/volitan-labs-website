@@ -42,20 +42,3 @@ export const personSchema = {
     name: "Middle East Technical University (METU)",
   },
 };
-
-export const focusSpaceSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Focus Space",
-  applicationCategory: "ProductivityApplication",
-  operatingSystem: "Android, iOS",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  author: {
-    "@type": "Organization",
-    name: "Volitan Labs",
-  },
-};

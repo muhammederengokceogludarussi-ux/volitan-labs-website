@@ -8,19 +8,19 @@ import { BackgroundGrid } from "@/components/ui/background-grid";
 
 const privacyContent = {
   en: {
-    lastUpdated: "January 15, 2025",
+    lastUpdated: "August 31, 2026",
     sections: [
       {
         title: "Introduction",
-        content: "Volitan Labs (\"we\", \"us\", or \"our\") operates the volitanlabs.dev website and Focus Space mobile application. This Privacy Policy explains how we collect, use, and protect your personal information.",
+        content: "Volitan Labs (\"we\", \"us\", or \"our\") operates the volitanlabs.dev website and its interactive web experiences. This Privacy Policy explains how we collect, use, and protect your personal information.",
       },
       {
         title: "Information We Collect",
-        content: "We collect minimal information necessary to provide our services:\n\n- Contact Form: When you submit our contact form, we collect your name, email address, and message content.\n- Analytics: We use Vercel Analytics which collects anonymous usage data without cookies.\n- App Data: Focus Space stores your productivity data locally on your device. No personal data is sent to our servers.",
+        content: "We collect minimal information necessary to provide our services:\n\n- Contact Form: When you submit our contact form, we collect your name, email address, and message content.\n- Analytics: We use Vercel Analytics which collects anonymous usage data without cookies.\n- Game Data: Blue Rescue stores high scores locally in your browser. This score data is not sent to our servers.",
       },
       {
         title: "How We Use Your Information",
-        content: "We use the information we collect to:\n\n- Respond to your inquiries submitted through the contact form\n- Improve our website and services based on anonymous analytics\n- Send you updates about our apps only if you explicitly opt in",
+        content: "We use the information we collect to:\n\n- Respond to your inquiries submitted through the contact form\n- Improve our website and interactive experiences based on anonymous analytics",
       },
       {
         title: "Data Storage and Security",
@@ -49,19 +49,19 @@ const privacyContent = {
     ],
   },
   tr: {
-    lastUpdated: "15 Ocak 2025",
+    lastUpdated: "31 Ağustos 2026",
     sections: [
       {
         title: "Giris",
-        content: "Volitan Labs (\"biz\") volitanlabs.dev web sitesini ve Focus Space mobil uygulamasını isletmektedir. Bu Gizlilik Politikası, kisisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu acıklar.",
+        content: "Volitan Labs (\"biz\") volitanlabs.dev web sitesini ve sitedeki etkileşimli web deneyimlerini işletmektedir. Bu Gizlilik Politikası, kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklar.",
       },
       {
         title: "Topladığımız Bilgiler",
-        content: "Hizmetlerimizi sunmak icin gereken minimum bilgileri topluyoruz:\n\n- Iletisim Formu: Iletisim formumuzu gonderdiginizde adınızı, e-posta adresinizi ve mesaj icerigini topluyoruz.\n- Analitik: Cerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.\n- Uygulama Verileri: Focus Space verimlilik verilerinizi cihazınızda yerel olarak saklar. Sunucularımıza kisisel veri gonderilmez.",
+        content: "Hizmetlerimizi sunmak için gereken minimum bilgileri topluyoruz:\n\n- İletişim Formu: İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğini topluyoruz.\n- Analitik: Çerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.\n- Oyun Verileri: Blue Rescue en yüksek skorları tarayıcınızda yerel olarak saklar. Bu skor verisi sunucularımıza gönderilmez.",
       },
       {
         title: "Bilgilerinizi Nasıl Kullanıyoruz",
-        content: "Topladığımız bilgileri su amaclarla kullanıyoruz:\n\n- Iletisim formu aracılığıyla gonderilen sorularınıza yanıt vermek\n- Anonim analitiklere dayanarak web sitemizi ve hizmetlerimizi gelistirmek\n- Yalnızca acıkca tercih ederseniz uygulamalarımız hakkında guncellemeler gondermek",
+        content: "Topladığımız bilgileri şu amaçlarla kullanıyoruz:\n\n- İletişim formu aracılığıyla gönderilen sorularınıza yanıt vermek\n- Anonim analitiklere dayanarak web sitemizi ve etkileşimli deneyimlerimizi geliştirmek",
       },
       {
         title: "Veri Depolama ve Guvenlik",

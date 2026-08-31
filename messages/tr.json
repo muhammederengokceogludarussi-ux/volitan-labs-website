@@ -11,34 +11,35 @@
     "hero": {
       "greeting": "Muhammed Eren Gökceoğlu",
       "name": "Volitan Labs",
-      "roles": "Makine Mühendisliği Öğrencisi|Uygulama Geliştirici|Havacılık Tutkunu|Yapay Zeka Destekli Geliştirici",
-      "description": "ODTÜ Makine Mühendisliği öğrencisi — havacılık geçmişinden gelen mühendislik disipliniyle Flutter'da uygulamalar geliştiriyor.",
-      "badge": "Uygulama Odaklı",
-      "title": "Hassas Mühendislik & Tasarım.",
+      "roles": "Makine Mühendisliği Öğrencisi|Web Geliştirici|Havacılık Tutkunu|Yapay Zeka Destekli Geliştirici",
+      "description": "ODTÜ Makine Mühendisliği öğrencisi — havacılık geçmişini ve mühendislik disiplinini odaklı dijital ürünlere ve eğlenceli web deneyimlerine dönüştürüyor.",
+      "badge": "Bağımsız Dijital Laboratuvar",
+      "title": "Fikirleri Deneyime Dönüştüren Mühendislik.",
       "cta_projects": "Projeleri Gör",
-      "cta_contact": "İletişime Geç"
+      "cta_contact": "İletişime Geç",
+      "proof": {
+        "browser": "Tarayıcıda oynanabilir",
+        "bilingual": "Türkçe ve İngilizce",
+        "engineering": "Mühendislik odaklı tasarım"
+      }
     },
     "featuredApp": {
-      "label": "Öne Çıkan Uygulama",
-      "tagline": "Ekran Süresini Azalt. Odaklanma Alışkanlığı Kazan.",
-      "description": "Ekran süresini azaltmanıza yardımcı dijital detoks uygulaması. Telefonunuzu bırakarak XP kazanın, gezegen terraform edin ve haftalık liglerde yarışın — telefonunuzu bırakmak hiç bu kadar ödüllendirici olmamıştı.",
-      "cta": "Daha Fazla",
+      "label": "Şimdi Oynanabilir",
+      "tagline": "Uç. Kurtar. Rekorunu geç.",
+      "description": "Kısa tarayıcı seansları için geliştirilmiş tek dokunuşlu helikopter oyunu. İvmeni ve yakıtını yönet, kurtarmaları zincirle, kalkanları topla ve dünya gündüzden geceye dönerken uçmaya devam et.",
+      "cta": "Blue Rescue Oyna",
       "features": {
-        "focus": {
-          "title": "Dijital Detoks",
-          "description": "Telefonunu bırak ve odaklanarak ödüller kazan."
+        "flight": {
+          "title": "Tek dokunuşlu uçuş",
+          "description": "Yükselmek için basılı tut, alçalmak için bırak."
         },
-        "gamification": {
-          "title": "Ödüllendirici İlerleme",
-          "description": "XP kazan, gezegen terraform et ve ekransız zamanını takip et."
+        "rescue": {
+          "title": "Yakıt ve kurtarma kombosu",
+          "description": "Puan zinciri kurarken kaynaklarını dengele."
         },
-        "pomodoro": {
-          "title": "Akıllı Zamanlayıcı",
-          "description": "Özelleştirilebilir çalışma ve mola aralıklarıyla Pomodoro tekniği."
-        },
-        "universe": {
-          "title": "Senin Evrenin",
-          "description": "Odaklanma yolculuğunu büyüyen kişisel bir evren olarak görselleştir."
+        "browser": {
+          "title": "Anında tarayıcı deneyimi",
+          "description": "İndirme ve hesap gerektirmez."
         }
       }
     },
@@ -47,9 +48,9 @@
       "title": "Beceriler & Uzmanlık",
       "subtitle": "Makine mühendisliği ve yazılım geliştirme arasında köprü — havacılık, İHA tasarımı ve uygulama geliştirme.",
       "items": {
-        "flutter": {
-          "title": "Flutter & Dart",
-          "description": "Güzel arayüzler ve akıcı animasyonlarla çoklu platform uygulamalar."
+        "web": {
+          "title": "Etkileşimli Web Deneyimleri",
+          "description": "Düşünülmüş arayüzler, hareket ve performansla duyarlı ürünler ve tarayıcı oyunları."
         },
         "ai": {
           "title": "Yapay Zeka Destekli Geliştirme",
@@ -79,8 +80,8 @@
           "description": "ODTÜ'de makine mühendisliği okumanın uygulama geliştirme yaklaşımımı nasıl etkilediği."
         },
         "post2": {
-          "title": "Focus Space'i İnşa Etmek: Bir Flutter Yolculuğu",
-          "description": "Flutter ve yapay zeka desteği ile oyunlaştırılmış verimlilik uygulaması oluşturmanın perde arkası."
+          "title": "Blue Rescue'ı Geliştirmek: Fizikten Oyuna",
+          "description": "Basit bir tek dokunuş fikrinin duyarlı bir helikopter kurtarma oyununa dönüşmesi."
         },
         "post3": {
           "title": "Yapay Zeka Destekli Geliştirme: İş Akışım",
@@ -95,30 +96,13 @@
     }
   },
   "apps": {
-    "title": "Uygulamalarımız",
-    "subtitle": "Özenle ve hassasiyetle geliştirilmiş dijital deneyimler.",
-    "downloadOn": "İndir",
-    "comingSoon": "Çok Yakında",
-    "beta": "Test Aşamasında",
-    "features": "Özellikler",
-    "featuresTitle": "Odaklanmak İçin İhtiyacınız Olan Her Şey",
-    "screenshots": "Ön İzleme",
-    "screenshotsTitle": "Nasıl Görünüyor",
-    "badge": "Uygulama Odaklı",
-    "viewFeatures": "Özellikleri Gör",
-    "featureHighlights": {
-      "item1": "Cam Efektli Arayüz",
-      "item2": "Akıllı Görev AI Sıralama (NOVA)",
-      "item3": "Mini Yıldız Haritası Oyunlaştırma"
-    },
-    "learnMore": "Daha Fazla",
-    "notifyMe": "Haber Ver",
-    "ctaTitle": "Odaklanmaya Hazır mısınız?",
-    "ctaSubtitle": "Focus Space çıktığında ilk siz haberdar olun. Erken erişim için kaydolun.",
+    "title": "Etkileşim Laboratuvarı",
+    "subtitle": "Şu anda deneyebileceğiniz küçük ve odaklı dijital işler.",
     "blueRescue": {
-      "badge": "Oynanabilir Tarayıcı Oyunu",
-      "description": "Mavi kurtarma helikopterini uçur, mahsur kalan insanları kurtar, kombo yap ve en yüksek skoru geç.",
-      "oneTouch": "Tek dokunuşlu kontrol",
+      "badge": "Canlı Tarayıcı Oyunu",
+      "description": "Mavi kurtarma helikopterini uçur, mahsur kalan insanları kurtar, kombo yap, yakıtını yönet ve en yüksek skoru geç — doğrudan tarayıcında.",
+      "instant": "Anında oyna",
+      "noAccount": "Hesap gerektirmez",
       "mobileReady": "Mobil uyumlu",
       "playNow": "Şimdi oyna"
     }
@@ -130,7 +114,7 @@
       "title": "Hikayem",
       "heading": "Şimdiye Kadarki Yolculuk",
       "content": "Orta Doğu Teknik Üniversitesi'nde (ODTÜ) Makine Mühendisliği öğrencisiyim. Mühendislik yolculuğum erken başladı — lisede uçak bakım teknisyenliği eğitimi, TUSAŞ'ta F-35 ve GÖKBEY Helikopter gibi projelerde çalışma ve Gazi Üniversitesi'nden Uçak Teknolojisi ön lisans derecesi.",
-      "content2": "Bu yolculuk sırasında yazılım geliştirmeye olan tutkumu da keşfettim. Flutter ve yapay zeka destekli iş akışları kullanarak Volitan Labs markası altında Focus Space — oyunlaştırılmış bir verimlilik uygulaması — geliştiriyorum. Hedefim mühendislik hassasiyetini yenilikçi yazılım geliştirme ile birleştirmek."
+      "content2": "Bu yolculuk sırasında yazılım geliştirmeye olan tutkumu keşfettim. Volitan Labs çatısı altında Blue Rescue gibi odaklı web ürünleri ve etkileşimli deneyimler geliştiriyor, mühendislik hassasiyetini hızlı ve yapay zeka destekli geliştirme süreçleriyle birleştiriyorum."
     },
     "journey": {
       "label": "Yolculuk",
@@ -166,7 +150,7 @@
         "title": "Volitan Labs",
         "subtitle": "Kurucu & Geliştirici",
         "period": "2025 - Günümüz",
-        "description": "Flutter ve yapay zeka destekli iş akışları ile Focus Space ve diğer uygulamaları geliştirmek için Volitan Labs'ı kurdu."
+        "description": "Web ürünleri, etkileşimli deneyler ve mühendislik odaklı yazılımlar için bağımsız bir alan olarak Volitan Labs'ı kurdu."
       }
     },
     "achievements": {

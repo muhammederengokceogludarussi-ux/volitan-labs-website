@@ -5,8 +5,8 @@ export const founder = {
     tr: "Makine Mühendisliği Öğrencisi & Uygulama Geliştirici",
   },
   bio: {
-    en: "Mechanical engineering student at METU with an aerospace background. Channeling that engineering mindset into building apps at Volitan Labs — currently developing Focus Space.",
-    tr: "ODTÜ'de makine mühendisliği öğrencisi. Havacılık geçmişinden gelen mühendislik bakış açısıyla Volitan Labs'ta uygulama geliştiriyor — şu an Focus Space üzerinde çalışıyor.",
+    en: "Mechanical engineering student at METU with an aerospace background. Building focused web products and interactive experiments through Volitan Labs.",
+    tr: "ODTÜ'de makine mühendisliği öğrencisi. Havacılık geçmişinden gelen mühendislik bakış açısıyla Volitan Labs çatısı altında web ürünleri ve etkileşimli deneyler geliştiriyor.",
   },
   photo: "/images/founder/photo.svg",
   social: {
