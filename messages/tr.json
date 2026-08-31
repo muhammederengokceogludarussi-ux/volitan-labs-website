@@ -114,7 +114,14 @@
     "learnMore": "Daha Fazla",
     "notifyMe": "Haber Ver",
     "ctaTitle": "Odaklanmaya Hazır mısınız?",
-    "ctaSubtitle": "Focus Space çıktığında ilk siz haberdar olun. Erken erişim için kaydolun."
+    "ctaSubtitle": "Focus Space çıktığında ilk siz haberdar olun. Erken erişim için kaydolun.",
+    "blueRescue": {
+      "badge": "Oynanabilir Tarayıcı Oyunu",
+      "description": "Mavi kurtarma helikopterini uçur, mahsur kalan insanları kurtar, kombo yap ve en yüksek skoru geç.",
+      "oneTouch": "Tek dokunuşlu kontrol",
+      "mobileReady": "Mobil uyumlu",
+      "playNow": "Şimdi oyna"
+    }
   },
   "about": {
     "title": "Hakkımda",

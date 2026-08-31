@@ -114,7 +114,14 @@
     "learnMore": "Learn More",
     "notifyMe": "Notify Me",
     "ctaTitle": "Ready to Focus?",
-    "ctaSubtitle": "Be the first to know when Focus Space launches. Sign up for early access."
+    "ctaSubtitle": "Be the first to know when Focus Space launches. Sign up for early access.",
+    "blueRescue": {
+      "badge": "Playable Browser Game",
+      "description": "Fly a blue rescue helicopter, save stranded people, build a combo and beat your high score.",
+      "oneTouch": "One-touch controls",
+      "mobileReady": "Mobile ready",
+      "playNow": "Play now"
+    }
   },
   "about": {
     "title": "About Me",

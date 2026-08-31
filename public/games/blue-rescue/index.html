@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b2038" />
+    <title>Blue Rescue</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-label="Blue Rescue oyunu">
+      <canvas id="game" width="390" height="844" aria-label="Oyun alanı"></canvas>
+
+      <section id="hud" class="hud is-hidden" aria-live="polite">
+        <div class="hud-stat">
+          <span>SKOR</span>
+          <strong id="scoreValue">0</strong>
+        </div>
+        <div id="comboBadge" class="combo-badge">KOMBO ×1</div>
+        <div class="hud-stat hud-stat--right">
+          <span>KURTARILAN</span>
+          <strong id="rescuedValue">0</strong>
+        </div>
+        <div class="hud-power" aria-label="Yakıt ve kalkan durumu">
+          <div class="fuel-meter">
+            <span>YAKIT</span>
+            <div class="fuel-track"><i id="fuelFill"></i></div>
+            <strong id="fuelValue">100</strong>
+          </div>
+          <div id="shieldStatus" class="shield-status">KALKAN HAZIR</div>
+        </div>
+      </section>
+
+      <button id="soundButton" class="sound-button" type="button" aria-label="Sesi kapat">SES AÇIK</button>
+
+      <section id="menu" class="screen-card">
+        <div class="eyebrow">TEK DOKUNUŞLU KURTARMA</div>
+        <h1>BLUE<br /><span>RESCUE</span></h1>
+        <p class="lead">Uç. Yaklaş. Kurtar.</p>
+        <div class="instructions">
+          <div class="control-icon" aria-hidden="true">↑</div>
+          <p><strong>Basılı tut:</strong> yüksel<br /><strong>Bırak:</strong> alçal</p>
+        </div>
+        <button id="startButton" class="primary-button" type="button">GÖREVE BAŞLA</button>
+        <p class="best-line">EN İYİ SKOR <strong id="menuBest">0</strong></p>
+      </section>
+
+      <section id="gameOver" class="screen-card is-hidden" aria-labelledby="reportTitle">
+        <div class="eyebrow">GÖREV TAMAMLANDI</div>
+        <h2 id="reportTitle">GÖREV RAPORU</h2>
+        <p id="newBest" class="new-best is-hidden">YENİ REKOR!</p>
+        <dl class="report-grid">
+          <div><dt>Skor</dt><dd id="finalScore">0</dd></div>
+          <div><dt>Kurtarılan</dt><dd id="finalRescued">0</dd></div>
+          <div><dt>En iyi kombo</dt><dd id="finalCombo">×0</dd></div>
+          <div><dt>Mesafe</dt><dd id="finalDistance">0 m</dd></div>
+        </dl>
+        <button id="retryButton" class="primary-button" type="button">TEKRAR DENE</button>
+        <button id="menuButton" class="secondary-button" type="button">ANA MENÜ</button>
+      </section>
+
+      <div id="hint" class="game-hint is-hidden">BASILI TUTARAK YÜKSEL</div>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -8,6 +8,7 @@ const staticPages = [
   "/about",
   "/projects",
   "/apps",
+  "/blue-rescue",
   "/contact",
   "/privacy",
 ];
