@@ -5,6 +5,7 @@
   const H = 844;
   const GROUND_Y = 806;
   const THRUST_VISUAL_TAIL = 0.32;
+  const SHIELD_DURATION = 9;
   const STORAGE_KEY = "blue-rescue-best";
   const core = window.BlueRescueCore;
 
@@ -53,6 +54,7 @@
     pickupIndex: 0,
     fuel: 100,
     shield: false,
+    shieldTimer: 0,
     invulnerable: 0,
     shake: 0,
     flash: 0,
@@ -60,6 +62,8 @@
     phase: 0,
     phaseNoticeTimer: 0,
     lowFuelAlerted: false,
+    windForce: 0,
+    fogExposure: 0,
   };
 
   const player = {
@@ -217,12 +221,15 @@
     state.pickupIndex = 0;
     state.fuel = 100;
     state.shield = false;
+    state.shieldTimer = 0;
     state.invulnerable = 0;
     state.shake = 0;
     state.flash = 0;
     state.phase = 0;
     state.phaseNoticeTimer = 0;
     state.lowFuelAlerted = false;
+    state.windForce = 0;
+    state.fogExposure = 0;
     state.thrusting = false;
     state.thrustVisual = 0;
     player.y = 365;
@@ -318,9 +325,9 @@
 
   function spawnEvent() {
     const x = W + 100;
-    const phase = state.eventIndex % 4;
+    const phase = state.eventIndex % 6;
 
-    if (phase === 0 || phase === 2) {
+    if (phase === 0 || phase === 3) {
       const y = phase === 0 ? random(570, 690) : random(330, 570);
       rescues.push({ x, y, progress: 0, rescued: false, missed: false, pulse: random(0, Math.PI * 2), animation: 0 });
       state.spawnDistance = random(300, 345);
@@ -330,10 +337,30 @@
       const center = random(250 + gap / 2, GROUND_Y - 75 - gap / 2);
       obstacles.push({ type: "cliff", x, width: 76, top: center - gap / 2, bottom: center + gap / 2 });
       state.spawnDistance = random(330, 390);
-    } else {
-      if (state.playTime > 18) {
+    } else if (phase === 2) {
+      const y = random(190, 545);
+      obstacles.push({
+        type: "wind",
+        x,
+        y,
+        width: random(175, 215),
+        height: random(170, 220),
+        direction: state.eventIndex % 2 === 0 ? -1 : 1,
+        phase: random(0, Math.PI * 2),
+        entered: false,
+      });
+      state.spawnDistance = random(315, 370);
+    } else if (phase === 4) {
+      if (state.playTime >= 14) {
         const y = random(220, 620);
-        obstacles.push({ type: "birds", x, y, phase: random(0, Math.PI * 2) });
+        const difficulty = core.difficultyAt(state.playTime).progress;
+        obstacles.push({
+          type: "birds",
+          x,
+          y,
+          phase: random(0, Math.PI * 2),
+          flightSpeed: 24 + difficulty * 34,
+        });
         state.spawnDistance = random(300, 360);
       } else {
         const gap = 275;
@@ -341,6 +368,21 @@
         obstacles.push({ type: "cliff", x, width: 70, top: center - gap / 2, bottom: center + gap / 2 });
         state.spawnDistance = random(345, 390);
       }
+    } else if (state.playTime > 24) {
+      obstacles.push({
+        type: "fog",
+        x,
+        y: random(250, 545),
+        width: random(210, 255),
+        height: random(185, 240),
+        phase: random(0, Math.PI * 2),
+        entered: false,
+      });
+      state.spawnDistance = random(330, 385);
+    } else {
+      const y = random(430, 650);
+      rescues.push({ x, y, progress: 0, rescued: false, missed: false, pulse: random(0, Math.PI * 2), animation: 0 });
+      state.spawnDistance = random(305, 350);
     }
     state.eventIndex += 1;
   }
@@ -377,6 +419,14 @@
     state.phaseNoticeTimer = Math.max(0, state.phaseNoticeTimer - dt);
     if (state.phaseNoticeTimer <= 0) show(ui.phaseNotice, false);
     state.invulnerable = Math.max(0, state.invulnerable - dt);
+    if (state.shield) {
+      state.shieldTimer = Math.max(0, state.shieldTimer - dt);
+      if (state.shieldTimer <= 0) {
+        state.shield = false;
+        popups.push({ x: player.x, y: player.y - 44, text: "KALKAN SONA ERDİ", life: 1.05 });
+        tone(190, 0.12, "triangle", 0.025);
+      }
+    }
     state.fuel = Math.max(0, state.fuel - dt * (state.thrusting ? 1.05 : 0.72));
     state.pickupTimer -= dt;
     if (state.pickupTimer <= 0) spawnPickup();
@@ -404,9 +454,13 @@
     updateRotorSound();
 
     for (const obstacle of obstacles) {
-      obstacle.x -= state.speed * dt;
+      const obstacleSpeed = obstacle.type === "birds" ? state.speed + (obstacle.flightSpeed || 0) : state.speed;
+      obstacle.x -= obstacleSpeed * dt;
       if (obstacle.type === "birds") obstacle.phase += dt * 5;
+      else if (obstacle.type === "wind") obstacle.phase += dt * 4.2;
+      else if (obstacle.type === "fog") obstacle.phase += dt * 0.8;
     }
+    updateSoftHazards(dt);
     for (const rescue of rescues) {
       rescue.x -= state.speed * dt;
       rescue.pulse += dt * 3;
@@ -441,6 +495,46 @@
     updateHud();
   }
 
+  function updateSoftHazards(dt) {
+    state.windForce = 0;
+    state.fogExposure = 0;
+
+    for (const obstacle of obstacles) {
+      if (obstacle.type === "wind") {
+        const zone = { x: obstacle.x, y: obstacle.y, w: obstacle.width, h: obstacle.height };
+        const envelope = core.softZoneEnvelope(player.x, player.y, zone, 38);
+        if (envelope <= 0) continue;
+
+        const gust = obstacle.direction * (145 + Math.sin(obstacle.phase) * 58) * envelope;
+        state.windForce += gust;
+        player.vy = clamp(player.vy + gust * dt, -290, 330);
+        player.tilt += obstacle.direction * envelope * 0.008;
+        state.shake = Math.max(state.shake, envelope * 0.055);
+
+        if (!obstacle.entered && envelope > 0.18) {
+          obstacle.entered = true;
+          popups.push({
+            x: player.x + 18,
+            y: player.y - 48,
+            text: obstacle.direction < 0 ? "YÜKSELEN RÜZGÂR ↑" : "ALÇALAN RÜZGÂR ↓",
+            life: 1.15,
+          });
+          tone(235, 0.1, "sine", 0.025);
+          haptic(14);
+        }
+      } else if (obstacle.type === "fog") {
+        const zone = { x: obstacle.x, y: obstacle.y, w: obstacle.width, h: obstacle.height };
+        const exposure = core.softZoneEnvelope(player.x, player.y, zone, 48);
+        state.fogExposure = Math.max(state.fogExposure, exposure);
+        if (!obstacle.entered && exposure > 0.16) {
+          obstacle.entered = true;
+          popups.push({ x: player.x + 18, y: player.y - 48, text: "YOĞUN SİS • GÖRÜŞ AZALDI", life: 1.2 });
+          tone(180, 0.14, "sine", 0.018);
+        }
+      }
+    }
+  }
+
   function collectPickup(pickup) {
     pickup.collected = true;
     pickupTone();
@@ -450,7 +544,8 @@
       popups.push({ x: pickup.x, y: pickup.y - 34, text: "YAKIT +36", life: 1.05 });
     } else {
       state.shield = true;
-      popups.push({ x: pickup.x, y: pickup.y - 34, text: "KALKAN HAZIR", life: 1.05 });
+      state.shieldTimer = SHIELD_DURATION;
+      popups.push({ x: pickup.x, y: pickup.y - 34, text: `KALKAN ${SHIELD_DURATION} SN`, life: 1.05 });
     }
     haptic(18);
 
@@ -470,6 +565,7 @@
 
   function absorbImpact() {
     state.shield = false;
+    state.shieldTimer = 0;
     state.invulnerable = 1.35;
     state.flash = 0.16;
     state.shake = 0.3;
@@ -558,6 +654,7 @@
     ui.fuelFill.style.transform = `scaleX(${state.fuel / 100})`;
     ui.fuelFill.classList.toggle("is-low", state.fuel < 25);
     ui.shieldStatus.classList.toggle("is-active", state.shield);
+    ui.shieldStatus.textContent = state.shield ? `KALKAN ${Math.ceil(state.shieldTimer)} SN` : "KALKAN YOK";
     show(ui.fuelWarning, state.mode === "playing" && core.isFuelCritical(state.fuel));
   }
 
@@ -573,7 +670,7 @@
         const topRect = { x: obstacle.x + 5, y: 0, w: obstacle.width - 10, h: obstacle.top };
         const bottomRect = { x: obstacle.x + 5, y: obstacle.bottom, w: obstacle.width - 10, h: GROUND_Y - obstacle.bottom };
         if (core.circleRectCollision(px, py, radius, topRect) || core.circleRectCollision(px, py, radius, bottomRect)) return true;
-      } else {
+      } else if (obstacle.type === "birds") {
         const wave = Math.sin(obstacle.phase) * 14;
         const birdPositions = [[0, 0], [30, -15], [58, 8]];
         for (const [ox, oy] of birdPositions) {
@@ -597,6 +694,7 @@
     if (state.shake > 0) ctx.translate(random(-5, 5) * state.shake * 2, random(-5, 5) * state.shake * 2);
     drawBackground();
     drawWorld();
+    drawFogBanks();
     drawFog();
     drawParticles();
     drawPlayer();
@@ -721,7 +819,8 @@
     for (const pickup of pickups) drawPickup(pickup);
     for (const obstacle of obstacles) {
       if (obstacle.type === "cliff") drawCliff(obstacle);
-      else drawBirds(obstacle);
+      else if (obstacle.type === "birds") drawBirds(obstacle);
+      else if (obstacle.type === "wind") drawWindCorridor(obstacle);
     }
   }
 
@@ -774,6 +873,78 @@
       ctx.quadraticCurveTo(-4, -5, 0, 1);
       ctx.quadraticCurveTo(5, -5, 11, wing);
       ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  function drawWindCorridor(obstacle) {
+    const { x, y, width, height, direction, phase } = obstacle;
+    ctx.save();
+    const gradient = ctx.createLinearGradient(x, y, x + width, y);
+    gradient.addColorStop(0, "rgba(117, 222, 239, 0)");
+    gradient.addColorStop(0.32, "rgba(117, 222, 239, 0.09)");
+    gradient.addColorStop(0.68, "rgba(117, 222, 239, 0.13)");
+    gradient.addColorStop(1, "rgba(117, 222, 239, 0)");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(x, y, width, height);
+
+    ctx.lineCap = "round";
+    for (let i = 0; i < 7; i += 1) {
+      const progress = (i / 7 + state.time * 0.46) % 1;
+      const streamX = x + progress * width;
+      const baseY = y + 20 + (i % 5) * (height - 40) / 4;
+      const drift = Math.sin(phase + i * 1.7) * 13;
+      const endY = baseY + direction * (24 + (i % 3) * 9) + drift;
+      const alpha = Math.sin(progress * Math.PI) * 0.5;
+      ctx.strokeStyle = `rgba(220, 250, 255, ${alpha})`;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(streamX - 20, baseY);
+      ctx.bezierCurveTo(streamX - 2, baseY - direction * 8, streamX + 13, endY - direction * 9, streamX + 28, endY);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(streamX + 28, endY);
+      ctx.lineTo(streamX + 20, endY - direction * 10);
+      ctx.moveTo(streamX + 28, endY);
+      ctx.lineTo(streamX + 34, endY - direction * 11);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = "rgba(230, 252, 255, 0.76)";
+    ctx.font = "800 10px system-ui";
+    ctx.textAlign = "center";
+    ctx.fillText(direction < 0 ? "YÜKSELEN HAVA" : "ALÇALAN HAVA", x + width / 2, y + 16);
+    ctx.restore();
+  }
+
+  function drawFogBanks() {
+    for (const obstacle of obstacles) {
+      if (obstacle.type !== "fog") continue;
+      const { x, y, width, height, phase } = obstacle;
+      ctx.save();
+      const haze = ctx.createRadialGradient(
+        x + width * 0.48,
+        y + height * 0.48,
+        12,
+        x + width * 0.5,
+        y + height * 0.5,
+        width * 0.62,
+      );
+      haze.addColorStop(0, `rgba(232, 247, 249, ${0.58 + state.fogExposure * 0.14})`);
+      haze.addColorStop(0.62, "rgba(222, 242, 246, 0.38)");
+      haze.addColorStop(1, "rgba(222, 242, 246, 0)");
+      ctx.fillStyle = haze;
+      ctx.fillRect(x - 28, y - 24, width + 56, height + 48);
+
+      ctx.fillStyle = "rgba(248, 254, 255, 0.3)";
+      for (let i = 0; i < 5; i += 1) {
+        const fogX = x + ((i * 53 + state.time * 11) % (width + 70)) - 35;
+        const fogY = y + height * (0.2 + (i % 3) * 0.27) + Math.sin(phase + i) * 9;
+        ctx.beginPath();
+        ctx.ellipse(fogX, fogY, 68, 19, 0.04 * (i - 2), 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
     }
   }
@@ -912,10 +1083,14 @@
 
     if (state.shield || state.invulnerable > 0) {
       const pulse = 1 + Math.sin(state.time * 8) * 0.035;
+      const shieldRatio = state.shield ? clamp(state.shieldTimer / SHIELD_DURATION, 0, 1) : 1;
+      const expiryBlink = state.shield && state.shieldTimer < 3 ? 0.55 + Math.sin(state.time * 18) * 0.28 : 1;
       ctx.save();
       ctx.scale(pulse, pulse);
-      ctx.strokeStyle = state.invulnerable > 0 ? "rgba(255,255,255,0.72)" : "rgba(105, 220, 255, 0.76)";
-      ctx.fillStyle = "rgba(105, 220, 255, 0.09)";
+      ctx.strokeStyle = state.invulnerable > 0
+        ? "rgba(255,255,255,0.72)"
+        : `rgba(105, 220, 255, ${(0.38 + shieldRatio * 0.4) * expiryBlink})`;
+      ctx.fillStyle = `rgba(105, 220, 255, ${0.045 + shieldRatio * 0.055})`;
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.ellipse(-10, 0, 62, 37, 0, 0, Math.PI * 2);
@@ -926,90 +1101,172 @@
 
     drawRotorWash();
 
-    ctx.strokeStyle = "#173347";
-    ctx.lineWidth = 3;
+    // Shadow keeps the compact silhouette readable against bright clouds.
+    ctx.fillStyle = "rgba(13, 42, 57, 0.16)";
+    ctx.beginPath();
+    ctx.ellipse(-6, 22, 43, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Tail boom and stabilizers sit behind the cabin.
+    const tailGradient = ctx.createLinearGradient(-61, -14, -20, 8);
+    tailGradient.addColorStop(0, "#174e7e");
+    tailGradient.addColorStop(1, "#2f88c8");
+    ctx.fillStyle = tailGradient;
+    ctx.beginPath();
+    ctx.moveTo(-21, -7);
+    ctx.lineTo(-57, -18);
+    ctx.lineTo(-61, -11);
+    ctx.lineTo(-27, 8);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#d8f3f7";
+    ctx.beginPath();
+    ctx.moveTo(-52, -16);
+    ctx.lineTo(-60, -30);
+    ctx.lineTo(-47, -18);
+    ctx.closePath();
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(-50, -13);
+    ctx.lineTo(-63, -6);
+    ctx.lineTo(-48, -8);
+    ctx.closePath();
+    ctx.fill();
+
+    // Fuselage uses a subtle gradient and a pale rescue stripe.
+    const bodyGradient = ctx.createLinearGradient(-24, -15, 30, 17);
+    bodyGradient.addColorStop(0, "#195b95");
+    bodyGradient.addColorStop(0.55, "#247fbe");
+    bodyGradient.addColorStop(1, "#45a1d1");
+    ctx.fillStyle = bodyGradient;
+    ctx.strokeStyle = "#123f63";
+    ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    ctx.moveTo(-13, -14);
+    ctx.quadraticCurveTo(14, -18, 29, -3);
+    ctx.quadraticCurveTo(35, 4, 25, 13);
+    ctx.quadraticCurveTo(12, 21, -9, 17);
+    ctx.quadraticCurveTo(-28, 14, -31, 3);
+    ctx.quadraticCurveTo(-30, -8, -13, -14);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(225, 247, 250, 0.88)";
+    ctx.beginPath();
+    ctx.moveTo(-28, 4);
+    ctx.quadraticCurveTo(-2, 9, 28, 3);
+    ctx.lineTo(27, 8);
+    ctx.quadraticCurveTo(0, 14, -24, 10);
+    ctx.closePath();
+    ctx.fill();
+
+    // Split cockpit glass gives the nose more depth without using a branded asset.
+    ctx.fillStyle = "#102f48";
+    ctx.beginPath();
+    ctx.moveTo(5, -12);
+    ctx.quadraticCurveTo(20, -10, 28, -2);
+    ctx.quadraticCurveTo(30, 1, 27, 3);
+    ctx.lineTo(7, 1);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = "rgba(210, 244, 250, 0.72)";
+    ctx.lineWidth = 1.3;
+    ctx.beginPath();
+    ctx.moveTo(14, -10);
+    ctx.lineTo(13, 1);
+    ctx.stroke();
+    ctx.fillStyle = "rgba(184, 233, 245, 0.48)";
+    ctx.beginPath();
+    ctx.moveTo(8, -10);
+    ctx.lineTo(13, -9);
+    ctx.lineTo(8, -1);
+    ctx.closePath();
+    ctx.fill();
+
+    // Cabin door, rescue badge, intake and anti-collision beacon.
+    ctx.strokeStyle = "rgba(13, 54, 82, 0.58)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.roundRect(-11, -10, 18, 23, 4);
+    ctx.stroke();
+    ctx.fillStyle = "#f4a340";
+    ctx.beginPath();
+    ctx.arc(-18, 1, 5.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#fff5d6";
+    ctx.fillRect(-21, -0.5, 6, 3);
+    ctx.fillRect(-19.5, -2, 3, 6);
+    ctx.fillStyle = "#153f5f";
+    ctx.fillRect(-3, -8, 6, 2);
+    ctx.fillStyle = "#ff6b48";
+    ctx.beginPath();
+    ctx.arc(-8, -15, 2.3, Math.PI, 0);
+    ctx.fill();
+
+    // Twin landing skids feel more structural than the former single line.
+    ctx.strokeStyle = "#153347";
+    ctx.lineWidth = 2.6;
     ctx.lineCap = "round";
     ctx.beginPath();
-    ctx.moveTo(-13, 15);
-    ctx.lineTo(-9, 21);
-    ctx.lineTo(15, 21);
-    ctx.lineTo(20, 16);
+    ctx.moveTo(-15, 15);
+    ctx.lineTo(-12, 22);
+    ctx.moveTo(14, 15);
+    ctx.lineTo(17, 21);
+    ctx.moveTo(-22, 22);
+    ctx.quadraticCurveTo(-1, 25, 25, 21);
     ctx.stroke();
 
-    ctx.fillStyle = "#1f6eaa";
+    // Tail rotor guard and three-blade rotor.
+    ctx.strokeStyle = "#14364c";
+    ctx.lineWidth = 2.4;
     ctx.beginPath();
-    ctx.moveTo(-12, -11);
-    ctx.quadraticCurveTo(14, -16, 30, 0);
-    ctx.quadraticCurveTo(23, 17, -7, 16);
-    ctx.quadraticCurveTo(-27, 12, -27, 1);
-    ctx.quadraticCurveTo(-25, -8, -12, -11);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = "#c7eff6";
-    ctx.beginPath();
-    ctx.moveTo(5, -10);
-    ctx.quadraticCurveTo(20, -8, 27, 0);
-    ctx.lineTo(7, 2);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#173a54";
-    ctx.beginPath();
-    ctx.moveTo(9, -8);
-    ctx.quadraticCurveTo(20, -6, 25, -1);
-    ctx.lineTo(10, 0);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = "#2b79b6";
-    ctx.beginPath();
-    ctx.moveTo(-24, -2);
-    ctx.lineTo(-53, -12);
-    ctx.lineTo(-58, -7);
-    ctx.lineTo(-29, 7);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#d9f3f7";
-    ctx.fillRect(-54, -12, 14, 4);
-
-    ctx.strokeStyle = "#173347";
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.arc(-55, -8, 9, 0, Math.PI * 2);
+    ctx.arc(-58, -14, 10, 0, Math.PI * 2);
     ctx.stroke();
     ctx.save();
-    ctx.translate(-55, -8);
-    ctx.rotate(player.rotor * 1.5);
+    ctx.translate(-58, -14);
+    ctx.rotate(player.rotor * 1.7);
+    ctx.fillStyle = "#d7f1f5";
+    for (let i = 0; i < 3; i += 1) {
+      ctx.rotate((Math.PI * 2) / 3);
+      ctx.beginPath();
+      ctx.moveTo(0, -1.4);
+      ctx.quadraticCurveTo(6, -2.5, 9, 0);
+      ctx.quadraticCurveTo(5, 2, 0, 1.4);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.fillStyle = "#f4a340";
     ctx.beginPath();
-    ctx.moveTo(-10, 0);
-    ctx.lineTo(10, 0);
-    ctx.moveTo(0, -10);
-    ctx.lineTo(0, 10);
-    ctx.stroke();
+    ctx.arc(0, 0, 2.6, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
 
-    ctx.fillStyle = "#e6f6f8";
-    ctx.fillRect(-9, -14, 4, 7);
-    ctx.strokeStyle = "#15374c";
-    ctx.lineWidth = 3;
+    // Engine housing, mast and an elliptical side-view rotor disk.
+    ctx.fillStyle = "#e1f4f6";
     ctx.beginPath();
-    ctx.moveTo(-8, -15);
-    ctx.lineTo(-8, -20);
+    ctx.roundRect(-16, -18, 18, 6, 3);
+    ctx.fill();
+    ctx.strokeStyle = "#14364c";
+    ctx.lineWidth = 2.6;
+    ctx.beginPath();
+    ctx.moveTo(-8, -18);
+    ctx.lineTo(-8, -23);
     ctx.stroke();
     ctx.save();
-    ctx.translate(-8, -20);
+    ctx.translate(-8, -23);
     ctx.strokeStyle = "#15374c";
     const rotorPower = state.mode === "playing" ? clamp(state.thrustVisual / THRUST_VISUAL_TAIL, 0, 1) : 0;
     ctx.fillStyle = `rgba(205, 238, 246, ${0.16 + rotorPower * 0.13})`;
     ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.ellipse(0, 0, 42 + rotorPower * 7, 5 + rotorPower * 1.5, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, 0, 49 + rotorPower * 8, 4.3 + rotorPower * 1.8, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
-    const rotorX = Math.cos(player.rotor) * 40;
-    const rotorY = Math.sin(player.rotor) * 4.5;
-    const rotorX2 = Math.cos(player.rotor + Math.PI / 2) * 40;
-    const rotorY2 = Math.sin(player.rotor + Math.PI / 2) * 4.5;
+    const rotorX = Math.cos(player.rotor) * 49;
+    const rotorY = Math.sin(player.rotor) * 4.2;
+    const rotorX2 = Math.cos(player.rotor + Math.PI / 2) * 49;
+    const rotorY2 = Math.sin(player.rotor + Math.PI / 2) * 4.2;
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(-rotorX, -rotorY);
@@ -1017,6 +1274,10 @@
     ctx.moveTo(-rotorX2, -rotorY2);
     ctx.lineTo(rotorX2, rotorY2);
     ctx.stroke();
+    ctx.fillStyle = "#f4a340";
+    ctx.beginPath();
+    ctx.arc(0, 0, 3, 0, Math.PI * 2);
+    ctx.fill();
     ctx.restore();
     ctx.restore();
   }

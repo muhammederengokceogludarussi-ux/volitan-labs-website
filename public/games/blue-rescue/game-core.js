@@ -22,15 +22,15 @@
   function difficultyAt(playTime) {
     const safeTime = Math.max(0, playTime);
     return {
-      progress: clamp(safeTime / 70, 0, 1),
-      speed: Math.min(202, 138 + safeTime * 0.78),
+      progress: clamp(safeTime / 52, 0, 1),
+      speed: Math.min(205, 138 + safeTime * 1.15),
     };
   }
 
   function phaseAt(playTime) {
     const safeTime = Math.max(0, playTime);
-    if (safeTime >= 45) return { index: 2, label: "ZOR BÖLGE" };
-    if (safeTime >= 20) return { index: 1, label: "TEMPO ARTIYOR" };
+    if (safeTime >= 32) return { index: 2, label: "ZOR BÖLGE" };
+    if (safeTime >= 14) return { index: 1, label: "TEMPO ARTIYOR" };
     return { index: 0, label: "SAKİN BAŞLANGIÇ" };
   }
 
@@ -55,6 +55,15 @@
     return dx * dx + dy * dy < radius * radius;
   }
 
+  function softZoneEnvelope(px, py, zone, feather = 36) {
+    const safeFeather = Math.max(1, feather);
+    const left = clamp((px - zone.x) / safeFeather, 0, 1);
+    const right = clamp((zone.x + zone.w - px) / safeFeather, 0, 1);
+    const top = clamp((py - zone.y) / safeFeather, 0, 1);
+    const bottom = clamp((zone.y + zone.h - py) / safeFeather, 0, 1);
+    return Math.min(left, right, top, bottom);
+  }
+
   return {
     advanceRescue,
     calculateScore,
@@ -64,5 +73,6 @@
     isRescueMissed,
     isFuelCritical,
     phaseAt,
+    softZoneEnvelope,
   };
 });
