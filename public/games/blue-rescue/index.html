@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b2038" />
     <title>Blue Rescue</title>
-    <link rel="stylesheet" href="style.css?v=6" />
+    <link rel="stylesheet" href="style.css?v=7" />
   </head>
   <body>
     <main class="game-shell" aria-label="Blue Rescue oyunu">
@@ -16,7 +16,10 @@
           <span>SKOR</span>
           <strong id="scoreValue">0</strong>
         </div>
-        <div id="comboBadge" class="combo-badge">KOMBO ×1</div>
+        <div id="comboBadge" class="combo-badge" aria-label="Kombo çarpanı 1">
+          <span>KOMBO</span>
+          <strong id="comboValue">×1</strong>
+        </div>
         <div class="hud-stat hud-stat--right">
           <span>KURTARILAN</span>
           <strong id="rescuedValue">0</strong>
@@ -72,7 +75,7 @@
       <div id="hint" class="game-hint is-hidden">BASILI TUTARAK YÜKSEL</div>
     </main>
 
-    <script src="game-core.js?v=6"></script>
-    <script src="game.js?v=6"></script>
+    <script src="game-core.js?v=7"></script>
+    <script src="game.js?v=7"></script>
   </body>
 </html>

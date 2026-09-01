@@ -22,16 +22,22 @@
   function difficultyAt(playTime) {
     const safeTime = Math.max(0, playTime);
     return {
-      progress: clamp(safeTime / 52, 0, 1),
-      speed: Math.min(205, 138 + safeTime * 1.15),
+      progress: clamp(safeTime / 90, 0, 1),
+      speed: Math.min(292, 138 + safeTime * 1.38),
     };
   }
 
   function phaseAt(playTime) {
     const safeTime = Math.max(0, playTime);
-    if (safeTime >= 32) return { index: 2, label: "ZOR BÖLGE" };
-    if (safeTime >= 14) return { index: 1, label: "TEMPO ARTIYOR" };
-    return { index: 0, label: "SAKİN BAŞLANGIÇ" };
+    if (safeTime >= 58) return { index: 3, label: "KRİTİK UÇUŞ" };
+    if (safeTime >= 30) return { index: 2, label: "VOLKANİK HAT" };
+    if (safeTime >= 12) return { index: 1, label: "TEMPO ARTIYOR" };
+    return { index: 0, label: "YEŞİL VADİ" };
+  }
+
+  function rescueHoldTimeAt(speed, baseTime = 0.62, baseSpeed = 138) {
+    const safeSpeed = Math.max(baseSpeed, speed || baseSpeed);
+    return clamp(baseTime * (baseSpeed / safeSpeed), 0.32, baseTime);
   }
 
   function isFuelCritical(fuel) {
@@ -73,6 +79,7 @@
     isRescueMissed,
     isFuelCritical,
     phaseAt,
+    rescueHoldTimeAt,
     softZoneEnvelope,
   };
 });
