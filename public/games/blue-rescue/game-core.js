@@ -27,6 +27,17 @@
     };
   }
 
+  function phaseAt(playTime) {
+    const safeTime = Math.max(0, playTime);
+    if (safeTime >= 45) return { index: 2, label: "ZOR BÖLGE" };
+    if (safeTime >= 20) return { index: 1, label: "TEMPO ARTIYOR" };
+    return { index: 0, label: "SAKİN BAŞLANGIÇ" };
+  }
+
+  function isFuelCritical(fuel) {
+    return fuel > 0 && fuel < 25;
+  }
+
   function advanceRescue(progress, withinZone, deltaTime, holdTime = 0.62) {
     const direction = withinZone ? 1 : -1.45;
     return clamp(progress + Math.max(0, deltaTime) * direction, 0, holdTime);
@@ -51,5 +62,7 @@
     clamp,
     difficultyAt,
     isRescueMissed,
+    isFuelCritical,
+    phaseAt,
   };
 });

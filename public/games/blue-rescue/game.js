@@ -29,6 +29,8 @@
     sound: document.querySelector("#soundButton"),
     share: document.querySelector("#shareButton"),
     shareStatus: document.querySelector("#shareStatus"),
+    phaseNotice: document.querySelector("#phaseNotice"),
+    fuelWarning: document.querySelector("#fuelWarning"),
   };
 
   const state = {
@@ -53,6 +55,9 @@
     shake: 0,
     flash: 0,
     muted: false,
+    phase: 0,
+    phaseNoticeTimer: 0,
+    lowFuelAlerted: false,
   };
 
   const player = {
@@ -142,6 +147,19 @@
     tone(180, 0.16, "triangle", 0.025, 0.08);
   }
 
+  function warningTone() {
+    tone(330, 0.1, "square", 0.025);
+    tone(330, 0.1, "square", 0.025, 0.16);
+  }
+
+  function haptic(pattern) {
+    try {
+      navigator.vibrate?.(pattern);
+    } catch {
+      // Haptics are an optional enhancement and may be unavailable.
+    }
+  }
+
   function startRotorSound() {
     if (state.muted || rotorOscillator) return;
 
@@ -200,6 +218,9 @@
     state.invulnerable = 0;
     state.shake = 0;
     state.flash = 0;
+    state.phase = 0;
+    state.phaseNoticeTimer = 0;
+    state.lowFuelAlerted = false;
     state.thrusting = false;
     player.y = 365;
     player.vy = 0;
@@ -214,6 +235,8 @@
     show(ui.gameOver, false);
     show(ui.hud, true);
     show(ui.hint, true);
+    show(ui.phaseNotice, false);
+    show(ui.fuelWarning, false);
     ui.shareStatus.textContent = "";
     updateHud();
     startRotorSound();
@@ -232,6 +255,8 @@
     show(ui.gameOver, false);
     show(ui.hud, false);
     show(ui.hint, false);
+    show(ui.phaseNotice, false);
+    show(ui.fuelWarning, false);
     stopRotorSound();
   }
 
@@ -242,6 +267,7 @@
     state.shake = 0.42;
     state.flash = 0.22;
     crashTone();
+    haptic([80, 40, 120]);
     stopRotorSound();
 
     for (let i = 0; i < 20; i += 1) {
@@ -343,11 +369,22 @@
     }
 
     state.playTime += dt;
+    state.phaseNoticeTimer = Math.max(0, state.phaseNoticeTimer - dt);
+    if (state.phaseNoticeTimer <= 0) show(ui.phaseNotice, false);
     state.invulnerable = Math.max(0, state.invulnerable - dt);
     state.fuel = Math.max(0, state.fuel - dt * (state.thrusting ? 1.05 : 0.72));
     state.pickupTimer -= dt;
     if (state.pickupTimer <= 0) spawnPickup();
-    state.speed = core.difficultyAt(state.playTime).speed;
+    const difficulty = core.difficultyAt(state.playTime);
+    state.speed = difficulty.speed;
+    const phase = core.phaseAt(state.playTime);
+    if (phase.index > state.phase) {
+      state.phase = phase.index;
+      state.phaseNoticeTimer = 2.2;
+      ui.phaseNotice.textContent = phase.label;
+      show(ui.phaseNotice, true);
+      tone(520 + phase.index * 90, 0.12, "triangle", 0.035);
+    }
     state.distance += state.speed * dt;
     state.spawnDistance -= state.speed * dt;
     if (state.spawnDistance <= 0) spawnEvent();
@@ -391,6 +428,11 @@
       if (state.shield) absorbImpact();
       else endGame();
     }
+    if (core.isFuelCritical(state.fuel) && !state.lowFuelAlerted) {
+      state.lowFuelAlerted = true;
+      warningTone();
+      haptic([25, 35, 25]);
+    }
     updateHud();
   }
 
@@ -399,11 +441,13 @@
     pickupTone();
     if (pickup.type === "fuel") {
       state.fuel = Math.min(100, state.fuel + 36);
+      if (!core.isFuelCritical(state.fuel)) state.lowFuelAlerted = false;
       popups.push({ x: pickup.x, y: pickup.y - 34, text: "YAKIT +36", life: 1.05 });
     } else {
       state.shield = true;
       popups.push({ x: pickup.x, y: pickup.y - 34, text: "KALKAN HAZIR", life: 1.05 });
     }
+    haptic(18);
 
     for (let i = 0; i < 12; i += 1) {
       particles.push({
@@ -429,6 +473,7 @@
     obstacles = obstacles.filter((obstacle) => Math.abs(obstacle.x - player.x) > 105);
     popups.push({ x: player.x, y: player.y - 44, text: "KALKAN KORUDU", life: 1.1 });
     pickupTone();
+    haptic([45, 25, 45]);
   }
 
   function updateRescue(rescue, dt) {
@@ -463,6 +508,7 @@
       const gained = 100 * state.combo;
       state.rescueScore += gained;
       rescueTone();
+      haptic(24);
       popups.push({ x: rescue.x, y: centerY - 52, text: `KURTARILDI +${gained}`, life: 1.2 });
 
       for (let i = 0; i < 13; i += 1) {
@@ -507,6 +553,7 @@
     ui.fuelFill.style.transform = `scaleX(${state.fuel / 100})`;
     ui.fuelFill.classList.toggle("is-low", state.fuel < 25);
     ui.shieldStatus.classList.toggle("is-active", state.shield);
+    show(ui.fuelWarning, state.mode === "playing" && core.isFuelCritical(state.fuel));
   }
 
   function checkCollision() {
@@ -545,6 +592,7 @@
     if (state.shake > 0) ctx.translate(random(-5, 5) * state.shake * 2, random(-5, 5) * state.shake * 2);
     drawBackground();
     drawWorld();
+    drawFog();
     drawParticles();
     drawPlayer();
     drawPopups();
@@ -640,6 +688,26 @@
     ctx.arc(32, 7, 21, 0, Math.PI * 2);
     ctx.rect(-30, 5, 62, 23);
     ctx.fill();
+    ctx.restore();
+  }
+
+  function drawFog() {
+    if (state.mode !== "playing") return;
+    const fog = clamp((state.playTime - 24) / 22, 0, 1);
+    if (fog <= 0) return;
+
+    const offset = -((state.distance * 0.46) % 520);
+    ctx.save();
+    ctx.globalAlpha = fog * 0.2;
+    ctx.fillStyle = "#eaf8fb";
+    for (let i = -1; i < 2; i += 1) {
+      const x = offset + i * 520 + 180;
+      const y = 430 + Math.sin(state.time * 0.35 + i) * 70;
+      ctx.beginPath();
+      ctx.ellipse(x, y, 170, 38, -0.08, 0, Math.PI * 2);
+      ctx.ellipse(x + 118, y + 32, 135, 31, 0.06, 0, Math.PI * 2);
+      ctx.fill();
+    }
     ctx.restore();
   }
 
