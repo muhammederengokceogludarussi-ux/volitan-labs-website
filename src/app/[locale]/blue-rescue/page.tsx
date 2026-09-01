@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { ExternalLink, Gamepad2, QrCode, ShieldCheck, Trophy } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -118,14 +117,15 @@ export default async function BlueRescuePage({
                     <p>{text.safe}</p>
                   </div>
                 </div>
-                <Link
+                <a
                   href="/games/blue-rescue/index.html"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-6 py-3.5 text-sm font-bold text-slate-950 transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(56,189,248,0.35)]"
                 >
                   {text.fullscreen}
                   <ExternalLink className="h-4 w-4" />
-                </Link>
+                </a>
               </GlassCard>
 
               <GlassCard className="flex flex-col items-center gap-5 p-7 text-center sm:flex-row sm:text-left">
