@@ -387,6 +387,15 @@ h2 {
   letter-spacing: 0.1em;
 }
 
+.share-status {
+  min-height: 14px;
+  margin: 11px 0 -5px;
+  color: #9de5ff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
 .game-hint {
   position: absolute;
   z-index: 4;

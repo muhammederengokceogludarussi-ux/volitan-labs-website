@@ -5,6 +5,7 @@
   const H = 844;
   const GROUND_Y = 806;
   const STORAGE_KEY = "blue-rescue-best";
+  const core = window.BlueRescueCore;
 
   const canvas = document.querySelector("#game");
   const ctx = canvas.getContext("2d");
@@ -26,6 +27,8 @@
     finalDistance: document.querySelector("#finalDistance"),
     newBest: document.querySelector("#newBest"),
     sound: document.querySelector("#soundButton"),
+    share: document.querySelector("#shareButton"),
+    shareStatus: document.querySelector("#shareStatus"),
   };
 
   const state = {
@@ -66,6 +69,8 @@
   let particles = [];
   let popups = [];
   let audioContext = null;
+  let rotorOscillator = null;
+  let rotorGain = null;
   let lastTime = performance.now();
   let hintTimer = 0;
 
@@ -77,7 +82,7 @@
   }
 
   function score() {
-    return Math.floor(state.distance / 10) + state.rescueScore;
+    return core.calculateScore(state.distance, state.rescueScore);
   }
 
   function random(min, max) {
@@ -85,7 +90,7 @@
   }
 
   function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
+    return core.clamp(value, min, max);
   }
 
   function show(element, visible) {
@@ -132,6 +137,51 @@
     tone(720, 0.14, "sine", 0.045, 0.07);
   }
 
+  function missTone() {
+    tone(245, 0.12, "triangle", 0.035);
+    tone(180, 0.16, "triangle", 0.025, 0.08);
+  }
+
+  function startRotorSound() {
+    if (state.muted || rotorOscillator) return;
+
+    try {
+      audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+      audioContext.resume?.();
+      rotorOscillator = audioContext.createOscillator();
+      rotorGain = audioContext.createGain();
+      const filter = audioContext.createBiquadFilter();
+      rotorOscillator.type = "sawtooth";
+      rotorOscillator.frequency.value = 68;
+      filter.type = "lowpass";
+      filter.frequency.value = 240;
+      rotorGain.gain.value = 0.0001;
+      rotorOscillator.connect(filter).connect(rotorGain).connect(audioContext.destination);
+      rotorOscillator.start();
+      rotorGain.gain.setTargetAtTime(0.018, audioContext.currentTime, 0.06);
+    } catch {
+      rotorOscillator = null;
+      rotorGain = null;
+    }
+  }
+
+  function updateRotorSound() {
+    if (!audioContext || !rotorOscillator || !rotorGain) return;
+    const frequency = state.thrusting ? 92 : 72;
+    const volume = state.thrusting ? 0.026 : 0.016;
+    rotorOscillator.frequency.setTargetAtTime(frequency, audioContext.currentTime, 0.045);
+    rotorGain.gain.setTargetAtTime(volume, audioContext.currentTime, 0.06);
+  }
+
+  function stopRotorSound() {
+    if (!audioContext || !rotorOscillator || !rotorGain) return;
+    const oscillator = rotorOscillator;
+    rotorGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.025);
+    oscillator.stop(audioContext.currentTime + 0.12);
+    rotorOscillator = null;
+    rotorGain = null;
+  }
+
   function resetGame() {
     state.mode = "playing";
     state.playTime = 0;
@@ -164,7 +214,9 @@
     show(ui.gameOver, false);
     show(ui.hud, true);
     show(ui.hint, true);
+    ui.shareStatus.textContent = "";
     updateHud();
+    startRotorSound();
   }
 
   function goToMenu() {
@@ -180,6 +232,7 @@
     show(ui.gameOver, false);
     show(ui.hud, false);
     show(ui.hint, false);
+    stopRotorSound();
   }
 
   function endGame() {
@@ -189,6 +242,7 @@
     state.shake = 0.42;
     state.flash = 0.22;
     crashTone();
+    stopRotorSound();
 
     for (let i = 0; i < 20; i += 1) {
       particles.push({
@@ -238,10 +292,10 @@
 
     if (phase === 0 || phase === 2) {
       const y = phase === 0 ? random(570, 690) : random(330, 570);
-      rescues.push({ x, y, progress: 0, rescued: false, pulse: random(0, Math.PI * 2), animation: 0 });
+      rescues.push({ x, y, progress: 0, rescued: false, missed: false, pulse: random(0, Math.PI * 2), animation: 0 });
       state.spawnDistance = random(300, 345);
     } else if (phase === 1) {
-      const difficulty = clamp(state.playTime / 70, 0, 1);
+      const difficulty = core.difficultyAt(state.playTime).progress;
       const gap = 282 - difficulty * 54;
       const center = random(250 + gap / 2, GROUND_Y - 75 - gap / 2);
       obstacles.push({ type: "cliff", x, width: 76, top: center - gap / 2, bottom: center + gap / 2 });
@@ -293,7 +347,7 @@
     state.fuel = Math.max(0, state.fuel - dt * (state.thrusting ? 1.05 : 0.72));
     state.pickupTimer -= dt;
     if (state.pickupTimer <= 0) spawnPickup();
-    state.speed = Math.min(188, 126 + state.playTime * 0.72);
+    state.speed = core.difficultyAt(state.playTime).speed;
     state.distance += state.speed * dt;
     state.spawnDistance -= state.speed * dt;
     if (state.spawnDistance <= 0) spawnEvent();
@@ -305,6 +359,7 @@
     player.y += player.vy * dt;
     const targetTilt = clamp(player.vy / 530, -0.3, 0.42);
     player.tilt += (targetTilt - player.tilt) * Math.min(1, dt * 6);
+    updateRotorSound();
 
     for (const obstacle of obstacles) {
       obstacle.x -= state.speed * dt;
@@ -381,11 +436,23 @@
       rescue.animation = Math.max(0, rescue.animation - dt);
       return;
     }
+    if (rescue.missed) return;
+
+    if (core.isRescueMissed(rescue.x, player.x)) {
+      rescue.missed = true;
+      rescue.progress = 0;
+      if (state.combo > 0) {
+        state.combo = 0;
+        popups.push({ x: player.x + 44, y: player.y - 50, text: "KOMBO KAYBI", life: 1.05 });
+        missTone();
+      }
+      return;
+    }
     const centerY = rescue.y - 40;
     const dx = player.x - rescue.x;
     const dy = player.y - centerY;
     const withinZone = dx * dx + dy * dy < 72 * 72;
-    rescue.progress = clamp(rescue.progress + dt * (withinZone ? 1 : -1.45), 0, 0.62);
+    rescue.progress = core.advanceRescue(rescue.progress, withinZone, dt);
 
     if (rescue.progress >= 0.62) {
       rescue.rescued = true;
@@ -442,14 +509,6 @@
     ui.shieldStatus.classList.toggle("is-active", state.shield);
   }
 
-  function circleRectCollision(cx, cy, radius, rect) {
-    const nearestX = clamp(cx, rect.x, rect.x + rect.w);
-    const nearestY = clamp(cy, rect.y, rect.y + rect.h);
-    const dx = cx - nearestX;
-    const dy = cy - nearestY;
-    return dx * dx + dy * dy < radius * radius;
-  }
-
   function checkCollision() {
     if (state.invulnerable > 0) return false;
     const px = player.x;
@@ -461,7 +520,7 @@
       if (obstacle.type === "cliff") {
         const topRect = { x: obstacle.x + 5, y: 0, w: obstacle.width - 10, h: obstacle.top };
         const bottomRect = { x: obstacle.x + 5, y: obstacle.bottom, w: obstacle.width - 10, h: GROUND_Y - obstacle.bottom };
-        if (circleRectCollision(px, py, radius, topRect) || circleRectCollision(px, py, radius, bottomRect)) return true;
+        if (core.circleRectCollision(px, py, radius, topRect) || core.circleRectCollision(px, py, radius, bottomRect)) return true;
       } else {
         const wave = Math.sin(obstacle.phase) * 14;
         const birdPositions = [[0, 0], [30, -15], [58, 8]];
@@ -476,7 +535,7 @@
     for (const rescue of rescues) {
       if (rescue.rescued) continue;
       const platform = { x: rescue.x - 31, y: rescue.y + 17, w: 62, h: 15 };
-      if (circleRectCollision(px, py, radius, platform)) return true;
+      if (core.circleRectCollision(px, py, radius, platform)) return true;
     }
     return false;
   }
@@ -947,11 +1006,34 @@
     buttonTone();
     goToMenu();
   });
+  ui.share.addEventListener("click", async () => {
+    buttonTone();
+    const finalScore = score().toLocaleString("tr-TR");
+    const shareData = {
+      title: "Blue Rescue",
+      text: `Blue Rescue'da ${finalScore} puan yaptım ve ${state.rescued} kişiyi kurtardım. Rekorumu geçebilir misin?`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        ui.shareStatus.textContent = "PAYLAŞIMA HAZIR";
+      } else {
+        await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+        ui.shareStatus.textContent = "SONUÇ KOPYALANDI";
+      }
+    } catch (error) {
+      if (error?.name !== "AbortError") ui.shareStatus.textContent = "PAYLAŞIM AÇILAMADI";
+    }
+  });
   ui.sound.addEventListener("click", () => {
     state.muted = !state.muted;
     ui.sound.textContent = state.muted ? "SES KAPALI" : "SES AÇIK";
     ui.sound.setAttribute("aria-label", state.muted ? "Sesi aç" : "Sesi kapat");
     if (!state.muted) buttonTone();
+    if (state.muted) stopRotorSound();
+    else if (state.mode === "playing") startRotorSound();
   });
 
   window.addEventListener("keydown", (event) => {
@@ -966,6 +1048,12 @@
       setThrusting(false);
     }
   });
+  window.addEventListener("keydown", (event) => {
+    if (event.code !== "Enter" || event.repeat) return;
+    event.preventDefault();
+    if (state.mode === "menu") document.querySelector("#startButton").click();
+    else if (state.mode === "gameover") document.querySelector("#retryButton").click();
+  });
   canvas.addEventListener("pointerdown", (event) => {
     event.preventDefault();
     canvas.setPointerCapture?.(event.pointerId);
@@ -977,6 +1065,11 @@
   });
   canvas.addEventListener("pointercancel", () => setThrusting(false));
   window.addEventListener("blur", () => setThrusting(false));
+  document.addEventListener("visibilitychange", () => {
+    setThrusting(false);
+    if (document.hidden) stopRotorSound();
+    else if (state.mode === "playing") startRotorSound();
+  });
   window.addEventListener("resize", resizeCanvas);
 
   resizeCanvas();
