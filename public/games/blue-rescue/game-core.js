@@ -23,7 +23,7 @@
     const safeTime = Math.max(0, playTime);
     return {
       progress: clamp(safeTime / 70, 0, 1),
-      speed: Math.min(188, 126 + safeTime * 0.72),
+      speed: Math.min(202, 138 + safeTime * 0.78),
     };
   }
 

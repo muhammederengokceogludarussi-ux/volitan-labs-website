@@ -4,6 +4,7 @@
   const W = 390;
   const H = 844;
   const GROUND_Y = 806;
+  const THRUST_VISUAL_TAIL = 0.32;
   const STORAGE_KEY = "blue-rescue-best";
   const core = window.BlueRescueCore;
 
@@ -43,8 +44,9 @@
     combo: 0,
     bestCombo: 0,
     best: Number(localStorage.getItem(STORAGE_KEY)) || 0,
-    speed: 126,
+    speed: 138,
     thrusting: false,
+    thrustVisual: 0,
     spawnDistance: 320,
     eventIndex: 0,
     pickupTimer: 12,
@@ -208,7 +210,7 @@
     state.rescued = 0;
     state.combo = 0;
     state.bestCombo = 0;
-    state.speed = 126;
+    state.speed = 138;
     state.spawnDistance = 270;
     state.eventIndex = 0;
     state.pickupTimer = 12;
@@ -222,6 +224,7 @@
     state.phaseNoticeTimer = 0;
     state.lowFuelAlerted = false;
     state.thrusting = false;
+    state.thrustVisual = 0;
     player.y = 365;
     player.vy = 0;
     player.tilt = 0;
@@ -305,6 +308,7 @@
   function setThrusting(active) {
     if (state.mode === "playing") {
       state.thrusting = active;
+      if (active) state.thrustVisual = THRUST_VISUAL_TAIL;
       if (active) {
         hintTimer = 0;
         show(ui.hint, false);
@@ -358,6 +362,7 @@
     state.flash = Math.max(0, state.flash - dt);
     state.shake = Math.max(0, state.shake - dt);
     player.rotor += dt * (state.mode === "playing" ? (state.thrusting ? 52 : 34) : 12);
+    state.thrustVisual = state.thrusting ? THRUST_VISUAL_TAIL : Math.max(0, state.thrustVisual - dt);
 
     updateParticles(dt);
     updatePopups(dt);
@@ -919,21 +924,7 @@
       ctx.restore();
     }
 
-    if (state.mode === "playing" && state.thrusting) {
-      ctx.save();
-      ctx.strokeStyle = "rgba(222, 248, 255, 0.42)";
-      ctx.lineWidth = 1.6;
-      ctx.lineCap = "round";
-      for (let i = 0; i < 5; i += 1) {
-        const startX = -42 + i * 18;
-        const sway = Math.sin(state.time * 12 + i * 1.7) * 8;
-        ctx.beginPath();
-        ctx.moveTo(startX, -16);
-        ctx.bezierCurveTo(startX + sway * 0.25, 8, startX - sway, 30, startX + sway * 0.45, 52);
-        ctx.stroke();
-      }
-      ctx.restore();
-    }
+    drawRotorWash();
 
     ctx.strokeStyle = "#173347";
     ctx.lineWidth = 3;
@@ -1008,10 +999,11 @@
     ctx.save();
     ctx.translate(-8, -20);
     ctx.strokeStyle = "#15374c";
-    ctx.fillStyle = "rgba(205, 238, 246, 0.2)";
+    const rotorPower = state.mode === "playing" ? clamp(state.thrustVisual / THRUST_VISUAL_TAIL, 0, 1) : 0;
+    ctx.fillStyle = `rgba(205, 238, 246, ${0.16 + rotorPower * 0.13})`;
     ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.ellipse(0, 0, 42, 5, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, 0, 42 + rotorPower * 7, 5 + rotorPower * 1.5, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
     const rotorX = Math.cos(player.rotor) * 40;
@@ -1026,6 +1018,38 @@
     ctx.lineTo(rotorX2, rotorY2);
     ctx.stroke();
     ctx.restore();
+    ctx.restore();
+  }
+
+  function drawRotorWash() {
+    if (state.mode !== "playing" || state.thrustVisual <= 0) return;
+
+    ctx.save();
+    ctx.rotate(-player.tilt);
+    ctx.lineCap = "round";
+    const visualPower = clamp(state.thrustVisual / THRUST_VISUAL_TAIL, 0, 1);
+    for (let i = 0; i < 4; i += 1) {
+      const progress = (state.time * 2.65 + i / 4) % 1;
+      const y = 21 + progress * 55;
+      const width = 22 + progress * 53;
+      const curve = 3 + progress * 8;
+      const alpha = (1 - progress) * 0.34 * visualPower;
+      ctx.strokeStyle = `rgba(222, 248, 255, ${alpha})`;
+      ctx.lineWidth = 2.2 - progress * 0.8;
+      ctx.beginPath();
+      ctx.moveTo(-width, y);
+      ctx.bezierCurveTo(-width * 0.52, y + curve, width * 0.52, y + curve, width, y);
+      ctx.stroke();
+    }
+
+    const pressure = 0.78 + Math.sin(state.time * 15) * 0.08;
+    ctx.strokeStyle = `rgba(235, 252, 255, ${pressure * 0.3 * visualPower})`;
+    ctx.lineWidth = 2.4;
+    ctx.beginPath();
+    ctx.moveTo(-35, 13);
+    ctx.quadraticCurveTo(-17, 20, 0, 18);
+    ctx.quadraticCurveTo(17, 20, 35, 13);
+    ctx.stroke();
     ctx.restore();
   }
 
