@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AnimatedSection } from "@/components/shared/animated-section";
 import { ArrowRight, Fuel, Gamepad2, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 export function FeaturedProject() {
   const t = useTranslations("home.featuredApp");
@@ -57,38 +58,15 @@ export function FeaturedProject() {
             </Link>
           </div>
 
-          <div className="relative min-h-[390px] overflow-hidden border-t border-white/10 bg-gradient-to-b from-sky-500 via-cyan-100 to-emerald-700 lg:min-h-[540px] lg:border-l lg:border-t-0">
-            <div className="absolute right-10 top-10 h-20 w-20 rounded-full bg-amber-100/80 shadow-[0_0_60px_rgba(253,230,138,0.7)]" />
-            <div className="absolute left-10 top-16 h-4 w-28 rounded-full bg-white/55 blur-[1px]" />
-            <div className="absolute left-20 top-12 h-8 w-16 rounded-full bg-white/55 blur-[1px]" />
-            <div className="absolute inset-x-0 bottom-0 h-36 bg-emerald-950/80 [clip-path:polygon(0_46%,16%_10%,31%_52%,48%_3%,66%_58%,83%_16%,100%_45%,100%_100%,0_100%)]" />
-
-            <div className="absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2">
-              <div className="absolute left-1/2 top-[-24px] h-1 w-48 -translate-x-1/2 rounded-full bg-slate-900 shadow-[0_0_8px_rgba(15,23,42,0.45)] transition-transform duration-500 group-hover:scale-x-110" />
-              <div className="absolute left-1/2 top-[-24px] h-7 w-1 -translate-x-1/2 bg-slate-800" />
-              <div className="relative h-20 w-44 rounded-[52%_48%_42%_46%] border border-white/30 bg-gradient-to-br from-blue-500 via-sky-500 to-blue-800 shadow-2xl">
-                <div className="absolute left-8 top-4 h-8 w-14 rounded-[60%_30%_45%_40%] bg-cyan-100/75" />
-                <div className="absolute -right-20 top-6 h-4 w-24 -skew-y-6 bg-blue-800" />
-                <div className="absolute -right-24 top-0 h-9 w-3 bg-blue-800" />
-                <div className="absolute -bottom-4 left-8 h-1 w-28 rounded-full bg-slate-800" />
-              </div>
-              <div className="absolute left-1/2 top-24 h-24 w-40 -translate-x-1/2 bg-gradient-to-b from-white/35 to-transparent blur-md [clip-path:polygon(30%_0,70%_0,100%_100%,0_100%)]" />
-            </div>
-
-            <div className="absolute bottom-8 left-8 right-8 grid grid-cols-3 gap-2 rounded-2xl border border-white/20 bg-slate-950/75 p-4 text-white shadow-2xl backdrop-blur-md">
-              <div>
-                <p className="font-mono text-[10px] text-white/45">SCORE</p>
-                <p className="font-display text-lg font-black">02480</p>
-              </div>
-              <div>
-                <p className="font-mono text-[10px] text-white/45">RESCUED</p>
-                <p className="font-display text-lg font-black text-sky-300">12</p>
-              </div>
-              <div>
-                <p className="font-mono text-[10px] text-white/45">COMBO</p>
-                <p className="font-display text-lg font-black text-amber-300">×4</p>
-              </div>
-            </div>
+          <div className="relative min-h-[390px] overflow-hidden border-t border-white/10 bg-[#06192d] lg:min-h-[540px] lg:border-l lg:border-t-0">
+            <Image
+              src="/images/games/blue-rescue/menu.png"
+              alt="Blue Rescue güncel ana menüsü"
+              fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.025]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/35 via-transparent to-sky-400/5" />
           </div>
         </GlassCard>
       </AnimatedSection>

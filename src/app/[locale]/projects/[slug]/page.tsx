@@ -34,15 +34,20 @@ const projectDetails: Record<string, ProjectDetail> = {
     slug: "blue-rescue",
     title: { en: "Blue Rescue", tr: "Blue Rescue" },
     description: {
-      en: "A lightweight one-touch rescue game that runs directly in the browser.",
-      tr: "Doğrudan tarayıcıda çalışan hafif, tek dokunuşlu bir kurtarma oyunu.",
+      en: "A small playable project made for the SKY Olympics during my GÖKBEY internship.",
+      tr: "GÖKBEY stajım sırasında SKY Olimpiyatları için yaptığım küçük, oynanabilir proje.",
     },
     longDescription: {
-      en: "Blue Rescue is a compact browser game built around a single interaction: hold to climb and release to descend. The challenge comes from balancing helicopter momentum, fuel, obstacles, and rescue timing. It includes combo scoring, shield and fuel pickups, day-to-night transitions, local high scores, and a QR flow designed for instant mobile play.",
-      tr: "Blue Rescue, tek bir etkileşim üzerine kurulu kompakt bir tarayıcı oyunudur: yükselmek için basılı tutun, alçalmak için bırakın. Zorluk; helikopter ivmesini, yakıtı, engelleri ve kurtarma zamanlamasını dengelemekten gelir. Kombo puanlama, kalkan ve yakıt destekleri, gündüz-gece geçişi, yerel rekor kaydı ve telefonda anında oynamak için QR akışı içerir.",
+      en: "I built Blue Rescue for the SKY Olympics while interning in GÖKBEY Thermal and Fluid Analysis. A normal analysis presentation would have been the obvious choice, so I made something people could play instead. The game stays deliberately simple: hold to climb, release to descend, rescue people, avoid obstacles, build a combo and try again.",
+      tr: "Blue Rescue'ı, GÖKBEY Isıl ve Akışkanlar Analizi tarafındaki stajım sırasında SKY Olimpiyatları için yaptım. Normal bir analiz sunumu beklenen seçim olurdu; ben bunun yerine insanların doğrudan oynayabileceği bir şey hazırladım. Oyun bilerek basit kaldı: yükselmek için basılı tut, alçalmak için bırak, insanları kurtar, engellerden kaç, seri yap ve yeniden dene.",
     },
     tags: ["JavaScript", "Canvas", "Game Physics", "Responsive Web"],
     live: "https://www.volitanlabs.dev/games/blue-rescue/index.html",
+    screenshots: [
+      "/images/games/blue-rescue/menu.png",
+      "/images/games/blue-rescue/gameplay.png",
+      "/images/games/blue-rescue/report.png",
+    ],
     features: {
       en: [
         "One-touch helicopter controls with momentum-based flight",

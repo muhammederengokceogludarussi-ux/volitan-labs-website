@@ -24,9 +24,9 @@
       }
     },
     "featuredApp": {
-      "label": "Now Playable",
+      "label": "SKY Olympics Project",
       "tagline": "Fly. Rescue. Beat your high score.",
-      "description": "A lightweight one-touch helicopter game built for quick browser sessions. Manage your momentum and fuel, chain rescues, collect shields, and keep flying as the world shifts from day to night.",
+      "description": "During my GÖKBEY Thermal and Fluid Analysis internship, I chose to make a small playable project instead of presenting a predictable technical assignment.",
       "cta": "Play Blue Rescue",
       "features": {
         "flight": {

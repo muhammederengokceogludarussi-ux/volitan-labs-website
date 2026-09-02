@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ExternalLink, Gamepad2, QrCode, ShieldCheck, Trophy } from "lucide-react";
+import { Download, ExternalLink, Gamepad2, QrCode, ShieldCheck, Trophy } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { GlassCard } from "@/components/ui/glass-card";
 import { AnimatedSection } from "@/components/shared/animated-section";
@@ -9,10 +9,10 @@ const gameUrl = "https://www.volitanlabs.dev/games/blue-rescue/index.html";
 
 const copy = {
   tr: {
-    badge: "OYNANABİLİR PROTOTİP",
+    badge: "SKY OLİMPİYATLARI PROJESİ",
     title: "BLUE RESCUE",
     description:
-      "Tek dokunuşla helikopteri kontrol et, engellerden kaç ve mümkün olduğunca çok kişiyi kurtar.",
+      "GÖKBEY Isıl ve Akışkanlar Analizi stajım için klasik bir teknik sunum yerine yaptığım küçük, oynanabilir kurtarma oyunu.",
     hold: "Basılı tutarak yüksel, bırakarak alçal.",
     score: "Kurtarma kombosu yap ve en yüksek skoru geç.",
     safe: "Hesap gerekmez. Skor yalnızca kendi cihazında saklanır.",
@@ -20,12 +20,14 @@ const copy = {
     qrTitle: "Telefondan oyna",
     qrDescription: "Kameranı QR koda tut ve oyunu doğrudan aç.",
     iframeTitle: "Blue Rescue tarayıcı oyunu",
+    deck: "SKY sunumunu indir",
+    deckMeta: "7 slayt · Türkçe · PPTX",
   },
   en: {
-    badge: "PLAYABLE PROTOTYPE",
+    badge: "SKY OLYMPICS PROJECT",
     title: "BLUE RESCUE",
     description:
-      "Control the helicopter with one touch, avoid obstacles and rescue as many people as possible.",
+      "A small playable rescue game I made during my GÖKBEY Thermal and Fluid Analysis internship instead of presenting a predictable technical task.",
     hold: "Hold to rise and release to descend.",
     score: "Build a rescue combo and beat your high score.",
     safe: "No account required. Your score stays on your device.",
@@ -33,6 +35,8 @@ const copy = {
     qrTitle: "Play on your phone",
     qrDescription: "Point your camera at the QR code to open the game directly.",
     iframeTitle: "Blue Rescue browser game",
+    deck: "Download the SKY presentation",
+    deckMeta: "7 slides · Turkish · PPTX",
   },
 } as const;
 
@@ -125,6 +129,17 @@ export default async function BlueRescuePage({
                 >
                   {text.fullscreen}
                   <ExternalLink className="h-4 w-4" />
+                </a>
+                <a
+                  href="/presentations/Blue_Rescue_SKY_Olimpiyatlari_Sunumu.pptx"
+                  download
+                  className="mt-3 flex w-full items-center justify-center gap-3 rounded-full border border-sky-300/25 bg-sky-300/[0.06] px-6 py-3.5 text-left transition-all hover:-translate-y-0.5 hover:border-sky-300/50 hover:bg-sky-300/[0.1]"
+                >
+                  <Download className="h-5 w-5 shrink-0 text-sky-300" />
+                  <span>
+                    <span className="block text-sm font-bold text-white">{text.deck}</span>
+                    <span className="block text-xs text-text-secondary">{text.deckMeta}</span>
+                  </span>
                 </a>
               </GlassCard>
 

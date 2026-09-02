@@ -3,32 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0b2038" />
+    <meta name="theme-color" content="#071725" />
     <title>Blue Rescue</title>
-    <link rel="stylesheet" href="style.css?v=8" />
+    <link rel="stylesheet" href="style.css?v=13" />
   </head>
   <body>
-    <main class="game-shell" aria-label="Blue Rescue oyunu">
+    <main id="gameShell" class="game-shell is-menu" aria-label="Blue Rescue oyunu">
       <canvas id="game" width="390" height="844" aria-label="Oyun alanı"></canvas>
 
       <section id="hud" class="hud is-hidden" aria-live="polite">
-        <div class="hud-stat">
-          <span>SKOR</span>
-          <strong id="scoreValue">0</strong>
-        </div>
-        <div id="comboBadge" class="combo-badge" aria-label="Kombo çarpanı 1">
-          <span>KOMBO</span>
-          <strong id="comboValue">×1</strong>
-        </div>
-        <div class="hud-stat hud-stat--right">
-          <span>KURTARILAN</span>
-          <strong id="rescuedValue">0</strong>
+        <div class="hud-topline">
+          <div class="hud-stat hud-stat--score">
+            <span>SKOR</span>
+            <strong id="scoreValue">0</strong>
+          </div>
+          <div id="comboBadge" class="combo-badge" aria-label="Kombo çarpanı 1">
+            <span>SERİ</span>
+            <strong id="comboValue">×1</strong>
+          </div>
+          <div class="hud-stat hud-stat--right">
+            <span>KURTARILAN</span>
+            <strong id="rescuedValue">0</strong>
+          </div>
         </div>
         <div class="hud-power" aria-label="Yakıt ve kalkan durumu">
           <div class="fuel-meter">
-            <span>YAKIT</span>
+            <div class="fuel-label"><span>YAKIT</span><strong id="fuelValue">100</strong></div>
             <div class="fuel-track"><i id="fuelFill"></i></div>
-            <strong id="fuelValue">100</strong>
           </div>
           <div id="shieldStatus" class="shield-status">KALKAN YOK</div>
         </div>
@@ -37,45 +38,71 @@
       <div id="phaseNotice" class="phase-notice is-hidden" role="status" aria-live="polite"></div>
       <div id="fuelWarning" class="fuel-warning is-hidden" role="status">YAKIT KRİTİK</div>
 
-      <button id="soundButton" class="sound-button" type="button" aria-label="Sesi kapat">SES AÇIK</button>
+      <button id="soundButton" class="sound-button" type="button" aria-label="Sesi kapat">
+        <span class="sound-indicator" aria-hidden="true"></span>
+        <span id="soundLabel">SES AÇIK</span>
+      </button>
 
       <section id="menu" class="screen-card screen-card--menu">
-        <div class="eyebrow">BR–01 / ARAMA KURTARMA</div>
-        <h1><span class="title-prefix">BLUE</span><span class="title-main">RESCUE</span></h1>
-        <p class="lead">Dağ hattında sivil tahliye uçuşu</p>
-        <div class="mission-rules" aria-label="Görev hedefleri">
-          <span>KURTAR</span>
-          <span>YAKITI KORU</span>
-          <span>ROTAYI OKU</span>
+        <div class="menu-topline">
+          <div class="eyebrow"><i aria-hidden="true"></i> BR–01 / HAZIR</div>
         </div>
-        <div class="instructions">
-          <div class="control-icon" aria-hidden="true">TUT</div>
-          <p><strong>Basılı tut</strong> — yüksel<br /><strong>Bırak</strong> — alçal</p>
+
+        <div class="menu-hero">
+          <p class="kicker">ACİL MÜDAHALE BİRLİĞİ</p>
+          <h1><span class="title-prefix">BLUE</span><span class="title-main">RESCUE</span></h1>
+          <p class="lead">Kurtar. Rotayı oku. Seriyi koru.</p>
         </div>
-        <button id="startButton" class="primary-button" type="button">UÇUŞA BAŞLA</button>
-        <p class="best-line">REKOR / <strong id="menuBest">0</strong></p>
+
+        <div class="menu-actions">
+          <button id="startButton" class="primary-button primary-button--start" type="button">
+            <span class="button-kicker">BR–01 GÖREVİ</span>
+            <span class="button-label">UÇUŞA BAŞLA</span>
+          </button>
+          <div class="mission-brief" aria-label="Görev özeti">
+            <div class="control-icon" aria-hidden="true"><span>TUT</span></div>
+            <p><strong>Yükselmek için basılı tut.</strong><span>Bırak, süzül ve kurtarma alanına yaklaş.</span></p>
+          </div>
+          <p class="best-line"><span>EN İYİ SKOR</span><strong id="menuBest">0</strong></p>
+        </div>
       </section>
 
       <section id="gameOver" class="screen-card screen-card--report is-hidden" aria-labelledby="reportTitle">
-        <div class="eyebrow">UÇUŞ SONU / BR–01</div>
-        <h2 id="reportTitle">GÖREV KAYDI</h2>
-        <p id="newBest" class="new-best is-hidden">YENİ EN İYİ SONUÇ</p>
-        <dl class="report-grid">
-          <div><dt>Puan</dt><dd id="finalScore">0</dd></div>
-          <div><dt>Tahliye</dt><dd id="finalRescued">0</dd></div>
-          <div><dt>Seri</dt><dd id="finalCombo">×0</dd></div>
-          <div><dt>Uçuş</dt><dd id="finalDistance">0 m</dd></div>
-        </dl>
-        <button id="retryButton" class="primary-button" type="button">YENİDEN UÇ</button>
-        <button id="shareButton" class="secondary-button" type="button">SONUCU PAYLAŞ</button>
-        <button id="menuButton" class="secondary-button" type="button">BAŞLANGIÇ</button>
-        <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p>
+        <div class="report-panel">
+          <div class="report-head">
+            <div class="eyebrow">UÇUŞ SONU / BR–01</div>
+            <h2 id="reportTitle">GÖREV RAPORU</h2>
+            <p id="newBest" class="new-best is-hidden">YENİ REKOR</p>
+          </div>
+
+          <div class="score-result">
+            <span>TOPLAM PUAN</span>
+            <strong id="finalScore">0</strong>
+          </div>
+
+          <dl class="report-grid">
+            <div><dt>Tahliye</dt><dd id="finalRescued">0</dd></div>
+            <div><dt>En iyi seri</dt><dd id="finalCombo">×0</dd></div>
+            <div><dt>Uçuş</dt><dd id="finalDistance">0 m</dd></div>
+          </dl>
+
+          <button id="retryButton" class="primary-button primary-button--retry" type="button">
+            <span class="button-kicker">TEKRAR HAZIRLAN</span>
+            <span class="button-label">YENİDEN UÇ</span>
+          </button>
+          <div class="report-secondary">
+            <button id="shareButton" class="secondary-button" type="button">SONUCU PAYLAŞ</button>
+            <button id="menuButton" class="secondary-button" type="button">ANA MENÜ</button>
+          </div>
+          <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p>
+        </div>
       </section>
 
-      <div id="hint" class="game-hint is-hidden">BASILI TUT — YÜKSEL</div>
+      <div id="hint" class="game-hint is-hidden"><strong>BASILI TUT</strong><span>YÜKSEL</span></div>
+      <div id="missionTransition" class="mission-transition" aria-hidden="true"></div>
     </main>
 
-    <script src="game-core.js?v=8"></script>
-    <script src="game.js?v=8"></script>
+    <script src="game-core.js?v=13"></script>
+    <script src="game.js?v=13"></script>
   </body>
 </html>

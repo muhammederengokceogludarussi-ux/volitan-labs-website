@@ -28,8 +28,8 @@ const projectsData: ProjectData[] = [
     slug: "blue-rescue",
     title: { en: "Blue Rescue", tr: "Blue Rescue" },
     description: {
-      en: "A one-touch browser game with helicopter physics, rescue combos, fuel management, and mobile QR access.",
-      tr: "Helikopter fiziği, kurtarma komboları, yakıt yönetimi ve mobil QR erişimi sunan tek dokunuşlu tarayıcı oyunu.",
+      en: "A small playable rescue game made for the SKY Olympics during my GÖKBEY internship.",
+      tr: "GÖKBEY stajım sırasında SKY Olimpiyatları için yaptığım küçük, oynanabilir kurtarma oyunu.",
     },
     tags: ["JavaScript", "Canvas", "Game Design"],
     category: ["all", "web"],

@@ -12,6 +12,7 @@
   const canvas = document.querySelector("#game");
   const ctx = canvas.getContext("2d");
   const ui = {
+    shell: document.querySelector("#gameShell"),
     menu: document.querySelector("#menu"),
     gameOver: document.querySelector("#gameOver"),
     hud: document.querySelector("#hud"),
@@ -30,10 +31,12 @@
     finalDistance: document.querySelector("#finalDistance"),
     newBest: document.querySelector("#newBest"),
     sound: document.querySelector("#soundButton"),
+    soundLabel: document.querySelector("#soundLabel"),
     share: document.querySelector("#shareButton"),
     shareStatus: document.querySelector("#shareStatus"),
     phaseNotice: document.querySelector("#phaseNotice"),
     fuelWarning: document.querySelector("#fuelWarning"),
+    missionTransition: document.querySelector("#missionTransition"),
   };
 
   const state = {
@@ -68,6 +71,7 @@
     biome: 0,
     biomeTransition: 0,
     turbulence: 0,
+    hitStop: 0,
   };
 
   const player = {
@@ -114,6 +118,21 @@
 
   function show(element, visible) {
     element.classList.toggle("is-hidden", !visible);
+    element.setAttribute("aria-hidden", String(!visible));
+    if (element.matches(".screen-card")) element.inert = !visible;
+  }
+
+  function pulseClass(element, className, duration = 380) {
+    element.classList.remove(className);
+    void element.offsetWidth;
+    element.classList.add(className);
+    window.setTimeout(() => element.classList.remove(className), duration);
+  }
+
+  function setSceneMode(mode) {
+    ui.shell.classList.toggle("is-menu", mode === "menu");
+    ui.shell.classList.toggle("is-playing", mode === "playing");
+    ui.shell.classList.toggle("is-gameover", mode === "gameover");
   }
 
   function tone(frequency, duration, type = "sine", volume = 0.06, delay = 0) {
@@ -133,7 +152,8 @@
       oscillator.stop(start + duration + 0.02);
     } catch {
       state.muted = true;
-      ui.sound.textContent = "SES KAPALI";
+      ui.soundLabel.textContent = "SES KAPALI";
+      ui.sound.classList.add("is-muted");
     }
   }
 
@@ -297,6 +317,8 @@
 
   function resetGame() {
     state.mode = "playing";
+    setSceneMode("playing");
+    pulseClass(ui.shell, "is-launching", 660);
     state.playTime = 0;
     state.distance = 0;
     state.rescueScore = 0;
@@ -322,8 +344,10 @@
     state.biome = 0;
     state.biomeTransition = 0;
     state.turbulence = 0;
+    state.hitStop = 0;
     state.thrusting = false;
     state.thrustVisual = 0;
+    player.x = 94;
     player.y = 365;
     player.vy = 0;
     player.tilt = 0;
@@ -347,7 +371,10 @@
 
   function goToMenu() {
     state.mode = "menu";
+    setSceneMode("menu");
     state.thrusting = false;
+    player.x = 205;
+    player.y = 370;
     obstacles = [];
     rescues = [];
     pickups = [];
@@ -367,13 +394,16 @@
   function endGame() {
     if (state.mode !== "playing") return;
     state.mode = "gameover";
+    setSceneMode("gameover");
     state.thrusting = false;
-    state.shake = 0.42;
+    state.hitStop = 0.085;
+    state.shake = 0.55;
     state.flash = 0.22;
     crashTone();
     haptic([80, 40, 120]);
     stopRotorSound();
     stopAmbientMusic();
+    pulseClass(ui.shell, "is-crashing", 330);
 
     for (let i = 0; i < 20; i += 1) {
       particles.push({
@@ -404,7 +434,7 @@
 
     window.setTimeout(() => {
       if (state.mode === "gameover") show(ui.gameOver, true);
-    }, 360);
+    }, 420);
   }
 
   function setThrusting(active) {
@@ -512,6 +542,10 @@
 
   function update(dt) {
     state.time += dt;
+    if (state.hitStop > 0) {
+      state.hitStop = Math.max(0, state.hitStop - dt);
+      return;
+    }
     state.flash = Math.max(0, state.flash - dt);
     state.shake = Math.max(0, state.shake - dt);
     state.biomeTransition = Math.max(0, state.biomeTransition - dt);
@@ -523,8 +557,11 @@
     updatePopups(dt);
 
     if (state.mode !== "playing") {
-      player.y = 364 + Math.sin(state.time * 1.8) * 7;
-      player.tilt += (Math.sin(state.time * 1.4) * 0.025 - player.tilt) * Math.min(1, dt * 3);
+      if (state.mode === "menu") {
+        player.x += (205 - player.x) * Math.min(1, dt * 3.2);
+        player.y = 370 + Math.sin(state.time * 1.8) * 7;
+        player.tilt += (Math.sin(state.time * 1.4) * 0.025 - player.tilt) * Math.min(1, dt * 3);
+      }
       return;
     }
 
@@ -734,12 +771,13 @@
       state.rescueScore += gained;
       rescueTone();
       haptic(24);
-      ui.comboBadge.classList.remove("is-pulsing");
-      void ui.comboBadge.offsetWidth;
-      ui.comboBadge.classList.add("is-pulsing");
-      popups.push({ x: rescue.x, y: centerY - 52, text: `KURTARILDI +${gained}`, life: 1.2 });
+      pulseClass(ui.comboBadge, "is-pulsing", 440);
+      pulseClass(ui.score, "is-punching", 380);
+      pulseClass(ui.rescued, "is-punching", 380);
+      pulseClass(ui.shell, "is-rescue", 360);
+      popups.push({ x: rescue.x, y: centerY - 48, text: "KURTARILDI!", score: gained, kind: "rescue", life: 1.35, maxLife: 1.35 });
 
-      for (let i = 0; i < 13; i += 1) {
+      for (let i = 0; i < 18; i += 1) {
         particles.push({
           x: rescue.x,
           y: centerY,
@@ -747,7 +785,7 @@
           vy: random(-95, 45),
           life: random(0.45, 0.9),
           maxLife: 0.9,
-          color: Math.random() > 0.35 ? "#ffd45b" : "#ffffff",
+          color: Math.random() > 0.64 ? "#ffffff" : Math.random() > 0.45 ? "#dff46a" : "#63e889",
           size: random(2, 5),
         });
       }
@@ -1364,6 +1402,7 @@
       ctx.strokeStyle = "rgba(255, 210, 76, 0.74)";
       ctx.lineWidth = 2;
       ctx.setLineDash([7, 7]);
+      ctx.lineDashOffset = -state.time * 28;
       ctx.beginPath();
       ctx.arc(0, 0, 74, 0, Math.PI * 2);
       ctx.stroke();
@@ -1511,6 +1550,7 @@
     const turbulenceY = Math.sin(state.time * 31 + 0.8) * state.turbulence * 2.1;
     ctx.save();
     ctx.translate(player.x + turbulenceX, player.y + flightBob + turbulenceY);
+    if (state.mode === "menu") ctx.scale(1.45, 1.45);
     ctx.rotate(player.tilt + Math.sin(state.time * 19) * state.turbulence * 0.035);
 
     if (state.shield || state.invulnerable > 0) {
@@ -1798,19 +1838,49 @@
 
   function drawPopups() {
     ctx.textAlign = "center";
-    ctx.font = "900 14px system-ui, sans-serif";
     for (const popup of popups) {
-      const entrance = clamp((1.2 - popup.life) * 5.5, 0, 1);
-      const scale = 0.78 + entrance * 0.22;
+      const maxLife = popup.maxLife || 1.2;
+      const entrance = clamp((maxLife - popup.life) * 6, 0, 1);
+      const scale = popup.kind === "rescue" ? 0.62 + entrance * 0.38 : 0.78 + entrance * 0.22;
       ctx.save();
       ctx.translate(popup.x, popup.y);
       ctx.scale(scale, scale);
       ctx.globalAlpha = clamp(popup.life * 1.8, 0, 1);
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = "rgba(16, 48, 65, 0.48)";
-      ctx.strokeText(popup.text, 0, 0);
-      ctx.fillStyle = "#fff3a9";
-      ctx.fillText(popup.text, 0, 0);
+
+      if (popup.kind === "rescue") {
+        const burst = clamp(entrance * (popup.life / maxLife) * 1.7, 0, 1);
+        ctx.save();
+        ctx.globalAlpha *= burst * 0.62;
+        ctx.strokeStyle = "#dff46a";
+        ctx.lineWidth = 2.5;
+        for (let ray = 0; ray < 12; ray += 1) {
+          const angle = (Math.PI * 2 * ray) / 12 + state.time * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(angle) * 36, Math.sin(angle) * 25);
+          ctx.lineTo(Math.cos(angle) * 54, Math.sin(angle) * 39);
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        ctx.font = "900 20px 'Barlow Condensed', 'Arial Narrow', sans-serif";
+        ctx.lineWidth = 7;
+        ctx.strokeStyle = "rgba(4, 60, 47, 0.88)";
+        ctx.strokeText(popup.text, 0, -3);
+        ctx.fillStyle = "#bdf05d";
+        ctx.fillText(popup.text, 0, -3);
+        ctx.font = "900 24px 'Barlow Condensed', 'Arial Narrow', sans-serif";
+        ctx.lineWidth = 7;
+        ctx.strokeText(`+${popup.score}`, 0, 20);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(`+${popup.score}`, 0, 20);
+      } else {
+        ctx.font = "900 15px 'Barlow Condensed', 'Arial Narrow', sans-serif";
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "rgba(16, 48, 65, 0.56)";
+        ctx.strokeText(popup.text, 0, 0);
+        ctx.fillStyle = "#fff3a9";
+        ctx.fillText(popup.text, 0, 0);
+      }
       ctx.restore();
     }
     ctx.globalAlpha = 1;
@@ -1859,7 +1929,8 @@
   });
   ui.sound.addEventListener("click", () => {
     state.muted = !state.muted;
-    ui.sound.textContent = state.muted ? "SES KAPALI" : "SES AÇIK";
+    ui.soundLabel.textContent = state.muted ? "SES KAPALI" : "SES AÇIK";
+    ui.sound.classList.toggle("is-muted", state.muted);
     ui.sound.setAttribute("aria-label", state.muted ? "Sesi aç" : "Sesi kapat");
     if (!state.muted) buttonTone();
     if (state.muted) {
@@ -1913,6 +1984,15 @@
   window.addEventListener("resize", resizeCanvas);
 
   resizeCanvas();
+  player.x = 205;
+  player.y = 370;
+  setSceneMode("menu");
+  show(ui.menu, true);
+  show(ui.gameOver, false);
+  show(ui.hud, false);
+  show(ui.hint, false);
+  show(ui.phaseNotice, false);
+  show(ui.fuelWarning, false);
   ui.menuBest.textContent = state.best.toLocaleString("tr-TR");
   requestAnimationFrame(loop);
 })();
