@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b2038" />
     <title>Blue Rescue</title>
-    <link rel="stylesheet" href="style.css?v=7" />
+    <link rel="stylesheet" href="style.css?v=8" />
   </head>
   <body>
     <main class="game-shell" aria-label="Blue Rescue oyunu">
@@ -39,43 +39,43 @@
 
       <button id="soundButton" class="sound-button" type="button" aria-label="Sesi kapat">SES AÇIK</button>
 
-      <section id="menu" class="screen-card">
-        <div class="eyebrow">TEK DOKUNUŞLU KURTARMA</div>
-        <h1>BLUE<br /><span>RESCUE</span></h1>
-        <p class="lead">Uç. Yaklaş. Kurtar.</p>
+      <section id="menu" class="screen-card screen-card--menu">
+        <div class="eyebrow">BR–01 / ARAMA KURTARMA</div>
+        <h1><span class="title-prefix">BLUE</span><span class="title-main">RESCUE</span></h1>
+        <p class="lead">Dağ hattında sivil tahliye uçuşu</p>
         <div class="mission-rules" aria-label="Görev hedefleri">
-          <span>İNSANLARI KURTAR</span>
-          <span>ENGELLERDEN KAÇ</span>
-          <span>YAKIT TOPLA</span>
+          <span>KURTAR</span>
+          <span>YAKITI KORU</span>
+          <span>ROTAYI OKU</span>
         </div>
         <div class="instructions">
-          <div class="control-icon" aria-hidden="true">↑</div>
-          <p><strong>Basılı tut:</strong> yüksel<br /><strong>Bırak:</strong> alçal</p>
+          <div class="control-icon" aria-hidden="true">TUT</div>
+          <p><strong>Basılı tut</strong> — yüksel<br /><strong>Bırak</strong> — alçal</p>
         </div>
-        <button id="startButton" class="primary-button" type="button">GÖREVE BAŞLA</button>
-        <p class="best-line">EN İYİ SKOR <strong id="menuBest">0</strong></p>
+        <button id="startButton" class="primary-button" type="button">UÇUŞA BAŞLA</button>
+        <p class="best-line">REKOR / <strong id="menuBest">0</strong></p>
       </section>
 
-      <section id="gameOver" class="screen-card is-hidden" aria-labelledby="reportTitle">
-        <div class="eyebrow">GÖREV TAMAMLANDI</div>
-        <h2 id="reportTitle">GÖREV RAPORU</h2>
-        <p id="newBest" class="new-best is-hidden">YENİ REKOR!</p>
+      <section id="gameOver" class="screen-card screen-card--report is-hidden" aria-labelledby="reportTitle">
+        <div class="eyebrow">UÇUŞ SONU / BR–01</div>
+        <h2 id="reportTitle">GÖREV KAYDI</h2>
+        <p id="newBest" class="new-best is-hidden">YENİ EN İYİ SONUÇ</p>
         <dl class="report-grid">
-          <div><dt>Skor</dt><dd id="finalScore">0</dd></div>
-          <div><dt>Kurtarılan</dt><dd id="finalRescued">0</dd></div>
-          <div><dt>En iyi kombo</dt><dd id="finalCombo">×0</dd></div>
-          <div><dt>Mesafe</dt><dd id="finalDistance">0 m</dd></div>
+          <div><dt>Puan</dt><dd id="finalScore">0</dd></div>
+          <div><dt>Tahliye</dt><dd id="finalRescued">0</dd></div>
+          <div><dt>Seri</dt><dd id="finalCombo">×0</dd></div>
+          <div><dt>Uçuş</dt><dd id="finalDistance">0 m</dd></div>
         </dl>
-        <button id="retryButton" class="primary-button" type="button">TEKRAR DENE</button>
-        <button id="shareButton" class="secondary-button" type="button">SKORU PAYLAŞ</button>
-        <button id="menuButton" class="secondary-button" type="button">ANA MENÜ</button>
+        <button id="retryButton" class="primary-button" type="button">YENİDEN UÇ</button>
+        <button id="shareButton" class="secondary-button" type="button">SONUCU PAYLAŞ</button>
+        <button id="menuButton" class="secondary-button" type="button">BAŞLANGIÇ</button>
         <p id="shareStatus" class="share-status" role="status" aria-live="polite"></p>
       </section>
 
-      <div id="hint" class="game-hint is-hidden">BASILI TUTARAK YÜKSEL</div>
+      <div id="hint" class="game-hint is-hidden">BASILI TUT — YÜKSEL</div>
     </main>
 
-    <script src="game-core.js?v=7"></script>
-    <script src="game.js?v=7"></script>
+    <script src="game-core.js?v=8"></script>
+    <script src="game.js?v=8"></script>
   </body>
 </html>
