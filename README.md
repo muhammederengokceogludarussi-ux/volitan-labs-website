@@ -8,4 +8,4 @@ Blue Rescue is a lightweight browser rescue game prepared for SKY Olimpiyatları
 
 - Play: https://www.volitanlabs.dev/games/blue-rescue/index.html
 - Project page: https://www.volitanlabs.dev/tr/blue-rescue
-- Presentation (embedded QR, also available from Apps): https://www.volitanlabs.dev/presentations/Blue_Rescue_SKY_Olimpiyatlari_Sunumu.pptx
+- Presentation (8 slides, embedded QR, also available from Apps): https://www.volitanlabs.dev/presentations/Blue_Rescue_SKY_Olimpiyatlari_Sunumu.pptx
