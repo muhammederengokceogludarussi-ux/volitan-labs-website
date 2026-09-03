@@ -12,7 +12,11 @@ const copy = {
     badge: "SKY OLİMPİYATLARI PROJESİ",
     title: "BLUE RESCUE",
     description:
-      "GÖKBEY Isıl ve Akışkanlar Analizi stajım için klasik bir teknik sunum yerine yaptığım küçük, oynanabilir kurtarma oyunu.",
+      "SKY Olimpiyatları için, GÖKBEY Isıl ve Akışkanlar Analizi stajım sırasında geliştirdiğim küçük, oynanabilir kurtarma oyunu.",
+    context:
+      "Helikopter teması GÖKBEY tarafındaki çalışma geçmişimden geliyor; amaç gençlerde merak uyandırmak ve bu alandaki tanınırlığa küçük bir katkı sağlamak.",
+    disclaimer:
+      "Oyundaki helikopter GÖKBEY değildir; genel ve özgün bir mavi helikopterdir. Oyunun içinde GÖKBEY adı, logosu veya resmî görselleri kullanılmamıştır.",
     hold: "Basılı tutarak yüksel, bırakarak alçal.",
     score: "Kurtarma kombosu yap ve en yüksek skoru geç.",
     safe: "Hesap gerekmez. Skor yalnızca kendi cihazında saklanır.",
@@ -21,13 +25,17 @@ const copy = {
     qrDescription: "Kameranı QR koda tut ve oyunu doğrudan aç.",
     iframeTitle: "Blue Rescue tarayıcı oyunu",
     deck: "SKY sunumunu indir",
-    deckMeta: "7 slayt · Türkçe · PPTX",
+    deckMeta: "8 slayt · Türkçe · PPTX",
   },
   en: {
     badge: "SKY OLYMPICS PROJECT",
     title: "BLUE RESCUE",
     description:
-      "A small playable rescue game I made during my GÖKBEY Thermal and Fluid Analysis internship instead of presenting a predictable technical task.",
+      "A small playable rescue game developed for the SKY Olympics during my GÖKBEY Thermal and Fluid Analysis internship.",
+    context:
+      "The helicopter theme comes from my experience on the GÖKBEY side; the aim is to spark young people's curiosity and make a small contribution to awareness.",
+    disclaimer:
+      "The helicopter in the game is not GÖKBEY; it is an original, generic blue helicopter. The game itself uses no GÖKBEY name, logo, or official imagery.",
     hold: "Hold to rise and release to descend.",
     score: "Build a rescue combo and beat your high score.",
     safe: "No account required. Your score stays on your device.",
@@ -36,7 +44,7 @@ const copy = {
     qrDescription: "Point your camera at the QR code to open the game directly.",
     iframeTitle: "Blue Rescue browser game",
     deck: "Download the SKY presentation",
-    deckMeta: "7 slides · Turkish · PPTX",
+    deckMeta: "8 slides · Turkish · PPTX",
   },
 } as const;
 
@@ -85,6 +93,12 @@ export default async function BlueRescuePage({
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
               {text.description}
+            </p>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-sky-100/80">
+              {text.context}
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl border-l-2 border-sky-400/50 pl-4 text-left text-xs leading-relaxed text-text-secondary/80 md:text-sm">
+              {text.disclaimer}
             </p>
           </div>
         </AnimatedSection>
