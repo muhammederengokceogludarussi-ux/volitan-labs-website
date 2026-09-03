@@ -8,6 +8,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import {
   ArrowRight,
   CloudSun,
+  Download,
   Gamepad2,
   QrCode,
   ShieldCheck,
@@ -59,13 +60,23 @@ export default function AppsPage() {
                 ))}
               </div>
 
-              <Link
-                href={`/${locale}/blue-rescue`}
-                className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-7 py-3.5 text-sm font-black text-slate-950 transition-all hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(56,189,248,0.35)]"
-              >
-                {t("blueRescue.playNow")}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href="/presentations/Blue_Rescue_SKY_Olimpiyatlari_Sunumu.pptx"
+                  download
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-7 py-3.5 text-sm font-black text-slate-950 transition-all hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(56,189,248,0.35)] sm:w-fit"
+                >
+                  <Download className="h-4 w-4" />
+                  {t("blueRescue.presentation")}
+                </a>
+                <Link
+                  href={`/${locale}/blue-rescue`}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/[0.08] sm:w-fit"
+                >
+                  {t("blueRescue.playNow")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
 
             <div className="relative min-h-[380px] overflow-hidden border-t border-white/10 bg-gradient-to-b from-sky-500 via-cyan-100 to-emerald-700 lg:min-h-[560px] lg:border-l lg:border-t-0">
