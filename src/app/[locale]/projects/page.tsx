@@ -25,19 +25,6 @@ interface ProjectData {
 
 const projectsData: ProjectData[] = [
   {
-    slug: "blue-rescue",
-    title: { en: "Blue Rescue", tr: "Blue Rescue" },
-    description: {
-      en: "A small playable rescue game made for the SKY Olympics during my GÖKBEY internship.",
-      tr: "GÖKBEY stajım sırasında SKY Olimpiyatları için yaptığım küçük, oynanabilir kurtarma oyunu.",
-    },
-    tags: ["JavaScript", "Canvas", "Game Design"],
-    category: ["all", "web"],
-    iconFallback: "game",
-    href: "/projects/blue-rescue",
-    featured: true,
-  },
-  {
     slug: "teknofest-drone",
     title: {
       en: "TEKNOFEST 2022 — Combat UAV",

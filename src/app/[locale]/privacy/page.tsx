@@ -16,7 +16,7 @@ const privacyContent = {
       },
       {
         title: "Information We Collect",
-        content: "We collect minimal information necessary to provide our services:\n\n- Contact Form: When you submit our contact form, we collect your name, email address, and message content.\n- Analytics: We use Vercel Analytics which collects anonymous usage data without cookies.\n- Game Data: Blue Rescue stores high scores locally in your browser. This score data is not sent to our servers.",
+        content: "We collect minimal information necessary to provide our services:\n\n- Contact Form: When you submit our contact form, we collect your name, email address, and message content.\n- Analytics: We use Vercel Analytics which collects anonymous usage data without cookies.",
       },
       {
         title: "How We Use Your Information",
@@ -57,7 +57,7 @@ const privacyContent = {
       },
       {
         title: "Topladığımız Bilgiler",
-        content: "Hizmetlerimizi sunmak için gereken minimum bilgileri topluyoruz:\n\n- İletişim Formu: İletişim formumuzu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğini topluyoruz.\n- Analitik: Çerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.\n- Oyun Verileri: Blue Rescue en yüksek skorları tarayıcınızda yerel olarak saklar. Bu skor verisi sunucularımıza gönderilmez.",
+        content: "Hizmetlerimizi sunmak için gereken minimum bilgileri topluyoruz:\n\n- İletişim Formu: İletişim formunu gönderdiğinizde adınızı, e-posta adresinizi ve mesaj içeriğinizi topluyoruz.\n- Analitik: Çerez kullanmadan anonim kullanım verileri toplayan Vercel Analytics kullanıyoruz.",
       },
       {
         title: "Bilgilerinizi Nasıl Kullanıyoruz",

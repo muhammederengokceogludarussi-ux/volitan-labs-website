@@ -23,26 +23,6 @@
         "engineering": "Mühendislik odaklı tasarım"
       }
     },
-    "featuredApp": {
-      "label": "SKY Olimpiyatları Projesi",
-      "tagline": "Uç. Kurtar. Rekorunu geç.",
-      "description": "GÖKBEY Isıl ve Akışkanlar Analizi stajım sırasında SKY Olimpiyatları için küçük, oynanabilir bir kurtarma projesi geliştirdim.",
-      "cta": "Blue Rescue Oyna",
-      "features": {
-        "flight": {
-          "title": "Tek dokunuşlu uçuş",
-          "description": "Yükselmek için basılı tut, alçalmak için bırak."
-        },
-        "rescue": {
-          "title": "Yakıt ve kurtarma kombosu",
-          "description": "Puan zinciri kurarken kaynaklarını dengele."
-        },
-        "browser": {
-          "title": "Anında tarayıcı deneyimi",
-          "description": "İndirme ve hesap gerektirmez."
-        }
-      }
-    },
     "skills": {
       "label": "Teknoloji Yığını",
       "title": "Beceriler & Uzmanlık",
@@ -79,10 +59,6 @@
           "title": "Mühendislik Düşüncesi Uygulama Geliştirmemi Nasıl Şekillendiriyor",
           "description": "ODTÜ'de makine mühendisliği okumanın uygulama geliştirme yaklaşımımı nasıl etkilediği."
         },
-        "post2": {
-          "title": "Blue Rescue'ı Geliştirmek: Fizikten Oyuna",
-          "description": "Basit bir tek dokunuş fikrinin duyarlı bir helikopter kurtarma oyununa dönüşmesi."
-        },
         "post3": {
           "title": "Yapay Zeka Destekli Geliştirme: İş Akışım",
           "description": "Kod kalitesinden ödün vermeden geliştirmeyi hızlandırmak için yapay zeka araçlarını nasıl kullanıyorum."
@@ -97,16 +73,7 @@
   },
   "apps": {
     "title": "Etkileşim Laboratuvarı",
-    "subtitle": "Şu anda deneyebileceğiniz küçük ve odaklı dijital işler.",
-    "blueRescue": {
-      "badge": "Canlı Tarayıcı Oyunu",
-      "description": "Mavi kurtarma helikopterini uçur, mahsur kalan insanları kurtar, kombo yap, yakıtını yönet ve en yüksek skoru geç — doğrudan tarayıcında.",
-      "instant": "Anında oyna",
-      "noAccount": "Hesap gerektirmez",
-      "mobileReady": "Mobil uyumlu",
-      "playNow": "Projeyi incele",
-      "presentation": "SKY sunumunu indir"
-    }
+    "subtitle": "Şu anda deneyebileceğiniz küçük ve odaklı dijital işler."
   },
   "about": {
     "title": "Hakkımda",
@@ -115,7 +82,7 @@
       "title": "Hikayem",
       "heading": "Şimdiye Kadarki Yolculuk",
       "content": "Orta Doğu Teknik Üniversitesi'nde (ODTÜ) Makine Mühendisliği öğrencisiyim. Mühendislik yolculuğum erken başladı — lisede uçak bakım teknisyenliği eğitimi, TUSAŞ'ta F-35 ve GÖKBEY Helikopter gibi projelerde çalışma ve Gazi Üniversitesi'nden Uçak Teknolojisi ön lisans derecesi.",
-      "content2": "Bu yolculuk sırasında yazılım geliştirmeye olan tutkumu keşfettim. Volitan Labs çatısı altında Blue Rescue gibi odaklı web ürünleri ve etkileşimli deneyimler geliştiriyor, mühendislik hassasiyetini hızlı ve yapay zeka destekli geliştirme süreçleriyle birleştiriyorum."
+      "content2": "Bu yolculuk sırasında yazılım geliştirmeye olan tutkumu keşfettim. Volitan Labs çatısı altında odaklı web ürünleri ve etkileşimli deneyimler geliştiriyor, mühendislik hassasiyetini hızlı ve yapay zeka destekli geliştirme süreçleriyle birleştiriyorum."
     },
     "journey": {
       "label": "Yolculuk",

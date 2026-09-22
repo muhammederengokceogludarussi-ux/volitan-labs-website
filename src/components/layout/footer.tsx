@@ -47,9 +47,6 @@ export function Footer() {
               <Link href="/projects" className="text-zinc-500 transition-colors hover:text-white">
                 {tNav("projects")}
               </Link>
-              <Link href="/apps" className="text-zinc-500 transition-colors hover:text-white">
-                {tNav("apps")}
-              </Link>
               <Link href="/contact" className="text-zinc-500 transition-colors hover:text-white">
                 {tNav("contact")}
               </Link>

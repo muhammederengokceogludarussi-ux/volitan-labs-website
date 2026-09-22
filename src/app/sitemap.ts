@@ -7,14 +7,11 @@ const staticPages = [
   "",
   "/about",
   "/projects",
-  "/apps",
-  "/blue-rescue",
   "/contact",
   "/privacy",
 ];
 
 const projectSlugs = [
-  "blue-rescue",
   "teknofest-combat-uav",
   "volitan-labs-website",
 ];

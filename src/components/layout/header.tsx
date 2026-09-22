@@ -13,7 +13,6 @@ const navItems = [
   { href: "/", key: "home" },
   { href: "/about", key: "about" },
   { href: "/projects", key: "projects" },
-  { href: "/apps", key: "apps" },
 ] as const;
 
 export function Header() {

@@ -30,43 +30,6 @@ interface ProjectDetail {
 }
 
 const projectDetails: Record<string, ProjectDetail> = {
-  "blue-rescue": {
-    slug: "blue-rescue",
-    title: { en: "Blue Rescue", tr: "Blue Rescue" },
-    description: {
-      en: "A small playable project made for the SKY Olympics during my GÖKBEY internship.",
-      tr: "GÖKBEY stajım sırasında SKY Olimpiyatları için yaptığım küçük, oynanabilir proje.",
-    },
-    longDescription: {
-      en: "I developed Blue Rescue for the SKY Olympics during my GÖKBEY Thermal and Fluid Analysis internship. The helicopter theme comes from my current internship and my earlier work on the GÖKBEY Prototype Project. GÖKBEY is Türkiye's first general-purpose helicopter developed and produced with domestic capabilities, and I wanted to present that world in an interactive format that could spark young people's curiosity. The aircraft in the game is not GÖKBEY; it is an original, generic blue helicopter. The current loop focuses on one-touch flight, rescues, obstacles, combos and quick retries. Future versions could explore firefighting, evacuation and different helicopter classes, while official names and visuals would only be used with the required permissions.",
-      tr: "Blue Rescue'ı, GÖKBEY Isıl ve Akışkanlar Analizi stajım sırasında SKY Olimpiyatları için geliştirdim. Helikopter teması hem şu anki stajımdan hem de daha önce GÖKBEY Prototip Projesi'nde çalışmış olmamdan geliyor. GÖKBEY, Türkiye'nin yerli imkânlarla geliştirilip üretilen ilk genel maksat helikopteri; ben de bu dünyayı gençlerde merak uyandırabilecek etkileşimli bir formatta anlatmak istedim. Oyundaki araç GÖKBEY değildir; genel ve özgün bir mavi helikopterdir. Mevcut oyun döngüsü tek dokunuşlu uçuş, kurtarma, engeller, seri ve hızlı yeniden deneme üzerine kurulu. Gelecekte yangın söndürme, tahliye ve farklı helikopter sınıflarına yönelik görevler eklenebilir; resmî ad ve görseller ise yalnızca gerekli izinlerle kullanılacaktır.",
-    },
-    tags: ["JavaScript", "Canvas", "Game Physics", "Responsive Web"],
-    live: "https://www.volitanlabs.dev/games/blue-rescue/index.html",
-    screenshots: [
-      "/images/games/blue-rescue/menu.png",
-      "/images/games/blue-rescue/gameplay.png",
-      "/images/games/blue-rescue/report.png",
-    ],
-    features: {
-      en: [
-        "One-touch helicopter controls with momentum-based flight",
-        "Rescue chains and combo-driven scoring",
-        "Fuel management with shield and fuel pickups",
-        "Dynamic day-to-night environment transitions",
-        "Local high scores without an account",
-        "Responsive mobile play through a shareable QR link",
-      ],
-      tr: [
-        "İvmeye dayalı tek dokunuşlu helikopter kontrolü",
-        "Kurtarma zincirleri ve kombo odaklı puanlama",
-        "Kalkan ve yakıt destekleriyle kaynak yönetimi",
-        "Dinamik gündüz-gece ortam geçişleri",
-        "Hesap gerektirmeyen yerel rekor kaydı",
-        "Paylaşılabilir QR bağlantısıyla mobil uyumlu oyun",
-      ],
-    },
-  },
   "teknofest-combat-uav": {
     slug: "teknofest-combat-uav",
     title: {

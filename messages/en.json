@@ -23,26 +23,6 @@
         "engineering": "Engineering-led design"
       }
     },
-    "featuredApp": {
-      "label": "SKY Olympics Project",
-      "tagline": "Fly. Rescue. Beat your high score.",
-      "description": "During my GÖKBEY Thermal and Fluid Analysis internship, I developed a small playable rescue project for the SKY Olympics.",
-      "cta": "Play Blue Rescue",
-      "features": {
-        "flight": {
-          "title": "One-touch flight",
-          "description": "Hold to rise, release to descend."
-        },
-        "rescue": {
-          "title": "Fuel & rescue combos",
-          "description": "Balance resources while building a score chain."
-        },
-        "browser": {
-          "title": "Instant browser play",
-          "description": "No download or account required."
-        }
-      }
-    },
     "skills": {
       "label": "Tech Stack",
       "title": "Skills & Expertise",
@@ -79,10 +59,6 @@
           "title": "How Engineering Thinking Shapes My App Development",
           "description": "How studying mechanical engineering at METU influences my approach to building apps."
         },
-        "post2": {
-          "title": "Building Blue Rescue: From Physics to Play",
-          "description": "How a simple one-touch idea became a responsive helicopter rescue game."
-        },
         "post3": {
           "title": "AI-Augmented Development: My Workflow",
           "description": "How I use AI tools to accelerate development without sacrificing code quality."
@@ -97,16 +73,7 @@
   },
   "apps": {
     "title": "Interactive Lab",
-    "subtitle": "Small, focused digital experiences you can try right now.",
-    "blueRescue": {
-      "badge": "Live Browser Game",
-      "description": "Fly a blue rescue helicopter, save stranded people, build a combo, manage your fuel and beat your high score — directly in your browser.",
-      "instant": "Instant play",
-      "noAccount": "No account",
-      "mobileReady": "Mobile ready",
-      "playNow": "View project",
-      "presentation": "Download SKY presentation"
-    }
+    "subtitle": "Small, focused digital experiences you can try right now."
   },
   "about": {
     "title": "About Me",
@@ -115,7 +82,7 @@
       "title": "My Story",
       "heading": "The Journey So Far",
       "content": "I'm a Mechanical Engineering student at Middle East Technical University (METU). My journey in engineering started early — studying aircraft maintenance in high school, working at TUSAŞ on projects like the F-35 and GÖKBEY Helicopter, and earning an associate degree in Aircraft Technology from Gazi University.",
-      "content2": "Along this journey, I discovered a passion for software development. Through Volitan Labs, I build focused web products and interactive experiments such as Blue Rescue, combining engineering precision with rapid, AI-augmented development."
+      "content2": "Along this journey, I discovered a passion for software development. Through Volitan Labs, I build focused web products and interactive experiments combining engineering precision with rapid, AI-augmented development."
     },
     "journey": {
       "label": "Journey",

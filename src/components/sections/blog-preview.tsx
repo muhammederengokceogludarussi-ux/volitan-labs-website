@@ -13,7 +13,6 @@ import { ArrowRight } from "lucide-react";
 
 const placeholderPosts = [
   { key: "post1", date: "2025-01-15", readTime: 5 },
-  { key: "post2", date: "2025-01-10", readTime: 8 },
   { key: "post3", date: "2025-01-05", readTime: 4 },
 ] as const;
 
