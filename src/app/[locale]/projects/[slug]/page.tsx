@@ -1,11 +1,10 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { AnimatedSection } from "@/components/shared/animated-section";
-import { NotFoundSection } from "@/components/shared/not-found-section";
 import { BackLink } from "@/components/shared/back-link";
 import { TagList } from "@/components/shared/tag-list";
 
@@ -115,13 +114,7 @@ export default function ProjectDetailPage() {
   const project = projectDetails[slug];
 
   if (!project) {
-    return (
-      <NotFoundSection
-        title={t("notFound")}
-        backHref="/projects"
-        backLabel={tCommon("backTo", { page: t("title") })}
-      />
-    );
+    notFound();
   }
 
   return (
